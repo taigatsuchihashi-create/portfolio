@@ -1,0 +1,6263 @@
+{
+  "16000000": {
+    "id": 16000000,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000255.png",
+        "name": "全速前進",
+        "rate": 92.72
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000288.png",
+        "name": "クレーピジョン",
+        "rate": 93.44
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000076.png",
+        "name": "シェルショック",
+        "rate": 87.42
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000135.png",
+        "name": "ばんそうこう",
+        "rate": 87.87
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 40.03
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 13.8
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 56.73
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 17.72
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 55.91
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 25.43
+      }
+    ]
+  },
+  "16000001": {
+    "id": 16000001,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000273.png",
+        "name": "スピードローダー",
+        "rate": 94.37
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000319.png",
+        "name": "シルバーブレット",
+        "rate": 94.76
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000077.png",
+        "name": "すいすいブーツ",
+        "rate": 90.37
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000138.png",
+        "name": "マグナム・スペシャル",
+        "rate": 90.73
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 15
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 12.63
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 65.99
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 16.78
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 68.55
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 20.05
+      }
+    ]
+  },
+  "16000002": {
+    "id": 16000002,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000272.png",
+        "name": "Tボーンミサイル",
+        "rate": 89.81
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000310.png",
+        "name": "エネミーシェーカー",
+        "rate": 90.95
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000078.png",
+        "name": "暴れウシ",
+        "rate": 84.58
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000137.png",
+        "name": "タフガイ",
+        "rate": 85.51
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 26.54
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 63.44
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 3.6
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 15.76
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 43.73
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 36.62
+      }
+    ]
+  },
+  "16000003": {
+    "id": 16000003,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000245.png",
+        "name": "ロケットレース",
+        "rate": 90.99
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000316.png",
+        "name": "ロケット燃料",
+        "rate": 90.2
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000079.png",
+        "name": "集中豪雨",
+        "rate": 83.35
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000150.png",
+        "name": "第4のロケット",
+        "rate": 84.72
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 6.85
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 30.34
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 7.93
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 58.42
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 10.93
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000005.png",
+        "name": "スピードリロード",
+        "rate": 61.83
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 7.7
+      }
+    ]
+  },
+  "16000004": {
+    "id": 16000004,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000246.png",
+        "name": "マルチボールランチャー",
+        "rate": 95.28
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000409.png",
+        "name": "バウンシングヒール",
+        "rate": 92.63
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000080.png",
+        "name": "スーパーバウンド",
+        "rate": 91.38
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000156.png",
+        "name": "ロボ流退却",
+        "rate": 90.38
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 16.23
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 6.56
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 47.73
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 34.63
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 51.11
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 14.21
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000005.png",
+        "name": "スピードリロード",
+        "rate": 65.66
+      }
+    ]
+  },
+  "16000005": {
+    "id": 16000005,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000247.png",
+        "name": "破裂トゲクッション",
+        "rate": 87.35
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000406.png",
+        "name": "ライフプラント",
+        "rate": 87.95
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000081.png",
+        "name": "栄養補給",
+        "rate": 85.03
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000151.png",
+        "name": "カーブシュート",
+        "rate": 86.99
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 14.23
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 11.91
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 60.44
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 26.73
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 68.61
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 14.88
+      }
+    ]
+  },
+  "16000006": {
+    "id": 16000006,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000250.png",
+        "name": "ネバネバシロップミキサー",
+        "rate": 77.72
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000293.png",
+        "name": "薬草の強壮剤",
+        "rate": 77.29
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000082.png",
+        "name": "百薬の長",
+        "rate": 63.72
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000158.png",
+        "name": "超猛毒",
+        "rate": 63.33
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 8.17
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 7.8
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 33.49
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 10.54
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 43.59
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 18.04
+      }
+    ]
+  },
+  "16000007": {
+    "id": 16000007,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000251.png",
+        "name": "スパークプラグ",
+        "rate": 78.98
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000295.png",
+        "name": "リコイルスプリング",
+        "rate": 79.91
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000083.png",
+        "name": "リチャージ",
+        "rate": 69.36
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000149.png",
+        "name": "ショッキング",
+        "rate": 69.67
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 11.08
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 7.54
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 28.17
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 9.6
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 33.01
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 9.78
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000014.png",
+        "name": "ペットパワー",
+        "rate": 41.65
+      }
+    ]
+  },
+  "16000008": {
+    "id": 16000008,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000249.png",
+        "name": "クマの手",
+        "rate": 89.94
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000314.png",
+        "name": "フェイクファー",
+        "rate": 88.95
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000084.png",
+        "name": "森の絆",
+        "rate": 82.4
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000136.png",
+        "name": "ハイパーベア",
+        "rate": 82.66
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 29.48
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 13.12
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 51.75
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 14.66
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 48.96
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 10.73
+      }
+    ]
+  },
+  "16000009": {
+    "id": 16000009,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000258.png",
+        "name": "危機一髪スピナー",
+        "rate": 88.54
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000294.png",
+        "name": "梱包爆薬",
+        "rate": 90.44
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000085.png",
+        "name": "爆風ジャンプ",
+        "rate": 85.14
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000155.png",
+        "name": "解体屋",
+        "rate": 84.45
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 13.79
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 11.38
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 44.14
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 11.39
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 51.7
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 37.83
+      }
+    ]
+  },
+  "16000010": {
+    "id": 16000010,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000264.png",
+        "name": "スープレックスサプリ",
+        "rate": 87.32
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000292.png",
+        "name": "アステロイドベルト",
+        "rate": 86.35
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000086.png",
+        "name": "バーニングドロップ",
+        "rate": 74.89
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000140.png",
+        "name": "流星雨",
+        "rate": 74.39
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 25.25
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 16.92
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 35.26
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 2.86
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 26.92
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000006.png",
+        "name": "ウルトラチャージ",
+        "rate": 41.83
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 8.03
+      }
+    ]
+  },
+  "16000011": {
+    "id": 16000011,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000265.png",
+        "name": "コンボスピナー",
+        "rate": 95.62
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000290.png",
+        "name": "闇夜の怪物",
+        "rate": 95.02
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000087.png",
+        "name": "魂狩り",
+        "rate": 92.3
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000154.png",
+        "name": "蛇の跳躍",
+        "rate": 92.71
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 23.78
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 15.97
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 75.25
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 4.14
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 73.13
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 31.05
+      }
+    ]
+  },
+  "16000012": {
+    "id": 16000012,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000243.png",
+        "name": "クイックトキシック",
+        "rate": 92.89
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000286.png",
+        "name": "スローダウンポイズン",
+        "rate": 92.31
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000088.png",
+        "name": "猛毒",
+        "rate": 91.01
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000143.png",
+        "name": "カリオン・クロウ",
+        "rate": 91.55
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 24.19
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 11.52
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 65.67
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 16.75
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 78.69
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 15.4
+      }
+    ]
+  },
+  "16000013": {
+    "id": 16000013,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000267.png",
+        "name": "癒しの音叉",
+        "rate": 81.88
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000350.png",
+        "name": "護りのメロディー",
+        "rate": 79.74
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000089.png",
+        "name": "ダ・カーポ！",
+        "rate": 73.19
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000144.png",
+        "name": "むせび泣くギター",
+        "rate": 72.56
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 13.73
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 16.28
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 37
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 8.76
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 42.53
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 27.9
+      }
+    ]
+  },
+  "16000014": {
+    "id": 16000014,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000263.png",
+        "name": "スーパートーテム",
+        "rate": 86.78
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000289.png",
+        "name": "ワイヤートラップ",
+        "rate": 86.66
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000090.png",
+        "name": "鷹の目",
+        "rate": 80.68
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000148.png",
+        "name": "ベアトラップ",
+        "rate": 81.43
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 24.64
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 10.18
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 49.67
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 25.11
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 53.89
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 8.79
+      }
+    ]
+  },
+  "16000015": {
+    "id": 16000015,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000268.png",
+        "name": "自動照準器",
+        "rate": 89.36
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000291.png",
+        "name": "ホームメイドレシピ",
+        "rate": 88.81
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000091.png",
+        "name": "待ち伏せ",
+        "rate": 83.33
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000152.png",
+        "name": "スナッピースナイプ",
+        "rate": 84.06
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 12.9
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 13.36
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 51.62
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 22.47
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 69.05
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 31.18
+      }
+    ]
+  },
+  "16000016": {
+    "id": 16000016,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000257.png",
+        "name": "パルスモジュレーター",
+        "rate": 63.46
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000404.png",
+        "name": "ガラクタ吸収",
+        "rate": 63.86
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000092.png",
+        "name": "ママの抱擁",
+        "rate": 51.78
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000139.png",
+        "name": "ママのベアハッグ",
+        "rate": 51.19
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000016.png",
+        "name": "スーパータレット",
+        "rate": 30.73
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 7.64
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 11.27
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 19.3
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 13.94
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 18.65
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 7.72
+      }
+    ]
+  },
+  "16000017": {
+    "id": 16000017,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000266.png",
+        "name": "サイキック活性化剤",
+        "rate": 80.32
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000356.png",
+        "name": "彼方の使者",
+        "rate": 81.97
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000093.png",
+        "name": "影武者",
+        "rate": 73.04
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000160.png",
+        "name": "癒しの影",
+        "rate": 73.65
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 26.63
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 6.2
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 39.95
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 20.59
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 40.52
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000014.png",
+        "name": "ペットパワー",
+        "rate": 25.79
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 20.93
+      }
+    ]
+  },
+  "16000018": {
+    "id": 16000018,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000260.png",
+        "name": "パワースプリング",
+        "rate": 85.88
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000313.png",
+        "name": "タールバレル",
+        "rate": 85.62
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000094.png",
+        "name": "鋼の盾",
+        "rate": 75.98
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000157.png",
+        "name": "瞬速リロード",
+        "rate": 75.55
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 20.38
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 19.76
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 49.82
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 3.38
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 43.08
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 7.15
+      }
+    ]
+  },
+  "16000019": {
+    "id": 16000019,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000248.png",
+        "name": "ソルティーバレル",
+        "rate": 83.63
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000287.png",
+        "name": "カリブの望遠鏡",
+        "rate": 82.91
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000099.png",
+        "name": "お宝ザクザク",
+        "rate": 73.73
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000142.png",
+        "name": "マスターブラスター",
+        "rate": 73.27
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 12.26
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 7.16
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 35.87
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 17.75
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 41.63
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000014.png",
+        "name": "ペットパワー",
+        "rate": 39.38
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 7.36
+      }
+    ]
+  },
+  "16000020": {
+    "id": 16000020,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000261.png",
+        "name": "ノイズキャンセリング",
+        "rate": 90.85
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000351.png",
+        "name": "不可抗力",
+        "rate": 92.89
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000153.png",
+        "name": "スポンジ",
+        "rate": 84.42
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000104.png",
+        "name": "生気泥棒",
+        "rate": 85.03
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 22.85
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 43.72
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 58.93
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 3.36
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 41.91
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 16.3
+      }
+    ]
+  },
+  "16000021": {
+    "id": 16000021,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000252.png",
+        "name": "風おこしランプ",
+        "rate": 72.09
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000352.png",
+        "name": "復讐心",
+        "rate": 70.84
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000109.png",
+        "name": "魔法の吐息",
+        "rate": 62.9
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000159.png",
+        "name": "一発入魂",
+        "rate": 62.44
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000008.png",
+        "name": "テノビール",
+        "rate": 47.1
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 8.1
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 6.72
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 19.65
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 38.02
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 30.42
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 7.44
+      }
+    ]
+  },
+  "16000022": {
+    "id": 16000022,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000253.png",
+        "name": "地雷マニア",
+        "rate": 79.8
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000355.png",
+        "name": "最後のひと踏ん張り",
+        "rate": 79.93
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000114.png",
+        "name": "潤滑良好",
+        "rate": 68.35
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000161.png",
+        "name": "オートマ・ティック装填",
+        "rate": 68.17
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000007.png",
+        "name": "タフヘッド",
+        "rate": 45.05
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 5.4
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 14.81
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 14.51
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 10.12
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 42.74
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 8.59
+      }
+    ]
+  },
+  "16000023": {
+    "id": 16000023,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000276.png",
+        "name": "クローンプロジェクター",
+        "rate": 90.25
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000408.png",
+        "name": "ロリポップドロップ",
+        "rate": 89.26
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000141.png",
+        "name": "インビジヒール",
+        "rate": 87.55
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000119.png",
+        "name": "煙遁の術",
+        "rate": 87.68
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 25.23
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 13.47
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 64.81
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 23.07
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 65.21
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 16.23
+      }
+    ]
+  },
+  "16000024": {
+    "id": 16000024,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000242.png",
+        "name": "成長促進ライト",
+        "rate": 66.74
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000348.png",
+        "name": "やぶの反撃",
+        "rate": 66.71
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000124.png",
+        "name": "雑草魂",
+        "rate": 51.67
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000147.png",
+        "name": "トゲトゲグローブ",
+        "rate": 51.16
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 30.63
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 9.93
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 26.34
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 4.57
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 15.7
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 15.06
+      }
+    ]
+  },
+  "16000025": {
+    "id": 16000025,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000262.png",
+        "name": "灼熱イジェクター",
+        "rate": 82.41
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000317.png",
+        "name": "空飛ぶフック",
+        "rate": 82.17
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000129.png",
+        "name": "力投",
+        "rate": 70.47
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000145.png",
+        "name": "防護スピン",
+        "rate": 71.25
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 13.62
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 10.48
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 48.69
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 15.16
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 45.71
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 21.74
+      }
+    ]
+  },
+  "16000026": {
+    "id": 16000026,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000275.png",
+        "name": "ビタミンブースター",
+        "rate": 91.46
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000458.png",
+        "name": "増強ガム",
+        "rate": 87.95
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000134.png",
+        "name": "盗塁王",
+        "rate": 87.5
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000146.png",
+        "name": "打撃の構え",
+        "rate": 86.15
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 29.73
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 25.67
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 64.73
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 3.14
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 58.93
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 24.66
+      }
+    ]
+  },
+  "16000027": {
+    "id": 16000027,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000259.png",
+        "name": "裏技カセット",
+        "rate": 74.14
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000318.png",
+        "name": "ボーナスクレジット",
+        "rate": 73.56
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000168.png",
+        "name": "ブースターブースト",
+        "rate": 59.34
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000181.png",
+        "name": "ワイヤレス充電",
+        "rate": 58.75
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 15.26
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 14.44
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 24.95
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 7.87
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 17.01
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000005.png",
+        "name": "スピードリロード",
+        "rate": 34.74
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 5.2
+      }
+    ]
+  },
+  "16000028": {
+    "id": 16000028,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000270.png",
+        "name": "睡眠刺激薬",
+        "rate": 69.65
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000405.png",
+        "name": "甘い夢",
+        "rate": 72.8
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000186.png",
+        "name": "荒ぶる砂",
+        "rate": 65.1
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000187.png",
+        "name": "癒しの風",
+        "rate": 64.14
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000012.png",
+        "name": "サンドパワー",
+        "rate": 30.92
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 25.44
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 5.74
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 31.43
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 13.47
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 25.46
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 21.47
+      }
+    ]
+  },
+  "16000029": {
+    "id": 16000029,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000271.png",
+        "name": "ハニーモラセス",
+        "rate": 79.99
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000312.png",
+        "name": "荒くれバチ",
+        "rate": 80.67
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000192.png",
+        "name": "ロイヤルゼリー",
+        "rate": 70.58
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000193.png",
+        "name": "ハニカム",
+        "rate": 69.75
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 9.53
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 8.32
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 44.27
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 16.69
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 52.85
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 14.85
+      }
+    ]
+  },
+  "16000030": {
+    "id": 16000030,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000459.png",
+        "name": "酸性スプレー",
+        "rate": 88.19
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000274.png",
+        "name": "フレンドゾーン",
+        "rate": 90.37
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000198.png",
+        "name": "因果応報",
+        "rate": 83.19
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000199.png",
+        "name": "元気注入",
+        "rate": 83.53
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 25.89
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 10.93
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 58.41
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 14.06
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 57.58
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 19.02
+      }
+    ]
+  },
+  "16000031": {
+    "id": 16000031,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000269.png",
+        "name": "サービスベル",
+        "rate": 62.13
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000349.png",
+        "name": "応援ポーター",
+        "rate": 62.61
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000204.png",
+        "name": "真心込めて",
+        "rate": 52.14
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000205.png",
+        "name": "回転扉",
+        "rate": 52.35
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 6.76
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 4.71
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 20.59
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 8.98
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 24.45
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 13.02
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000014.png",
+        "name": "ペットパワー",
+        "rate": 30.84
+      }
+    ]
+  },
+  "16000032": {
+    "id": 16000032,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000254.png",
+        "name": "ギアチェンジャー",
+        "rate": 81.35
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000311.png",
+        "name": "スニークスニーカー",
+        "rate": 79.55
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000210.png",
+        "name": "スーパーチャージ",
+        "rate": 70.9
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000211.png",
+        "name": "ダッシュリロード",
+        "rate": 71.22
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 18.27
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 14.06
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 45.31
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 16.03
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 46.9
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 17.57
+      }
+    ]
+  },
+  "16000034": {
+    "id": 16000034,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000256.png",
+        "name": "圧縮空気ブースター",
+        "rate": 72.46
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000486.png",
+        "name": "再建",
+        "rate": 71.14
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000222.png",
+        "name": "カウンタークラッシュ",
+        "rate": 58.83
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000223.png",
+        "name": "ガチガチヘルメット",
+        "rate": 57.33
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 26.08
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 9.96
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 30.29
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 1.98
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 20.59
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 9.91
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000006.png",
+        "name": "ウルトラチャージ",
+        "rate": 20.69
+      }
+    ]
+  },
+  "16000035": {
+    "id": 16000035,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000277.png",
+        "name": "バネジャンプ",
+        "rate": 72.18
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000407.png",
+        "name": "ツイスター",
+        "rate": 74.41
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000228.png",
+        "name": "暴風",
+        "rate": 64.57
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000229.png",
+        "name": "凍てつく雪",
+        "rate": 65.68
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 10.69
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 15.77
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 10.07
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 41.53
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 14.39
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 39.63
+      }
+    ]
+  },
+  "16000036": {
+    "id": 16000036,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000278.png",
+        "name": "ワープタイム",
+        "rate": 75.84
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000353.png",
+        "name": "差し戻し",
+        "rate": 75.97
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000234.png",
+        "name": "オートフォーカス",
+        "rate": 64.87
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000235.png",
+        "name": "強化鋼",
+        "rate": 65.61
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 5.3
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 5.62
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 34.31
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 10.57
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 46.79
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 9.6
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000006.png",
+        "name": "ウルトラチャージ",
+        "rate": 25.38
+      }
+    ]
+  },
+  "16000037": {
+    "id": 16000037,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000244.png",
+        "name": "花畑の保護土",
+        "rate": 60.89
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000315.png",
+        "name": "トランスプラント",
+        "rate": 62.3
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000240.png",
+        "name": "急速成長",
+        "rate": 51.31
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000241.png",
+        "name": "光合成",
+        "rate": 50
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 6.3
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 4.34
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 17.46
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 8.95
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 28.73
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 7.64
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000006.png",
+        "name": "ウルトラチャージ",
+        "rate": 27.08
+      }
+    ]
+  },
+  "16000038": {
+    "id": 16000038,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000285.png",
+        "name": "パワーサージ",
+        "rate": 82.05
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000485.png",
+        "name": "パワーシールド",
+        "rate": 82.26
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000283.png",
+        "name": "マキシマムショット",
+        "rate": 78.38
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000284.png",
+        "name": "ベストタイミング",
+        "rate": 78.71
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 31.26
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 10.11
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 55
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 10.23
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 54.85
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 14
+      }
+    ]
+  },
+  "16000039": {
+    "id": 16000039,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000302.png",
+        "name": "反骨精神",
+        "rate": 88.07
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000457.png",
+        "name": "インセンティブ",
+        "rate": 87.68
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000300.png",
+        "name": "ダメ押し",
+        "rate": 84.5
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000301.png",
+        "name": "重税",
+        "rate": 83.19
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 25.8
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 14.44
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 11.7
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 63.45
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 20.4
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 63.14
+      }
+    ]
+  },
+  "16000040": {
+    "id": 16000040,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000309.png",
+        "name": "ファイアスターター",
+        "rate": 69.88
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000488.png",
+        "name": "ダンシングフレイム",
+        "rate": 71.12
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000307.png",
+        "name": "ワイルドフレイム",
+        "rate": 63.08
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000308.png",
+        "name": "フレイムアブゾーブ",
+        "rate": 62.6
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 6.12
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000013.png",
+        "name": "ベトベトオイル",
+        "rate": 22.23
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 8.34
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 4.63
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 20.56
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 18.85
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 27.08
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000005.png",
+        "name": "スピードリロード",
+        "rate": 42.81
+      }
+    ]
+  },
+  "16000041": {
+    "id": 16000041,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000326.png",
+        "name": "アイスブロック",
+        "rate": 68.93
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000400.png",
+        "name": "氷結シロップ",
+        "rate": 70.5
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000324.png",
+        "name": "スーパークール",
+        "rate": 61.63
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000325.png",
+        "name": "低体温",
+        "rate": 62.67
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 9.68
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 7.14
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 4.97
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 25.16
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 11.44
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 31.53
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000006.png",
+        "name": "ウルトラチャージ",
+        "rate": 43.15
+      }
+    ]
+  },
+  "16000042": {
+    "id": 16000042,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000333.png",
+        "name": "カンフル剤",
+        "rate": 87.04
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000461.png",
+        "name": "ブースター注射",
+        "rate": 88.64
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000331.png",
+        "name": "倦怠感",
+        "rate": 81.7
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000332.png",
+        "name": "注射",
+        "rate": 82.08
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 8.68
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 13.77
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 48.14
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 14.21
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 69.03
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 25.19
+      }
+    ]
+  },
+  "16000043": {
+    "id": 16000043,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000340.png",
+        "name": "原動力",
+        "rate": 97.13
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000403.png",
+        "name": "ハードコア",
+        "rate": 96.43
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000338.png",
+        "name": "ハードクラッシュ",
+        "rate": 94.98
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000339.png",
+        "name": "拳一本",
+        "rate": 94.9
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 20.39
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 16.77
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 71.7
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 5.31
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 75.09
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000006.png",
+        "name": "ウルトラチャージ",
+        "rate": 32.66
+      }
+    ]
+  },
+  "16000044": {
+    "id": 16000044,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000402.png",
+        "name": "エアサポート",
+        "rate": 68.34
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000347.png",
+        "name": "バリケード",
+        "rate": 68.66
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000345.png",
+        "name": "制空",
+        "rate": 60.52
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000346.png",
+        "name": "一括昇格",
+        "rate": 59.23
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 9.76
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 5.76
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 39.67
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 22.02
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 43.89
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 10.63
+      }
+    ]
+  },
+  "16000045": {
+    "id": 16000045,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000364.png",
+        "name": "スピードゾーン",
+        "rate": 85.98
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000401.png",
+        "name": "ブレイクスルー",
+        "rate": 88.02
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000362.png",
+        "name": "抵抗ゼロ",
+        "rate": 80.53
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000363.png",
+        "name": "ガスヒール",
+        "rate": 80.61
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 18.63
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 11
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 58.02
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 17.55
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 61.93
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 12.28
+      }
+    ]
+  },
+  "16000046": {
+    "id": 16000046,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000371.png",
+        "name": "ビリビリトラップ",
+        "rate": 74.49
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000463.png",
+        "name": "逆極性",
+        "rate": 74.84
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000369.png",
+        "name": "フレミング",
+        "rate": 65.97
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000370.png",
+        "name": "感電",
+        "rate": 64.84
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 6.44
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 4.79
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 23.7
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 15.93
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 44.66
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000005.png",
+        "name": "スピードリロード",
+        "rate": 47.64
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 5.22
+      }
+    ]
+  },
+  "16000047": {
+    "id": 16000047,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000378.png",
+        "name": "ネジ巻き",
+        "rate": 74.35
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000462.png",
+        "name": "不純物",
+        "rate": 73.77
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000376.png",
+        "name": "連鎖反応",
+        "rate": 64.92
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000377.png",
+        "name": "超粘着質",
+        "rate": 65.75
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 11.12
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 8.57
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 40.3
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 14.14
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 40.22
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 23.34
+      }
+    ]
+  },
+  "16000048": {
+    "id": 16000048,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000460.png",
+        "name": "無線チェック",
+        "rate": 63.27
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000385.png",
+        "name": "監視カメラ",
+        "rate": 61.05
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000383.png",
+        "name": "巡回警備",
+        "rate": 48.96
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000384.png",
+        "name": "Xファクター",
+        "rate": 50.35
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 8.51
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 6.39
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 9.62
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 31.25
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 27.37
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 15.2
+      }
+    ]
+  },
+  "16000049": {
+    "id": 16000049,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000392.png",
+        "name": "緊急ブイ",
+        "rate": 79.47
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000490.png",
+        "name": "X線ゴーグル",
+        "rate": 77.92
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000390.png",
+        "name": "魚雷改",
+        "rate": 70.66
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000391.png",
+        "name": "鋭い眼差し",
+        "rate": 71.8
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 27.58
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 13.06
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 47.22
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 2.78
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 40.21
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 20.8
+      }
+    ]
+  },
+  "16000050": {
+    "id": 16000050,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000399.png",
+        "name": "ブタの貯金箱",
+        "rate": 80.58
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000487.png",
+        "name": "コインの雨",
+        "rate": 78.49
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000397.png",
+        "name": "釣りはいらねえ",
+        "rate": 72.61
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000398.png",
+        "name": "V字回復",
+        "rate": 71.71
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 11.56
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 9.83
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 52.12
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 13.97
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 49.48
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000005.png",
+        "name": "スピードリロード",
+        "rate": 10.3
+      }
+    ]
+  },
+  "16000051": {
+    "id": 16000051,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000416.png",
+        "name": "鎮静剤",
+        "rate": 63.33
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000465.png",
+        "name": "バナナの皮",
+        "rate": 62.45
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000414.png",
+        "name": "綺麗好き",
+        "rate": 51.4
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000415.png",
+        "name": "大激怒",
+        "rate": 51.14
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 23.93
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 14.29
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 30.25
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 3.59
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 13.98
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000006.png",
+        "name": "ウルトラチャージ",
+        "rate": 23.64
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 4.69
+      }
+    ]
+  },
+  "16000052": {
+    "id": 16000052,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000423.png",
+        "name": "急速チャージ",
+        "rate": 63.26
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000489.png",
+        "name": "ツールボックス",
+        "rate": 61.26
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000422.png",
+        "name": "メタルショック",
+        "rate": 55.02
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000421.png",
+        "name": "相棒の加護",
+        "rate": 54.43
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 10.94
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 16.32
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 34.39
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 9.18
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 34.11
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 8.5
+      }
+    ]
+  },
+  "16000053": {
+    "id": 16000053,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000433.png",
+        "name": "シャッターチャンス",
+        "rate": 55.92
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000456.png",
+        "name": "スタンドダブル",
+        "rate": 56.67
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000431.png",
+        "name": "即興劇",
+        "rate": 43.96
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000432.png",
+        "name": "痛いの飛んでけ",
+        "rate": 43.11
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 6.61
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 4.43
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 21.31
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 13.29
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 19.69
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000005.png",
+        "name": "スピードリロード",
+        "rate": 29.09
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 2.83
+      }
+    ]
+  },
+  "16000054": {
+    "id": 16000054,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000440.png",
+        "name": "ポップシュート",
+        "rate": 77.33
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000464.png",
+        "name": "まわし蹴り",
+        "rate": 80.97
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000438.png",
+        "name": "ボーナススニーカー",
+        "rate": 75.96
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000439.png",
+        "name": "厚底シューズ",
+        "rate": 74.91
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 19.19
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 16.11
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 58.3
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 5.92
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 55.56
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 20.63
+      }
+    ]
+  },
+  "16000056": {
+    "id": 16000056,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000454.png",
+        "name": "ベビーシッター",
+        "rate": 59.19
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000455.png",
+        "name": "無条件の愛",
+        "rate": 56.99
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000452.png",
+        "name": "摂理への冒涜",
+        "rate": 47.58
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000453.png",
+        "name": "ベビーシャワー",
+        "rate": 47.99
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000015.png",
+        "name": "四つ子",
+        "rate": 27.59
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 4.71
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 3.57
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 11.75
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 7.76
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 19.99
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000005.png",
+        "name": "スピードリロード",
+        "rate": 30.03
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 3.73
+      }
+    ]
+  },
+  "16000057": {
+    "id": 16000057,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000473.png",
+        "name": "舞台裏直行券",
+        "rate": 65.54
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000472.png",
+        "name": "低音スピーカー",
+        "rate": 64.89
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000470.png",
+        "name": "特等席",
+        "rate": 55.87
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000471.png",
+        "name": "発声練習",
+        "rate": 57.63
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 14.56
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 6.82
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 34.77
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 24
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 39.83
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 10.35
+      }
+    ]
+  },
+  "16000058": {
+    "id": 16000058,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000480.png",
+        "name": "シュガーラッシュ",
+        "rate": 67.25
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000481.png",
+        "name": "衝突試験",
+        "rate": 66.61
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000478.png",
+        "name": "ブラックパウダー",
+        "rate": 54.94
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000479.png",
+        "name": "親知らず",
+        "rate": 54.57
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 9.48
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 10.71
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 26.38
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 8.96
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 19.17
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000006.png",
+        "name": "ウルトラチャージ",
+        "rate": 38.72
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 7.69
+      }
+    ]
+  },
+  "16000059": {
+    "id": 16000059,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000497.png",
+        "name": "スリープスター",
+        "rate": 76.19
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000498.png",
+        "name": "黒潮",
+        "rate": 79.85
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000495.png",
+        "name": "ぺったんこシール",
+        "rate": 70.57
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000496.png",
+        "name": "詰替用インク",
+        "rate": 72.95
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 13.62
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 4.92
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 37.44
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 29.49
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 44.3
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000006.png",
+        "name": "ウルトラチャージ",
+        "rate": 42.42
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 7.78
+      }
+    ]
+  },
+  "16000060": {
+    "id": 16000060,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000505.png",
+        "name": "磁界",
+        "rate": 55.98
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000506.png",
+        "name": "パルスウェーブ",
+        "rate": 54.11
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000503.png",
+        "name": "元気復活",
+        "rate": 44.49
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000504.png",
+        "name": "リモートチャージ",
+        "rate": 43.08
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 10.82
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 10.09
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 27.9
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 1.99
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 21.92
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 7.67
+      }
+    ]
+  },
+  "16000061": {
+    "id": 16000061,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000513.png",
+        "name": "ゴーストクラッカー",
+        "rate": 85.95
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000514.png",
+        "name": "ソウルコンバーター",
+        "rate": 82.91
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000511.png",
+        "name": "ヒールアップ",
+        "rate": 75.25
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000512.png",
+        "name": "スピリットアニマル",
+        "rate": 75.56
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 10.16
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 14.23
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 54.54
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 20.82
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 59.67
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 14.61
+      }
+    ]
+  },
+  "16000062": {
+    "id": 16000062,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000521.png",
+        "name": "ユーティリティベルト",
+        "rate": 57.72
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000522.png",
+        "name": "コマ落とし",
+        "rate": 60.07
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000519.png",
+        "name": "ブロックバスター",
+        "rate": 50.63
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000520.png",
+        "name": "防弾チョッキ",
+        "rate": 51.48
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 26.65
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 11.6
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 35.37
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 3.49
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 22.34
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 15.95
+      }
+    ]
+  },
+  "16000063": {
+    "id": 16000063,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000529.png",
+        "name": "ダイスロール",
+        "rate": 82.86
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000530.png",
+        "name": "ドッキリキャンディ",
+        "rate": 84.61
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000527.png",
+        "name": "ドデカい一発",
+        "rate": 82.17
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000528.png",
+        "name": "ネタばらし",
+        "rate": 78.72
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 28.63
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 9.68
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 62.75
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 25.63
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 57.86
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 15.29
+      }
+    ]
+  },
+  "16000064": {
+    "id": 16000064,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000537.png",
+        "name": "ウォーキングステッキ",
+        "rate": 78.86
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000538.png",
+        "name": "グランドピアノ",
+        "rate": 75.61
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000535.png",
+        "name": "マリーシア",
+        "rate": 68.52
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000536.png",
+        "name": "ワープマジック",
+        "rate": 69.31
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 9.14
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 7.93
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 39.15
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 9.05
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 52.52
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 30.57
+      }
+    ]
+  },
+  "16000065": {
+    "id": 16000065,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000545.png",
+        "name": "キャラメトル",
+        "rate": 78.86
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000546.png",
+        "name": "クッキークランブル",
+        "rate": 80.51
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000543.png",
+        "name": "視界良好",
+        "rate": 73.78
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000544.png",
+        "name": "ハードキャンディ",
+        "rate": 73.17
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 8.45
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 10.13
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 46.87
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 16.26
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 55.65
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 15.31
+      }
+    ]
+  },
+  "16000066": {
+    "id": 16000066,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000556.png",
+        "name": "一斉起爆",
+        "rate": 70.19
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000555.png",
+        "name": "実力行使",
+        "rate": 71.63
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000553.png",
+        "name": "高速演算",
+        "rate": 62.4
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000554.png",
+        "name": "レコーディング",
+        "rate": 63.16
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 12.63
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 19.45
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 38.6
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 13.46
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 43.13
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 13.78
+      }
+    ]
+  },
+  "16000067": {
+    "id": 16000067,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000563.png",
+        "name": "トランス",
+        "rate": 62.25
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000564.png",
+        "name": "ダイブ",
+        "rate": 64.8
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000562.png",
+        "name": "君に夢中",
+        "rate": 53.71
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000561.png",
+        "name": "恋は盲目",
+        "rate": 53.73
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 8.36
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 6.27
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 33.01
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 9.73
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 38.27
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 8.31
+      }
+    ]
+  },
+  "16000068": {
+    "id": 16000068,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000571.png",
+        "name": "戦略的撤退",
+        "rate": 66.2
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000572.png",
+        "name": "フィニッシャー",
+        "rate": 63.41
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000570.png",
+        "name": "ガクブルソニック",
+        "rate": 56.7
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000569.png",
+        "name": "精密射撃",
+        "rate": 55.56
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 12.76
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 6.75
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 37.38
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 8.5
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 32.08
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 20.82
+      }
+    ]
+  },
+  "16000069": {
+    "id": 16000069,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000579.png",
+        "name": "ウォーターバルーン",
+        "rate": 70.2
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000580.png",
+        "name": "隠れ蓑",
+        "rate": 71.34
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000577.png",
+        "name": "ブロウアップ",
+        "rate": 61.09
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000578.png",
+        "name": "一時避難",
+        "rate": 59.93
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 14.13
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 32.62
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 41.16
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 3.28
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 24.04
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 6.49
+      }
+    ]
+  },
+  "16000070": {
+    "id": 16000070,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000587.png",
+        "name": "キノコジャンプ",
+        "rate": 87.53
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000588.png",
+        "name": "フウジダケ",
+        "rate": 90.31
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000585.png",
+        "name": "キノコンボ",
+        "rate": 86.64
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000586.png",
+        "name": "キノコキングダム",
+        "rate": 85.51
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 29.44
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 8.98
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 65.12
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 6.4
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 64.58
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 27.28
+      }
+    ]
+  },
+  "16000071": {
+    "id": 16000071,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000595.png",
+        "name": "ダブルソーセージ",
+        "rate": 66.39
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000596.png",
+        "name": "マシマシマスタード",
+        "rate": 69.95
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000593.png",
+        "name": "ファストフード",
+        "rate": 59.78
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000594.png",
+        "name": "セルフサービス",
+        "rate": 61.86
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 28.92
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 14.1
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 39.15
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 2.4
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 28.83
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 13.43
+      }
+    ]
+  },
+  "16000072": {
+    "id": 16000072,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000603.png",
+        "name": "焼きすぎ君",
+        "rate": 60.37
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000604.png",
+        "name": "愛の形",
+        "rate": 57.45
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000601.png",
+        "name": "熱管理",
+        "rate": 48.08
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000602.png",
+        "name": "熱防御",
+        "rate": 48.99
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 11.74
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 9.45
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 29.06
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 11.23
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 26.3
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 16.08
+      }
+    ]
+  },
+  "16000073": {
+    "id": 16000073,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000611.png",
+        "name": "振替輸送",
+        "rate": 57.64
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000612.png",
+        "name": "幽霊鉄道",
+        "rate": 57.61
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000609.png",
+        "name": "ピットストップ",
+        "rate": 51.73
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000610.png",
+        "name": "切符を拝見！",
+        "rate": 49.84
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 5.78
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 20.45
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 35.16
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 2.04
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 27.83
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 8.22
+      }
+    ]
+  },
+  "16000074": {
+    "id": 16000074,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000625.png",
+        "name": "ペットスパイダー",
+        "rate": 73.21
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000626.png",
+        "name": "パーソナルスペース",
+        "rate": 71.06
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000623.png",
+        "name": "オーイタイ酸",
+        "rate": 66.1
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000624.png",
+        "name": "スライミーロード",
+        "rate": 65.71
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 10.7
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 6.28
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 42.87
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 25.53
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 47.06
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 29.09
+      }
+    ]
+  },
+  "16000075": {
+    "id": 16000075,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000639.png",
+        "name": "声量開放",
+        "rate": 73.13
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000640.png",
+        "name": "猿まわし",
+        "rate": 70.19
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000637.png",
+        "name": "モンキーパンチ",
+        "rate": 66.28
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000638.png",
+        "name": "ミリオンヒット",
+        "rate": 65.56
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 8.7
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 9.43
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 46.07
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 1.76
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 47.33
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 16.61
+      }
+    ]
+  },
+  "16000076": {
+    "id": 16000076,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000648.png",
+        "name": "段ボール箱",
+        "rate": 87.18
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000649.png",
+        "name": "チーズバーガー",
+        "rate": 81.78
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000646.png",
+        "name": "上昇志向",
+        "rate": 83.05
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000647.png",
+        "name": "甘えんぼ",
+        "rate": 81.57
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 12.24
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 8.58
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 54.61
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 2.75
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 62.37
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 40.41
+      }
+    ]
+  },
+  "16000077": {
+    "id": 16000077,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000661.png",
+        "name": "交換指令",
+        "rate": 70.12
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000662.png",
+        "name": "撤退指令",
+        "rate": 71.15
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000659.png",
+        "name": "防衛プロトコル",
+        "rate": 61.02
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000660.png",
+        "name": "装填プロトコル",
+        "rate": 60.96
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 9.33
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 7.52
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 38.88
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 10.77
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 41.66
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 13.42
+      }
+    ]
+  },
+  "16000078": {
+    "id": 16000078,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000669.png",
+        "name": "フォルテシモ",
+        "rate": 71.44
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000670.png",
+        "name": "インタールード",
+        "rate": 73.35
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000667.png",
+        "name": "アップテンポ",
+        "rate": 66.04
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000668.png",
+        "name": "ボーナストラック",
+        "rate": 64.63
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 7.47
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 10.77
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 41.56
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 7.42
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 47.48
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 25.72
+      }
+    ]
+  },
+  "16000079": {
+    "id": 16000079,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000677.png",
+        "name": "激痛テイクオフ",
+        "rate": 77.88
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000678.png",
+        "name": "ピアシングアロー",
+        "rate": 76.4
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000675.png",
+        "name": "エネルギー転化",
+        "rate": 68.47
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000676.png",
+        "name": "空中浮遊",
+        "rate": 66.66
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 6.1
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 27.71
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 37.33
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 17.09
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 48.89
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 14.74
+      }
+    ]
+  },
+  "16000080": {
+    "id": 16000080,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000736.png",
+        "name": "アッパーカット",
+        "rate": 65.96
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000737.png",
+        "name": "ラストスタンド",
+        "rate": 68.87
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000734.png",
+        "name": "エクスポーズ",
+        "rate": 60.25
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000735.png",
+        "name": "速弾き",
+        "rate": 61.51
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 20.78
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 17.66
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 43.46
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 2.56
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 26.9
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 22.68
+      }
+    ]
+  },
+  "16000081": {
+    "id": 16000081,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000754.png",
+        "name": "ゲッタウェイ",
+        "rate": 88.37
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000755.png",
+        "name": "植え替え",
+        "rate": 82.95
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000752.png",
+        "name": "フラワースティンガー",
+        "rate": 82.59
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000753.png",
+        "name": "警戒態勢",
+        "rate": 80.57
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 15.98
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 7.26
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 56.66
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 2.17
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 45.95
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 53.68
+      }
+    ]
+  },
+  "16000082": {
+    "id": 16000082,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000767.png",
+        "name": "シュガーマシマシ",
+        "rate": 68.5
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000766.png",
+        "name": "フレンドシップ",
+        "rate": 70.95
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000765.png",
+        "name": "ペイント＆ペイン",
+        "rate": 59.23
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000764.png",
+        "name": "トロトロリロード",
+        "rate": 60.96
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 6.1
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 7.43
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 33.88
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 6.27
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 45.33
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 19.01
+      }
+    ]
+  },
+  "16000083": {
+    "id": 16000083,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000774.png",
+        "name": "刹那の鼓動",
+        "rate": 68.53
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000775.png",
+        "name": "雌伏の撤退",
+        "rate": 68.66
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000772.png",
+        "name": "早手の斥候",
+        "rate": 63.4
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000773.png",
+        "name": "熟練の兵士",
+        "rate": 62.91
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 16.55
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 8.09
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 47.1
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 13.49
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 46.79
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 10.41
+      }
+    ]
+  },
+  "16000084": {
+    "id": 16000084,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000806.png",
+        "name": "ここ掘れチューチュー",
+        "rate": 59.95
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000807.png",
+        "name": "ラットレース",
+        "rate": 58.76
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000804.png",
+        "name": "石切り",
+        "rate": 53.86
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000805.png",
+        "name": "マイナーズ・ハイ",
+        "rate": 51.68
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 10.81
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 5.18
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 36.76
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 17.96
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 37.69
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 6.29
+      }
+    ]
+  },
+  "16000085": {
+    "id": 16000085,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000817.png",
+        "name": "攻法「出汁走り」",
+        "rate": 78.73
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000818.png",
+        "name": "療法「活き造り」",
+        "rate": 82.55
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000815.png",
+        "name": "名刀「たちわりおろし」",
+        "rate": 76.84
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000816.png",
+        "name": "秘技「流れ鮨」",
+        "rate": 79.4
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 12.9
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 11.43
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 61.51
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 2.4
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 58.19
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 22.74
+      }
+    ]
+  },
+  "16000086": {
+    "id": 16000086,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000834.png",
+        "name": "ロングアーム",
+        "rate": 84.07
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000835.png",
+        "name": "ジャンプスケア",
+        "rate": 79.83
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000832.png",
+        "name": "ポルターヘイスト",
+        "rate": 74.39
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000833.png",
+        "name": "スペクトルアーマー",
+        "rate": 76.12
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 12.56
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 8.6
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 50.66
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 3.18
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 54.79
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 25.08
+      }
+    ]
+  },
+  "16000087": {
+    "id": 16000087,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000850.png",
+        "name": "ブードゥーチャイル",
+        "rate": 63.05
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000851.png",
+        "name": "エレメンタリスト",
+        "rate": 64.02
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000848.png",
+        "name": "グリグリシールド",
+        "rate": 56.77
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000849.png",
+        "name": "スローニードル",
+        "rate": 57.83
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 7.7
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 5.28
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 34.19
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 14.6
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 43.23
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 16.66
+      }
+    ]
+  },
+  "16000089": {
+    "id": 16000089,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000878.png",
+        "name": "キレ落ち",
+        "rate": 73.5
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000877.png",
+        "name": "マンション・オブ・ミープル",
+        "rate": 74.55
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000875.png",
+        "name": "プリズンガード",
+        "rate": 65.73
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000876.png",
+        "name": "法の曲解",
+        "rate": 63.29
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 6.56
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 5.15
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 43.67
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 19.76
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 50.21
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 22.91
+      }
+    ]
+  },
+  "16000090": {
+    "id": 16000090,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000885.png",
+        "name": "コンボトリック",
+        "rate": 54.74
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000886.png",
+        "name": "ゴン攻め",
+        "rate": 53.44
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000883.png",
+        "name": "ウォールライド",
+        "rate": 46.53
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000884.png",
+        "name": "レネゲード",
+        "rate": 48.22
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 11.46
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 16.68
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 32.43
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 3.42
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 24.03
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 15.75
+      }
+    ]
+  },
+  "16000091": {
+    "id": 16000091,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000907.png",
+        "name": "ライトアップ",
+        "rate": 69.51
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000908.png",
+        "name": "アイスキューブ",
+        "rate": 72.36
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000905.png",
+        "name": "バーンアウト",
+        "rate": 63.07
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000906.png",
+        "name": "ハーフタイム",
+        "rate": 65.17
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 6.38
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 9.43
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 45.45
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 16.45
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 49.33
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 14.51
+      }
+    ]
+  },
+  "16000092": {
+    "id": 16000092,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000917.png",
+        "name": "バックトゥザパスト",
+        "rate": 68.5
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000918.png",
+        "name": "ノーエスケープ",
+        "rate": 66.94
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000915.png",
+        "name": "ヒエログリフ",
+        "rate": 61.92
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000916.png",
+        "name": "プライムタイム",
+        "rate": 59.55
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 10.09
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 7.52
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 40.75
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 18.69
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 44.61
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 14.93
+      }
+    ]
+  },
+  "16000093": {
+    "id": 16000093,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000931.png",
+        "name": "企業戦士に休息なし",
+        "rate": 58.67
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000932.png",
+        "name": "事務作業は効率が命",
+        "rate": 57.01
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000929.png",
+        "name": "集団は個よりも強し",
+        "rate": 51.19
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000930.png",
+        "name": "押しの強さで押しきれ",
+        "rate": 51.63
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 5.97
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 6.7
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 36.06
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 14.27
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 38.34
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 9.1
+      }
+    ]
+  },
+  "16000094": {
+    "id": 16000094,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000940.png",
+        "name": "変装術・甲",
+        "rate": 78.06
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000941.png",
+        "name": "変装術・乙",
+        "rate": 78.68
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000938.png",
+        "name": "絶技「封脚印火」",
+        "rate": 74.21
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000939.png",
+        "name": "秘技「陰得陽奪」",
+        "rate": 74.74
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 11.14
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 10.28
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 58.86
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 5.69
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 59.11
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 11.23
+      }
+    ]
+  },
+  "16000095": {
+    "id": 16000095,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000991.png",
+        "name": "冷厳なセルフケア",
+        "rate": 67.45
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23000992.png",
+        "name": "冷血な性格",
+        "rate": 69.09
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000989.png",
+        "name": "冷静な機械工",
+        "rate": 60.89
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000990.png",
+        "name": "冷徹な追跡者",
+        "rate": 63.94
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 25.84
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 7.2
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 46.45
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 2.05
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 41.3
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 9.55
+      }
+    ]
+  },
+  "16000096": {
+    "id": 16000096,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23001000.png",
+        "name": "女王の命令には一理アリ",
+        "rate": 48.38
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23001001.png",
+        "name": "アリがたき幸せ",
+        "rate": 49.15
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000998.png",
+        "name": "固い守りには秘訣アリ",
+        "rate": 42.57
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23000999.png",
+        "name": "情報戦を制すれば勝機アリ",
+        "rate": 40.6
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 16.13
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 16.24
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 29.54
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 1.83
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 20.01
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 6.47
+      }
+    ]
+  },
+  "16000097": {
+    "id": 16000097,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23001042.png",
+        "name": "カポバック",
+        "rate": 69.16
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23001041.png",
+        "name": "ウィンドミル",
+        "rate": 70.75
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23001039.png",
+        "name": "リズムヒーリング",
+        "rate": 66.03
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23001040.png",
+        "name": "吹き飛ばし",
+        "rate": 64.4
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 8.66
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 9.07
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 51.64
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 9.22
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 50.85
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 11.31
+      }
+    ]
+  },
+  "16000098": {
+    "id": 16000098,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23001050.png",
+        "name": "フラッシュムーブ",
+        "rate": 52.5
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23001049.png",
+        "name": "エレクトロシャッフル",
+        "rate": 53.93
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23001047.png",
+        "name": "サンダートラップ",
+        "rate": 47.46
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23001048.png",
+        "name": "ザ・グレート・ジギー",
+        "rate": 47.53
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 4.12
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 5.22
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 29
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 14.84
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 37.21
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 13.34
+      }
+    ]
+  },
+  "16000099": {
+    "id": 16000099,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23001063.png",
+        "name": "無限マグナム",
+        "rate": 79.37
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23001062.png",
+        "name": "スナイパーは二度死ぬ",
+        "rate": 77.99
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23001060.png",
+        "name": "スライディング狙撃",
+        "rate": 77.28
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23001061.png",
+        "name": "スイミング：インポッシブル",
+        "rate": 73.46
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 4.99
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 8.33
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 56.6
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 26.25
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 64.02
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 9.93
+      }
+    ]
+  },
+  "16000100": {
+    "id": 16000100,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23001070.png",
+        "name": "伸びる操り糸",
+        "rate": 47.93
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23001071.png",
+        "name": "消失マジック",
+        "rate": 46.83
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23001068.png",
+        "name": "プリエガード",
+        "rate": 40.76
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23001069.png",
+        "name": "救いの手",
+        "rate": 42.39
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 8.17
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 6.99
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 31.09
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 1.75
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 30.53
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 4.96
+      }
+    ]
+  },
+  "16000101": {
+    "id": 16000101,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23001183.png",
+        "name": "スリップレスキュー",
+        "rate": 58.49
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23001184.png",
+        "name": "さらなる光あれ！",
+        "rate": 56.81
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23001181.png",
+        "name": "バイオエコシステム",
+        "rate": 51.93
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23001182.png",
+        "name": "寄生",
+        "rate": 54.92
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 5.51
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 11.42
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 34.12
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 4.11
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 40.45
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 12.34
+      }
+    ]
+  },
+  "16000102": {
+    "id": 16000102,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23001192.png",
+        "name": "シャドーマスター",
+        "rate": 74.64
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23001191.png",
+        "name": "新星誕生",
+        "rate": 78.8
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23001189.png",
+        "name": "夕闇ランナー",
+        "rate": 71.6
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23001190.png",
+        "name": "漆黒スター",
+        "rate": 77.85
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 7.69
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 9.95
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 55.74
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 20.82
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 62.14
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 15.94
+      }
+    ]
+  },
+  "16000103": {
+    "id": 16000103,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23001219.png",
+        "name": "ナジアのつぼ",
+        "rate": 61.84
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23001218.png",
+        "name": "毒だまり",
+        "rate": 65.43
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23001216.png",
+        "name": "ポイズンバックアップ",
+        "rate": 61.52
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23001217.png",
+        "name": "ヴェノム",
+        "rate": 59.25
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 5.44
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 8.34
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 43.21
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 14.07
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 51.58
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 11.22
+      }
+    ]
+  },
+  "16000104": {
+    "id": 16000104,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23001247.png",
+        "name": "超自然回復",
+        "rate": 53.86
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23001248.png",
+        "name": "ウォール・オブ・デスメタル",
+        "rate": 50.93
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23001246.png",
+        "name": "俗悪拳",
+        "rate": 50.55
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23001245.png",
+        "name": "クラウドキル",
+        "rate": 46.89
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 13.9
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 17.94
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 39.99
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 1.96
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 31.27
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 6.32
+      }
+    ]
+  },
+  "16000105": {
+    "id": 16000105,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23001255.png",
+        "name": "ふわふわタイム",
+        "rate": 46.98
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23001256.png",
+        "name": "愛と正義のシャイニングスター",
+        "rate": 46.85
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23001254.png",
+        "name": "ふしぎのスターテクニック",
+        "rate": 34.91
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23001253.png",
+        "name": "パワーレベル：無限大",
+        "rate": 48.14
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 8.51
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 6.42
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 39.77
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 8.83
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 40.18
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 6.22
+      }
+    ]
+  },
+  "16000106": {
+    "id": 16000106,
+    "gadgets": [
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23001281.png",
+        "name": "オイル交換",
+        "rate": 43.4
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/gadgets/23001282.png",
+        "name": "バウンドボール",
+        "rate": 34.48
+      }
+    ],
+    "starPowers": [
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23001279.png",
+        "name": "ナイスシュート",
+        "rate": 33.23
+      },
+      {
+        "icon": "https://brawlinsights.com/static/images/starpowers/23001280.png",
+        "name": "アンビリーバボール",
+        "rate": 38.79
+      }
+    ],
+    "gears": [
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000002.png",
+        "name": "ダメージ",
+        "rate": 32.51
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000000.png",
+        "name": "スピード",
+        "rate": 7.88
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000001.png",
+        "name": "ヒール",
+        "rate": 24.3
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000003.png",
+        "name": "ビジョン",
+        "rate": 2.92
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000004.png",
+        "name": "シールド",
+        "rate": 28.29
+      },
+      {
+        "icon": "https://cdn.brawlify.com/gears/regular/62000017.png",
+        "name": "ガジェットクールダウン",
+        "rate": 6.98
+      }
+    ]
+  }
+}

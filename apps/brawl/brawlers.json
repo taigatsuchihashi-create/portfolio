@@ -1,0 +1,654 @@
+{
+  "generatedAt": "2026-10-01T23:46:35.875Z",
+  "count": 108,
+  "brawlers": [
+    {
+      "id": 16000027,
+      "name": "8-BIT",
+      "nameJa": "8ビット",
+      "icon": "/icons/16000027.png"
+    },
+    {
+      "id": 16000095,
+      "name": "ALLI",
+      "nameJa": "アリー",
+      "icon": "/icons/16000095.png"
+    },
+    {
+      "id": 16000040,
+      "name": "AMBER",
+      "nameJa": "アンバー",
+      "icon": "/icons/16000040.png"
+    },
+    {
+      "id": 16000079,
+      "name": "ANGELO",
+      "nameJa": "アンジェロ",
+      "icon": "/icons/16000079.png"
+    },
+    {
+      "id": 16000051,
+      "name": "ASH",
+      "nameJa": "アッシュ",
+      "icon": "/icons/16000051.png"
+    },
+    {
+      "id": 16000006,
+      "name": "BARLEY",
+      "nameJa": "バーリー",
+      "icon": "/icons/16000006.png"
+    },
+    {
+      "id": 16000029,
+      "name": "BEA",
+      "nameJa": "ビー",
+      "icon": "/icons/16000029.png"
+    },
+    {
+      "id": 16000046,
+      "name": "BELLE",
+      "nameJa": "ベル",
+      "icon": "/icons/16000046.png"
+    },
+    {
+      "id": 16000082,
+      "name": "BERRY",
+      "nameJa": "ベリー",
+      "icon": "/icons/16000082.png"
+    },
+    {
+      "id": 16000026,
+      "name": "BIBI",
+      "nameJa": "ビビ",
+      "icon": "/icons/16000026.png"
+    },
+    {
+      "id": 16000014,
+      "name": "BO",
+      "nameJa": "ボウ",
+      "icon": "/icons/16000014.png"
+    },
+    {
+      "id": 16000106,
+      "name": "BOLT",
+      "nameJa": "ボルト",
+      "icon": "/icons/16000106.png"
+    },
+    {
+      "id": 16000058,
+      "name": "BONNIE",
+      "nameJa": "ボニー",
+      "icon": "/icons/16000058.png"
+    },
+    {
+      "id": 16000003,
+      "name": "BROCK",
+      "nameJa": "ブロック",
+      "icon": "/icons/16000003.png"
+    },
+    {
+      "id": 16000002,
+      "name": "BULL",
+      "nameJa": "ブル",
+      "icon": "/icons/16000002.png"
+    },
+    {
+      "id": 16000062,
+      "name": "BUSTER",
+      "nameJa": "バスター",
+      "icon": "/icons/16000062.png"
+    },
+    {
+      "id": 16000049,
+      "name": "BUZZ",
+      "nameJa": "バズ",
+      "icon": "/icons/16000049.png"
+    },
+    {
+      "id": 16000042,
+      "name": "BYRON",
+      "nameJa": "バイロン",
+      "icon": "/icons/16000042.png"
+    },
+    {
+      "id": 16000025,
+      "name": "CARL",
+      "nameJa": "カール",
+      "icon": "/icons/16000025.png"
+    },
+    {
+      "id": 16000074,
+      "name": "CHARLIE",
+      "nameJa": "チャーリー",
+      "icon": "/icons/16000074.png"
+    },
+    {
+      "id": 16000063,
+      "name": "CHESTER",
+      "nameJa": "チェスター",
+      "icon": "/icons/16000063.png"
+    },
+    {
+      "id": 16000073,
+      "name": "CHUCK",
+      "nameJa": "チャック",
+      "icon": "/icons/16000073.png"
+    },
+    {
+      "id": 16000083,
+      "name": "CLANCY",
+      "nameJa": "クランシー",
+      "icon": "/icons/16000083.png"
+    },
+    {
+      "id": 16000039,
+      "name": "COLETTE",
+      "nameJa": "コレット",
+      "icon": "/icons/16000039.png"
+    },
+    {
+      "id": 16000001,
+      "name": "COLT",
+      "nameJa": "コルト",
+      "icon": "/icons/16000001.png"
+    },
+    {
+      "id": 16000070,
+      "name": "CORDELIUS",
+      "nameJa": "コーデリアス",
+      "icon": "/icons/16000070.png"
+    },
+    {
+      "id": 16000109,
+      "name": "COSMO",
+      "nameJa": null,
+      "icon": "https://cdn.brawlify.com/brawlers/borders/16000109.png"
+    },
+    {
+      "id": 16000012,
+      "name": "CROW",
+      "nameJa": "クロウ",
+      "icon": "/icons/16000012.png"
+    },
+    {
+      "id": 16000104,
+      "name": "DAMIAN",
+      "nameJa": "ダミアン",
+      "icon": "/icons/16000104.png"
+    },
+    {
+      "id": 16000018,
+      "name": "DARRYL",
+      "nameJa": "ダリル",
+      "icon": "/icons/16000018.png"
+    },
+    {
+      "id": 16000071,
+      "name": "DOUG",
+      "nameJa": "ダグ",
+      "icon": "/icons/16000071.png"
+    },
+    {
+      "id": 16000080,
+      "name": "DRACO",
+      "nameJa": "ドラコ",
+      "icon": "/icons/16000080.png"
+    },
+    {
+      "id": 16000009,
+      "name": "DYNAMIKE",
+      "nameJa": "ダイナマイク",
+      "icon": "/icons/16000009.png"
+    },
+    {
+      "id": 16000043,
+      "name": "EDGAR",
+      "nameJa": "エドガー",
+      "icon": "/icons/16000043.png"
+    },
+    {
+      "id": 16000010,
+      "name": "EL PRIMO",
+      "nameJa": "エル・プリモ",
+      "icon": "/icons/16000010.png"
+    },
+    {
+      "id": 16000030,
+      "name": "EMZ",
+      "nameJa": "Emz",
+      "icon": "/icons/16000030.png"
+    },
+    {
+      "id": 16000056,
+      "name": "EVE",
+      "nameJa": "イヴ",
+      "icon": "/icons/16000056.png"
+    },
+    {
+      "id": 16000054,
+      "name": "FANG",
+      "nameJa": "ファング",
+      "icon": "/icons/16000054.png"
+    },
+    {
+      "id": 16000092,
+      "name": "FINX",
+      "nameJa": "フィンクス",
+      "icon": "/icons/16000092.png"
+    },
+    {
+      "id": 16000020,
+      "name": "FRANK",
+      "nameJa": "フランケン",
+      "icon": "/icons/16000020.png"
+    },
+    {
+      "id": 16000035,
+      "name": "GALE",
+      "nameJa": "ゲイル",
+      "icon": "/icons/16000035.png"
+    },
+    {
+      "id": 16000021,
+      "name": "GENE",
+      "nameJa": "ジーン",
+      "icon": "/icons/16000021.png"
+    },
+    {
+      "id": 16000100,
+      "name": "GIGI",
+      "nameJa": "ジジ",
+      "icon": "/icons/16000100.png"
+    },
+    {
+      "id": 16000101,
+      "name": "GLOWY",
+      "nameJa": "グローウィー",
+      "icon": "/icons/16000101.png"
+    },
+    {
+      "id": 16000064,
+      "name": "GRAY",
+      "nameJa": "グレイ",
+      "icon": "/icons/16000064.png"
+    },
+    {
+      "id": 16000050,
+      "name": "GRIFF",
+      "nameJa": "グリフ",
+      "icon": "/icons/16000050.png"
+    },
+    {
+      "id": 16000048,
+      "name": "GROM",
+      "nameJa": "グロム",
+      "icon": "/icons/16000048.png"
+    },
+    {
+      "id": 16000061,
+      "name": "GUS",
+      "nameJa": "ガス",
+      "icon": "/icons/16000061.png"
+    },
+    {
+      "id": 16000069,
+      "name": "HANK",
+      "nameJa": "ハンク",
+      "icon": "/icons/16000069.png"
+    },
+    {
+      "id": 16000034,
+      "name": "JACKY",
+      "nameJa": "ジャッキー",
+      "icon": "/icons/16000034.png"
+    },
+    {
+      "id": 16000093,
+      "name": "JAE-YONG",
+      "nameJa": "ジェヨン",
+      "icon": "/icons/16000093.png"
+    },
+    {
+      "id": 16000057,
+      "name": "JANET",
+      "nameJa": "ジャネット",
+      "icon": "/icons/16000057.png"
+    },
+    {
+      "id": 16000007,
+      "name": "JESSIE",
+      "nameJa": "ジェシー",
+      "icon": "/icons/16000007.png"
+    },
+    {
+      "id": 16000087,
+      "name": "JUJU",
+      "nameJa": "ジュジュ",
+      "icon": "/icons/16000087.png"
+    },
+    {
+      "id": 16000094,
+      "name": "KAZE",
+      "nameJa": "カゼ",
+      "icon": "/icons/16000094.png"
+    },
+    {
+      "id": 16000085,
+      "name": "KENJI",
+      "nameJa": "ケンジ",
+      "icon": "/icons/16000085.png"
+    },
+    {
+      "id": 16000076,
+      "name": "KIT",
+      "nameJa": "キット",
+      "icon": "/icons/16000076.png"
+    },
+    {
+      "id": 16000077,
+      "name": "LARRY & LAWRIE",
+      "nameJa": "ラリー＆ローリー",
+      "icon": "/icons/16000077.png"
+    },
+    {
+      "id": 16000023,
+      "name": "LEON",
+      "nameJa": "レオン",
+      "icon": "/icons/16000023.png"
+    },
+    {
+      "id": 16000081,
+      "name": "LILY",
+      "nameJa": "リリー",
+      "icon": "/icons/16000081.png"
+    },
+    {
+      "id": 16000053,
+      "name": "LOLA",
+      "nameJa": "ローラ",
+      "icon": "/icons/16000053.png"
+    },
+    {
+      "id": 16000041,
+      "name": "LOU",
+      "nameJa": "ルー",
+      "icon": "/icons/16000041.png"
+    },
+    {
+      "id": 16000091,
+      "name": "LUMI",
+      "nameJa": "ルミ",
+      "icon": "/icons/16000091.png"
+    },
+    {
+      "id": 16000068,
+      "name": "MAISIE",
+      "nameJa": "メイジー",
+      "icon": "/icons/16000068.png"
+    },
+    {
+      "id": 16000065,
+      "name": "MANDY",
+      "nameJa": "マンディ",
+      "icon": "/icons/16000065.png"
+    },
+    {
+      "id": 16000032,
+      "name": "MAX",
+      "nameJa": "MAX",
+      "icon": "/icons/16000032.png"
+    },
+    {
+      "id": 16000089,
+      "name": "MEEPLE",
+      "nameJa": "ミープル",
+      "icon": "/icons/16000089.png"
+    },
+    {
+      "id": 16000052,
+      "name": "MEG",
+      "nameJa": "メグ",
+      "icon": "/icons/16000052.png"
+    },
+    {
+      "id": 16000078,
+      "name": "MELODIE",
+      "nameJa": "メロディー",
+      "icon": "/icons/16000078.png"
+    },
+    {
+      "id": 16000075,
+      "name": "MICO",
+      "nameJa": "ミコ",
+      "icon": "/icons/16000075.png"
+    },
+    {
+      "id": 16000097,
+      "name": "MINA",
+      "nameJa": "ミナ",
+      "icon": "/icons/16000097.png"
+    },
+    {
+      "id": 16000084,
+      "name": "MOE",
+      "nameJa": "モー",
+      "icon": "/icons/16000084.png"
+    },
+    {
+      "id": 16000011,
+      "name": "MORTIS",
+      "nameJa": "モーティス",
+      "icon": "/icons/16000011.png"
+    },
+    {
+      "id": 16000031,
+      "name": "MR. P",
+      "nameJa": "ミスターP",
+      "icon": "/icons/16000031.png"
+    },
+    {
+      "id": 16000103,
+      "name": "NAJIA",
+      "nameJa": "ナジア",
+      "icon": "/icons/16000103.png"
+    },
+    {
+      "id": 16000036,
+      "name": "NANI",
+      "nameJa": "ナーニ",
+      "icon": "/icons/16000036.png"
+    },
+    {
+      "id": 16000008,
+      "name": "NITA",
+      "nameJa": "ニタ",
+      "icon": "/icons/16000008.png"
+    },
+    {
+      "id": 16000107,
+      "name": "NORI",
+      "nameJa": null,
+      "icon": "/icons/16000107.png"
+    },
+    {
+      "id": 16000090,
+      "name": "OLLIE",
+      "nameJa": "オーリー",
+      "icon": "/icons/16000090.png"
+    },
+    {
+      "id": 16000059,
+      "name": "OTIS",
+      "nameJa": "オーティス",
+      "icon": "/icons/16000059.png"
+    },
+    {
+      "id": 16000016,
+      "name": "PAM",
+      "nameJa": "パム",
+      "icon": "/icons/16000016.png"
+    },
+    {
+      "id": 16000072,
+      "name": "PEARL",
+      "nameJa": "パール",
+      "icon": "/icons/16000072.png"
+    },
+    {
+      "id": 16000019,
+      "name": "PENNY",
+      "nameJa": "ペニー",
+      "icon": "/icons/16000019.png"
+    },
+    {
+      "id": 16000099,
+      "name": "PIERCE",
+      "nameJa": "ピアス",
+      "icon": "/icons/16000099.png"
+    },
+    {
+      "id": 16000015,
+      "name": "PIPER",
+      "nameJa": "エリザベス",
+      "icon": "/icons/16000015.png"
+    },
+    {
+      "id": 16000013,
+      "name": "POCO",
+      "nameJa": "ポコ",
+      "icon": "/icons/16000013.png"
+    },
+    {
+      "id": 16000066,
+      "name": "R-T",
+      "nameJa": "R-T",
+      "icon": "/icons/16000066.png"
+    },
+    {
+      "id": 16000004,
+      "name": "RICO",
+      "nameJa": "リコ",
+      "icon": "/icons/16000004.png"
+    },
+    {
+      "id": 16000024,
+      "name": "ROSA",
+      "nameJa": "ローサ",
+      "icon": "/icons/16000024.png"
+    },
+    {
+      "id": 16000044,
+      "name": "RUFFS",
+      "nameJa": "ラフス大佐",
+      "icon": "/icons/16000044.png"
+    },
+    {
+      "id": 16000060,
+      "name": "SAM",
+      "nameJa": "サム",
+      "icon": "/icons/16000060.png"
+    },
+    {
+      "id": 16000028,
+      "name": "SANDY",
+      "nameJa": "サンディ",
+      "icon": "/icons/16000028.png"
+    },
+    {
+      "id": 16000086,
+      "name": "SHADE",
+      "nameJa": "シェイド",
+      "icon": "/icons/16000086.png"
+    },
+    {
+      "id": 16000000,
+      "name": "SHELLY",
+      "nameJa": "シェリー",
+      "icon": "/icons/16000000.png"
+    },
+    {
+      "id": 16000102,
+      "name": "SIRIUS",
+      "nameJa": "シリウス",
+      "icon": "/icons/16000102.png"
+    },
+    {
+      "id": 16000005,
+      "name": "SPIKE",
+      "nameJa": "スパイク",
+      "icon": "/icons/16000005.png"
+    },
+    {
+      "id": 16000037,
+      "name": "SPROUT",
+      "nameJa": "スプラウト",
+      "icon": "/icons/16000037.png"
+    },
+    {
+      "id": 16000047,
+      "name": "SQUEAK",
+      "nameJa": "スクウィーク",
+      "icon": "/icons/16000047.png"
+    },
+    {
+      "id": 16000105,
+      "name": "STARR NOVA",
+      "nameJa": "スターノヴァ",
+      "icon": "/icons/16000105.png"
+    },
+    {
+      "id": 16000045,
+      "name": "STU",
+      "nameJa": "ストゥー",
+      "icon": "/icons/16000045.png"
+    },
+    {
+      "id": 16000038,
+      "name": "SURGE",
+      "nameJa": "サージ",
+      "icon": "/icons/16000038.png"
+    },
+    {
+      "id": 16000017,
+      "name": "TARA",
+      "nameJa": "タラ",
+      "icon": "/icons/16000017.png"
+    },
+    {
+      "id": 16000022,
+      "name": "TICK",
+      "nameJa": "ティック",
+      "icon": "/icons/16000022.png"
+    },
+    {
+      "id": 16000096,
+      "name": "TRUNK",
+      "nameJa": "トランク",
+      "icon": "/icons/16000096.png"
+    },
+    {
+      "id": 16000110,
+      "name": "VINCE",
+      "nameJa": null,
+      "icon": "https://cdn.brawlify.com/brawlers/borders/16000110.png"
+    },
+    {
+      "id": 16000108,
+      "name": "WENDY",
+      "nameJa": null,
+      "icon": "/icons/16000108.png"
+    },
+    {
+      "id": 16000067,
+      "name": "WILLOW",
+      "nameJa": "ウィロー",
+      "icon": "/icons/16000067.png"
+    },
+    {
+      "id": 16000098,
+      "name": "ZIGGY",
+      "nameJa": "ジギー",
+      "icon": "/icons/16000098.png"
+    }
+  ]
+}
