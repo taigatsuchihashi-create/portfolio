@@ -1,3 +1,9 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="槌橋泰雅のポートフォリオ。ゲームの企画書、個人開発したツール、ゲーム分析レポート。">
 <title>槌橋泰雅 ポートフォリオ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,6 +99,36 @@ section{padding-block:56px 0}
 .shots figcaption{font-family:var(--f-mono); font-size:10.5px; color:var(--ink-soft); margin-top:7px; letter-spacing:.03em}
 @media (max-width:560px){ .shots{grid-template-columns:1fr} }
 
+
+/* ---- motion ---- */
+@keyframes rise{ from{ opacity:0; transform:translateY(12px) } to{ opacity:1; transform:none } }
+.mast > *{ animation:rise .45s cubic-bezier(.22,.8,.3,1) backwards }
+.mast .eyebrow{ animation-delay:.02s }
+.mast h1{ animation-delay:.08s }
+.mast .kana{ animation-delay:.16s }
+.mast .lede{ animation-delay:.22s }
+.mast .facts{ animation-delay:.28s }
+
+.shots img,.shot img{ transition:border-color .25s ease, transform .25s cubic-bezier(.22,.8,.3,1) }
+.shots figure:hover img,.shot:hover img{ border-color:var(--accent); transform:translateY(-3px) }
+
+.metrics div{ transition:background .2s ease }
+.metrics div:hover{ background:var(--accent-soft) }
+
+.lnk{ transform:translateZ(0) }
+.lnk:hover{ transform:translateY(-2px) }
+
+.quote{ position:relative; overflow:hidden }
+.quote::before{ content:""; position:absolute; left:-3px; top:0; width:3px; height:100%;
+  background:var(--accent); transform:scaleY(0); transform-origin:top; transition:transform .5s ease }
+.quote.lit::before{ transform:scaleY(1) }
+
+@media (prefers-reduced-motion:reduce){
+  .mast > *{ animation:none }
+  .shots img,.shot img,.lnk,.metrics div{ transition:none }
+  .quote::before{ transition:none; transform:scaleY(1) }
+}
+
 /* ---- action links ---- */
 .links{ display:flex; flex-wrap:wrap; gap:10px; margin:20px 0 0 }
 .lnk{ display:inline-flex; align-items:center; gap:7px; font-family:var(--f-mono); font-size:12px;
@@ -134,6 +170,9 @@ footer{font-family:var(--f-mono); font-size:11px; color:var(--ink-soft); margin-
   button{ display:none }
 }
 </style>
+</head>
+<body>
+
 
 <div class="wrap">
 
@@ -339,4 +378,47 @@ footer{font-family:var(--f-mono); font-size:11px; color:var(--ink-soft); margin-
     }else{ fallback(); }
   });
 })();
+
+// 数字のカウントアップ（画面に入ったときに一度だけ）
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var nums = [].slice.call(document.querySelectorAll('.metrics b'));
+  var targets = nums.filter(function(el){ return /^[\d,]+\+?$/.test(el.textContent.trim()); });
+  if (reduce || !('IntersectionObserver' in window)) { markQuotes(); return; }
+
+  targets.forEach(function(el){ el.dataset.final = el.textContent.trim(); });
+
+  function run(el){
+    var final = el.dataset.final, plus = final.indexOf('+') >= 0;
+    var n = parseInt(final.replace(/[^0-9]/g,''), 10);
+    if (!isFinite(n)) return;
+    var t0 = null, dur = 900;
+    function step(t){
+      if (t0 === null) t0 = t;
+      var k = Math.min(1, (t - t0) / dur);
+      var e = 1 - Math.pow(1 - k, 3);
+      el.textContent = Math.round(n * e).toLocaleString('ja-JP') + (plus ? '+' : '');
+      if (k < 1) requestAnimationFrame(step); else el.textContent = final;
+    }
+    requestAnimationFrame(step);
+  }
+
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (!e.isIntersecting) return;
+      io.unobserve(e.target);
+      if (e.target.classList.contains('quote')) { e.target.classList.add('lit'); return; }
+      run(e.target);
+    });
+  }, { threshold: 0.4 });
+
+  targets.forEach(function(el){ io.observe(el); });
+  [].slice.call(document.querySelectorAll('.quote')).forEach(function(el){ io.observe(el); });
+
+  function markQuotes(){
+    [].slice.call(document.querySelectorAll('.quote')).forEach(function(el){ el.classList.add('lit'); });
+  }
+})();
 </script>
+</body>
+</html>
