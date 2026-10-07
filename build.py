@@ -510,14 +510,20 @@ footer .sp{margin-left:auto}
       [].slice.call(g.children).forEach(function(c,i){ c.style.setProperty('--d',(i*0.12)+'s'); });
     });
 
-    // 画面に入るたびに出す／出たら戻す（スクロールの往復で毎回アニメーションする）
-    var io1 = new IntersectionObserver(function(es){
+    // 出す条件と戻す条件をずらす（ヒステリシス）。
+    // 速いスクロールでも、出かけた瞬間に消されることがない。
+    var showObs = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('is-visible'); });
+    },{threshold:0, rootMargin:'0px 0px -12% 0px'});
+
+    var hideObs = new IntersectionObserver(function(es){
       es.forEach(function(e){
-        if(e.isIntersecting) e.target.classList.add('is-visible');
-        else e.target.classList.remove('is-visible');
+        // 画面の外へ 240px 以上離れて初めて戻す
+        if(!e.isIntersecting) e.target.classList.remove('is-visible');
       });
-    },{threshold:.1, rootMargin:'0px 0px -10% 0px'});
-    targets.forEach(function(el){ io1.observe(el); });
+    },{threshold:0, rootMargin:'240px 0px 240px 0px'});
+
+    targets.forEach(function(el){ showObs.observe(el); hideObs.observe(el); });
 
     // 保険：観測がまったく働かなかったときだけ、演出ごと無効化して全部見せる
     setTimeout(function(){
