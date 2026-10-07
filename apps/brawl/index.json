@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-01T23:46:32.958Z",
+  "generatedAt": "2026-10-06T23:50:22.313Z",
   "minGames": 20,
   "pairMinGames": 5,
   "maps": [
@@ -7,298 +7,298 @@
       "slug": "knockout__Belle-s-Rock",
       "mode": "knockout",
       "map": "Belle's Rock",
-      "appearances": 18960,
-      "brawlers": 85,
-      "counters": 2719,
-      "synergies": 1029
+      "appearances": 18318,
+      "brawlers": 87,
+      "counters": 2624,
+      "synergies": 990
     },
     {
       "slug": "knockout__New-Horizons",
       "mode": "knockout",
       "map": "New Horizons",
-      "appearances": 18858,
+      "appearances": 18096,
       "brawlers": 85,
-      "counters": 2642,
-      "synergies": 982
-    },
-    {
-      "slug": "bounty__Layer-Cake",
-      "mode": "bounty",
-      "map": "Layer Cake",
-      "appearances": 18684,
-      "brawlers": 92,
-      "counters": 3014,
-      "synergies": 1106
-    },
-    {
-      "slug": "heist__Hot-Potato",
-      "mode": "heist",
-      "map": "Hot Potato",
-      "appearances": 18468,
-      "brawlers": 75,
-      "counters": 1980,
-      "synergies": 767
-    },
-    {
-      "slug": "knockout__Flaring-Phoenix",
-      "mode": "knockout",
-      "map": "Flaring Phoenix",
-      "appearances": 18432,
-      "brawlers": 89,
-      "counters": 2872,
-      "synergies": 1064
+      "counters": 2577,
+      "synergies": 960
     },
     {
       "slug": "bounty__Hideout",
       "mode": "bounty",
       "map": "Hideout",
-      "appearances": 18396,
-      "brawlers": 86,
-      "counters": 2366,
-      "synergies": 880
+      "appearances": 17862,
+      "brawlers": 88,
+      "counters": 2333,
+      "synergies": 857
     },
     {
-      "slug": "brawlBall__Center-Stage",
-      "mode": "brawlBall",
-      "map": "Center Stage",
-      "appearances": 18360,
-      "brawlers": 80,
-      "counters": 2580,
-      "synergies": 973
+      "slug": "bounty__Layer-Cake",
+      "mode": "bounty",
+      "map": "Layer Cake",
+      "appearances": 17736,
+      "brawlers": 92,
+      "counters": 2924,
+      "synergies": 1079
     },
     {
       "slug": "brawlBall__Sneaky-Fields",
       "mode": "brawlBall",
       "map": "Sneaky Fields",
-      "appearances": 18360,
+      "appearances": 17652,
       "brawlers": 78,
-      "counters": 2595,
-      "synergies": 979
+      "counters": 2524,
+      "synergies": 951
+    },
+    {
+      "slug": "brawlBall__Center-Stage",
+      "mode": "brawlBall",
+      "map": "Center Stage",
+      "appearances": 17610,
+      "brawlers": 80,
+      "counters": 2519,
+      "synergies": 957
     },
     {
       "slug": "gemGrab__Hard-Rock-Mine",
       "mode": "gemGrab",
       "map": "Hard Rock Mine",
-      "appearances": 18342,
-      "brawlers": 86,
-      "counters": 2715,
-      "synergies": 1009
-    },
-    {
-      "slug": "knockout__Out-in-the-Open",
-      "mode": "knockout",
-      "map": "Out in the Open",
-      "appearances": 18192,
-      "brawlers": 86,
-      "counters": 2361,
-      "synergies": 913
-    },
-    {
-      "slug": "bounty__Shooting-Star",
-      "mode": "bounty",
-      "map": "Shooting Star",
-      "appearances": 18156,
-      "brawlers": 79,
-      "counters": 2115,
-      "synergies": 837
-    },
-    {
-      "slug": "gemGrab__Gem-Fort",
-      "mode": "gemGrab",
-      "map": "Gem Fort",
-      "appearances": 18150,
+      "appearances": 17550,
       "brawlers": 84,
-      "counters": 2703,
-      "synergies": 1006
+      "counters": 2635,
+      "synergies": 989
     },
     {
       "slug": "hotZone__Open-Business",
       "mode": "hotZone",
       "map": "Open Business",
-      "appearances": 18138,
-      "brawlers": 84,
-      "counters": 2781,
-      "synergies": 1054
-    },
-    {
-      "slug": "gemGrab__Undermine",
-      "mode": "gemGrab",
-      "map": "Undermine",
-      "appearances": 18066,
+      "appearances": 17538,
       "brawlers": 83,
-      "counters": 2612,
-      "synergies": 1017
+      "counters": 2727,
+      "synergies": 1032
     },
     {
-      "slug": "brawlBall__Triple-Dribble",
-      "mode": "brawlBall",
-      "map": "Triple Dribble",
-      "appearances": 17928,
-      "brawlers": 80,
-      "counters": 2471,
-      "synergies": 929
+      "slug": "gemGrab__Gem-Fort",
+      "mode": "gemGrab",
+      "map": "Gem Fort",
+      "appearances": 17520,
+      "brawlers": 83,
+      "counters": 2666,
+      "synergies": 982
+    },
+    {
+      "slug": "bounty__Shooting-Star",
+      "mode": "bounty",
+      "map": "Shooting Star",
+      "appearances": 17514,
+      "brawlers": 78,
+      "counters": 2095,
+      "synergies": 823
+    },
+    {
+      "slug": "heist__Hot-Potato",
+      "mode": "heist",
+      "map": "Hot Potato",
+      "appearances": 17418,
+      "brawlers": 71,
+      "counters": 1914,
+      "synergies": 754
+    },
+    {
+      "slug": "knockout__Flaring-Phoenix",
+      "mode": "knockout",
+      "map": "Flaring Phoenix",
+      "appearances": 17394,
+      "brawlers": 90,
+      "counters": 2733,
+      "synergies": 1007
     },
     {
       "slug": "hotZone__Parallel-Plays",
       "mode": "hotZone",
       "map": "Parallel Plays",
-      "appearances": 17886,
+      "appearances": 17292,
       "brawlers": 82,
-      "counters": 2731,
-      "synergies": 1017
+      "counters": 2672,
+      "synergies": 996
     },
     {
-      "slug": "bounty__Dry-Season",
-      "mode": "bounty",
-      "map": "Dry Season",
-      "appearances": 17772,
-      "brawlers": 88,
-      "counters": 2546,
-      "synergies": 924
-    },
-    {
-      "slug": "gemGrab__Double-Swoosh",
-      "mode": "gemGrab",
-      "map": "Double Swoosh",
-      "appearances": 17760,
-      "brawlers": 83,
-      "counters": 2677,
-      "synergies": 1027
+      "slug": "knockout__Out-in-the-Open",
+      "mode": "knockout",
+      "map": "Out in the Open",
+      "appearances": 17232,
+      "brawlers": 86,
+      "counters": 2267,
+      "synergies": 873
     },
     {
       "slug": "brawlBall__Pinball-Dreams",
       "mode": "brawlBall",
       "map": "Pinball Dreams",
-      "appearances": 17736,
+      "appearances": 17112,
       "brawlers": 82,
-      "counters": 2542,
-      "synergies": 959
+      "counters": 2444,
+      "synergies": 927
+    },
+    {
+      "slug": "brawlBall__Triple-Dribble",
+      "mode": "brawlBall",
+      "map": "Triple Dribble",
+      "appearances": 17112,
+      "brawlers": 81,
+      "counters": 2398,
+      "synergies": 906
+    },
+    {
+      "slug": "bounty__Dry-Season",
+      "mode": "bounty",
+      "map": "Dry Season",
+      "appearances": 17022,
+      "brawlers": 87,
+      "counters": 2477,
+      "synergies": 890
+    },
+    {
+      "slug": "gemGrab__Double-Swoosh",
+      "mode": "gemGrab",
+      "map": "Double Swoosh",
+      "appearances": 16968,
+      "brawlers": 82,
+      "counters": 2627,
+      "synergies": 987
+    },
+    {
+      "slug": "gemGrab__Undermine",
+      "mode": "gemGrab",
+      "map": "Undermine",
+      "appearances": 16950,
+      "brawlers": 83,
+      "counters": 2506,
+      "synergies": 973
     },
     {
       "slug": "heist__Bridge-Too-Far",
       "mode": "heist",
       "map": "Bridge Too Far",
-      "appearances": 17544,
+      "appearances": 16740,
       "brawlers": 74,
-      "counters": 1902,
-      "synergies": 754
-    },
-    {
-      "slug": "heist__Kaboom-Canyon",
-      "mode": "heist",
-      "map": "Kaboom Canyon",
-      "appearances": 17160,
-      "brawlers": 82,
-      "counters": 2084,
-      "synergies": 780
-    },
-    {
-      "slug": "hotZone__Ring-of-Fire",
-      "mode": "hotZone",
-      "map": "Ring of Fire",
-      "appearances": 17160,
-      "brawlers": 87,
-      "counters": 2535,
-      "synergies": 946
+      "counters": 1842,
+      "synergies": 719
     },
     {
       "slug": "hotZone__Dueling-Beetles",
       "mode": "hotZone",
       "map": "Dueling Beetles",
-      "appearances": 17040,
-      "brawlers": 88,
-      "counters": 2687,
-      "synergies": 1001
+      "appearances": 16350,
+      "brawlers": 87,
+      "counters": 2635,
+      "synergies": 974
+    },
+    {
+      "slug": "heist__Kaboom-Canyon",
+      "mode": "heist",
+      "map": "Kaboom Canyon",
+      "appearances": 16338,
+      "brawlers": 79,
+      "counters": 2026,
+      "synergies": 762
     },
     {
       "slug": "heist__Safe-Zone",
       "mode": "heist",
       "map": "Safe Zone",
-      "appearances": 16932,
-      "brawlers": 74,
-      "counters": 1858,
-      "synergies": 712
+      "appearances": 16176,
+      "brawlers": 72,
+      "counters": 1788,
+      "synergies": 685
+    },
+    {
+      "slug": "hotZone__Ring-of-Fire",
+      "mode": "hotZone",
+      "map": "Ring of Fire",
+      "appearances": 16092,
+      "brawlers": 85,
+      "counters": 2445,
+      "synergies": 912
     },
     {
       "slug": "brawlBall__Spiraling-Out",
       "mode": "brawlBall",
       "map": "Spiraling Out",
-      "appearances": 10134,
+      "appearances": 10260,
       "brawlers": 68,
-      "counters": 1655,
-      "synergies": 616
+      "counters": 1677,
+      "synergies": 625
     },
     {
       "slug": "gemGrab__Rustic-Arcade",
       "mode": "gemGrab",
       "map": "Rustic Arcade",
-      "appearances": 9660,
-      "brawlers": 69,
-      "counters": 1557,
-      "synergies": 540
+      "appearances": 7734,
+      "brawlers": 66,
+      "counters": 1322,
+      "synergies": 439
     },
     {
       "slug": "brawlBall__Beach-Ball",
       "mode": "brawlBall",
       "map": "Beach Ball",
-      "appearances": 6804,
-      "brawlers": 60,
-      "counters": 1243,
-      "synergies": 426
-    },
-    {
-      "slug": "gemGrab__Deathcap-Trap",
-      "mode": "gemGrab",
-      "map": "Deathcap Trap",
-      "appearances": 6096,
+      "appearances": 6900,
       "brawlers": 61,
-      "counters": 1068,
-      "synergies": 393
+      "counters": 1259,
+      "synergies": 433
     },
     {
       "slug": "gemGrab__Crystal-Arcade",
       "mode": "gemGrab",
       "map": "Crystal Arcade",
-      "appearances": 6090,
-      "brawlers": 62,
-      "counters": 1129,
-      "synergies": 399
+      "appearances": 4110,
+      "brawlers": 51,
+      "counters": 806,
+      "synergies": 266
+    },
+    {
+      "slug": "gemGrab__Deathcap-Trap",
+      "mode": "gemGrab",
+      "map": "Deathcap Trap",
+      "appearances": 4026,
+      "brawlers": 51,
+      "counters": 739,
+      "synergies": 256
     },
     {
       "slug": "heist__Safe-r-Zone",
       "mode": "heist",
       "map": "Safe(r) Zone",
-      "appearances": 3684,
+      "appearances": 3702,
       "brawlers": 39,
       "counters": 617,
-      "synergies": 209
+      "synergies": 210
     },
     {
       "slug": "heist__Pit-Stop",
       "mode": "heist",
       "map": "Pit Stop",
-      "appearances": 3288,
+      "appearances": 3324,
       "brawlers": 36,
-      "counters": 593,
-      "synergies": 196
+      "counters": 597,
+      "synergies": 199
     },
     {
       "slug": "hotZone__Quick-Travel",
       "mode": "hotZone",
       "map": "Quick Travel",
-      "appearances": 1812,
-      "brawlers": 30,
-      "counters": 278,
-      "synergies": 84
+      "appearances": 2886,
+      "brawlers": 40,
+      "counters": 486,
+      "synergies": 154
     },
     {
       "slug": "hotZone__In-the-Liminal",
       "mode": "hotZone",
       "map": "In the Liminal",
-      "appearances": 1752,
-      "brawlers": 26,
-      "counters": 284,
-      "synergies": 78
+      "appearances": 2592,
+      "brawlers": 38,
+      "counters": 478,
+      "synergies": 146
     },
     {
       "slug": "brawlBall__Pinhole-Punt",
