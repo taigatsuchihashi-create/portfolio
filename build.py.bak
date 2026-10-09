@@ -193,11 +193,6 @@ footer{background:var(--deep); color:var(--on-deep-soft); padding-block:34px}
 footer .in{display:flex; flex-wrap:wrap; gap:12px 28px; align-items:center;
   font-family:var(--f-mono); font-size:11px; letter-spacing:.06em}
 footer .sp{margin-left:auto}
-footer .rights{margin-top:18px; padding-top:16px; border-top:1px solid rgba(255,255,255,.14);
-  font-size:11px; line-height:1.85; color:var(--on-deep-soft); opacity:.72; max-width:78ch}
-footer .rights p{margin:0 0 5px}
-footer .rights p:last-child{margin-bottom:0}
-footer .rights a{color:inherit; text-decoration:underline}
 
 
 /* ===== scroll reveal =====
@@ -454,13 +449,6 @@ footer .rights a{color:inherit; text-decoration:underline}
     <span>&copy; 2026 Taiga Tsuchihashi</span>
     <span>All Rights Reserved</span>
     <span class="sp">最終更新 2026年10月</span>
-  </div>
-  <div class="in">
-    <div class="rights">
-      <p>本サイトで紹介している『ブロスタ』のピック提案ツールは、個人が制作した非公式のファンコンテンツです。Supercell とは一切関係がなく、Supercell による承認・後援を受けたものではありません。ゲーム内の名称・画像等の権利はすべて Supercell Oy に帰属します。</p>
-      <p>This material is unofficial and is not endorsed by Supercell. For more information see Supercell&rsquo;s Fan Content Policy: <a href="https://www.supercell.com/fan-content-policy" target="_blank" rel="noopener noreferrer">www.supercell.com/fan-content-policy</a></p>
-      <p>その他、本サイトに掲載している各社の作品名・サービス名は、各権利者の商標または登録商標です。</p>
-    </div>
   </div>
 </footer>
 
