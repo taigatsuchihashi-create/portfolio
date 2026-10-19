@@ -290,7 +290,7 @@ footer .rights a{color:inherit; text-decoration:underline}
       <div><b data-count="700000">700,000</b><span>収集・分析した試合数</span></div>
       <div><b data-count="162000">162,000</b><span>算出した相性の組み合わせ</span></div>
       <div><b data-count="60" data-suffix="+">60+</b><span>自動算出する財務指標</span></div>
-      <div><b data-count="4">4</b><span>個人開発したツール</span></div>
+      <div><b data-count="5">5</b><span>個人開発したツール</span></div>
     </div>
   </div>
 </section>
@@ -412,6 +412,24 @@ footer .rights a{color:inherit; text-decoration:underline}
         <p class="stack">EDINET / SEC 連携・PDF取込・OCR / 自動レポート生成</p>
       </div>
     </article>
+
+    <article class="work">
+      <div class="body">
+        <h3>演習ドリル — Webテストの模試</h3>
+        <p class="role">個人開発 / 学習支援</p>
+        <p>就職活動のWebテスト対策で、本番と同じ難度の問題をいくらでも解きたいと考えて作りました。問題は毎回その場で生成するので、何度受けても同じ問題には当たりません。SPI・玉手箱・TG-WEBなど5種類の試験を、本番と同じ画面構成と制限時間で受けられます。</p>
+        <p>最初の版は、推測で決めた難度が本番よりずっと易しいものでした。そこで、試験ごとに公開されている実例や解説から形式と難度の基準を文書にまとめ、届かない問題はすべて作り直すか削除しました。答えは総当たりで決め、生成とは別の解き方で自動的に解き直して照合しています。同じ仕組みで、日商簿記2級やビジネス会計検定2級などの資格試験の模試も作りました。</p>
+        <div class="metrics">
+          <div><b>5</b><span>Webテストの形式</span></div>
+          <div><b>181</b><span>計数の問題の型</span></div>
+          <div><b>3</b><span>資格試験の模試</span></div>
+        </div>
+        <p class="stack">React / Vite / TypeScript / 図は毎回計算してSVGで描画</p>
+      </div>
+      <div class="media">
+        <figure><img src="__shot_drill__" alt="TG-WEB（従来型）の模試画面。展開図の問題と5つの選択肢、左下に残り時間"><figcaption>TG-WEB（従来型）の模試画面</figcaption></figure>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -438,7 +456,7 @@ footer .rights a{color:inherit; text-decoration:underline}
     <div class="grid4">
       <div class="card"><div class="n">01</div><h4>課題を自分で見つける</h4><p>違和感を覚えた時点で、まず何が起きているのかを言葉にする。</p><p class="ev"><b>実例</b>『ブロスタ』で初心者が序盤に脱落する原因を、操作ではなくピックの段階にあると考えたところから作り始めた。</p></div>
       <div class="card"><div class="n">02</div><h4>数字で裏を取る</h4><p>感覚で語らず、他人が検証できる形に落とす。</p><p class="ev"><b>実例</b>ピック提案は70万試合の集計を根拠にし、企画書の市場分析は公表された実測値だけで裏を取った。</p></div>
-      <div class="card"><div class="n">03</div><h4>形にする</h4><p>専門知識がなくても、調べながら作り直して実用水準まで持っていく。</p><p class="ev"><b>実例</b>APIが必要なデータを返さないところから設計を考え直し、ツールを4本、実際に使える状態まで作った。</p></div>
+      <div class="card"><div class="n">03</div><h4>形にする</h4><p>専門知識がなくても、調べながら作り直して実用水準まで持っていく。</p><p class="ev"><b>実例</b>APIが必要なデータを返さないところから設計を考え直し、ツールを5本、実際に使える状態まで作った。</p></div>
       <div class="card"><div class="n">04</div><h4>外の評価で作り直す</h4><p>評価されない可能性のある場所に、自分から出ていく。</p><p class="ev"><b>実例</b>企画書を社外のワークショップで制作者の方に見ていただき、いただいた指摘をもとに全面的に作り直した。</p></div>
     </div>
   </div>
