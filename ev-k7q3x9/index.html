@@ -192,6 +192,31 @@ svg text { fill: var(--muted); font-size: 11px; }
 .btn { font: inherit; font-weight: 700; min-height: 48px; padding: 8px 14px; border-radius: 10px; border: 1px solid var(--ink); background: var(--ink); color: var(--panel); cursor: pointer; white-space: nowrap; }
 .btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
 .jbtn { justify-self: start; }
+.tabs { grid-template-columns: repeat(6, 1fr); }
+/* 台選び：候補の並び（カウンターの中） */
+.rank { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.rank:empty { display: none; }
+.cand { border: 1px solid #2a323c; border-radius: 12px; padding: 10px 12px; display: grid; gap: 4px; }
+.cand.first { border-color: #59de9e; background: color-mix(in srgb, #43d18f 8%, transparent); }
+.cand .c-head { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.cand .c-rank { flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--counter-ink); color: var(--counter); font-family: var(--f-num); font-weight: 700; }
+.cand .c-name { font-weight: 700; min-width: 0; overflow-wrap: anywhere; }
+.cand .c-kind { margin-left: auto; flex: none; font-size: .72rem; color: var(--counter-muted); border: 1px solid #3a4450; border-radius: 999px; padding: 0 8px; }
+.cand .c-ev { font-family: var(--f-num); font-size: 2rem; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.cand .c-ev small { font-family: var(--f-body); font-size: .75rem; font-weight: 400; color: var(--counter-muted); margin-left: 8px; }
+.cand.good .c-ev { color: #59de9e; } .cand.bad .c-ev { color: #ff7d73; } .cand.warn .c-ev { color: #f5d27a; }
+.cand.na .c-ev { font-family: var(--f-body); font-size: .9rem; color: var(--counter-muted); }
+.cand .c-why { font-size: .82rem; color: var(--counter-ink); }
+.cand .c-detail { font-size: .78rem; color: var(--counter-muted); }
+.cand .c-acts { display: flex; gap: 8px; margin-top: 4px; }
+.cand .c-acts button { font: inherit; font-size: .82rem; font-weight: 700; min-height: 40px; padding: 4px 12px; border-radius: 10px; border: 1px solid #3a4450; background: transparent; color: var(--counter-ink); cursor: pointer; }
+.cand .c-acts button.go { background: #ffa24a; border-color: #ffa24a; color: #111; }
+.empty-rank { margin: 0; font-size: .9rem; color: var(--counter-muted); }
+.seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.seg button { font: inherit; font-weight: 700; min-height: 56px; border-radius: 12px; border: 1px solid var(--line); background: var(--panel-2); color: var(--ink); cursor: pointer; display: grid; place-items: center; line-height: 1.3; padding: 6px 4px; }
+.seg button small { font-weight: 400; font-size: .72rem; color: var(--muted); }
+.seg button[aria-checked="true"] { background: var(--led); border-color: var(--led); color: #fff; }
+.seg button[aria-checked="true"] small { color: #fff; }
 @media (prefers-reduced-motion: no-preference) { .bar i, .gauge .fill { transition: width .25s; } }
 @media (max-width: 360px) { .grid { grid-template-columns: 1fr; } .big { font-size: 2.6rem; } }
 </style>
@@ -199,12 +224,60 @@ svg text { fill: var(--muted); font-size: 11px; }
 <div class="wrap">
   <header class="appbar"><h1>パチ・スロ期待値</h1><p>打つか・やめるかを数字で</p></header>
   <nav class="tabs" role="tablist" aria-label="計算の種類">
-    <button role="tab" id="t-pachi" aria-selected="true" data-tab="pachi"><b>パチンコ</b><small>回転率</small></button>
+    <button role="tab" id="t-pick" aria-selected="false" data-tab="pick"><b>台選び</b><small>座る前</small></button>
+    <button role="tab" id="t-pachi" aria-selected="true" data-tab="pachi"><b>パチ</b><small>回転率</small></button>
     <button role="tab" id="t-slot" aria-selected="false" data-tab="slot"><b>天井</b><small>スロ</small></button>
     <button role="tab" id="t-set" aria-selected="false" data-tab="set"><b>設定</b><small>スロ</small></button>
     <button role="tab" id="t-ens" aria-selected="false" data-tab="ens"><b>演出</b><small>信頼度</small></button>
     <button role="tab" id="t-log" aria-selected="false" data-tab="log"><b>収支</b><small>記録</small></button>
   </nav>
+
+  <!-- 台選び（お金を使う前に比べる） -->
+  <section id="pick" class="tabpage" hidden>
+    <div class="wrap">
+      <div class="result" aria-live="polite">
+        <span class="eyebrow">座る前に比べる（お金を使う前）・時給の高い順</span>
+        <ol class="rank" id="c-list"></ol>
+        <p class="empty-rank" id="c-empty">空いている台の上のデータカウンターを見て、下で1台ずつ入れる。見込みがいちばん高い台が上に来ます。</p>
+      </div>
+
+      <div class="step">
+        <h2><span class="no">1</span>何で比べる？</h2>
+        <div class="seg" id="c-kind" role="radiogroup" aria-label="比べ方">
+          <button type="button" role="radio" aria-checked="true" data-k="ceil">天井<small>スロ・ゲーム数</small></button>
+          <button type="button" role="radio" aria-checked="false" data-k="set">設定<small>スロ・ジャグラーなど</small></button>
+          <button type="button" role="radio" aria-checked="false" data-k="yu">遊タイム<small>パチンコ</small></button>
+        </div>
+        <p class="note" id="c-kind-note"></p>
+      </div>
+
+      <div class="step">
+        <h2><span class="no">2</span>台を入れる</h2>
+        <div class="grid">
+          <label class="wide">機種<select id="c-m"></select></label>
+          <label>台番号<em>（なくてもよい）</em><input id="c-no" type="text" inputmode="numeric" placeholder="例 125"></label>
+          <label class="cf" data-k="ceil">いまのゲーム数<span class="unit"><input id="c-g" type="number" inputmode="numeric" step="1" placeholder="例 520"><span>G</span></span></label>
+          <label class="cf need" data-k="ceil">当たり1回で増える枚数<span class="unit"><input id="c-w0" type="number" inputmode="numeric" step="1" placeholder="例 600"><span>枚</span></span></label>
+          <label class="cf need" data-k="ceil">前兆<span class="unit"><input id="c-zen" type="number" inputmode="numeric" step="1" placeholder="例 15"><span>G</span></span></label>
+          <label class="cf chk wide" data-k="ceil" id="c-reset-box"><input id="c-reset" type="checkbox">朝一で設定変更されている（天井が短い）</label>
+          <label class="cf wide" data-k="set">今日の通常時のゲーム数<span class="unit"><input id="c-n" type="number" inputmode="numeric" step="1" placeholder="例 3500"><span>G</span></span></label>
+          <label class="cf" data-k="set" data-bonus="1">BIGの回数<input id="c-bb" type="number" inputmode="numeric" step="1" placeholder="例 14"></label>
+          <label class="cf" data-k="set" data-bonus="1">REGの回数<input id="c-rb" type="number" inputmode="numeric" step="1" placeholder="例 12"></label>
+          <label class="cf wide" data-k="set" data-at="1">初当たりの回数<input id="c-k1" type="number" inputmode="numeric" step="1" placeholder="例 9"></label>
+          <label class="cf" data-k="yu">大当たり後の回転数<em>（時短は除く）</em><input id="c-s" type="number" inputmode="numeric" step="1" placeholder="例 180"></label>
+          <label class="cf" data-k="yu">回転率<em>（分かれば）</em><span class="unit"><input id="c-r" type="number" inputmode="decimal" step="any" placeholder="空欄でよい"><span>回転</span></span></label>
+        </div>
+        <div class="acts"><button type="button" class="main" id="c-add">この台を比べる</button></div>
+        <p class="note" id="c-msg"></p>
+      </div>
+
+      <details class="step">
+        <summary>計算の条件<span class="sub">各タブの「店の条件」を使う</span></summary>
+        <p class="note">座る前なので、どれも現金で打ち始める前提です。貸しメダル・交換率は各タブの「店の条件」、設定の「あと打つ時間」と店の配分は設定のタブの値を使います。並びは1時間あたりの見込み（天井は当たるまでの短い時間、設定は何時間も打つので、時間をそろえて比べる）。遊タイムは回転率が分からないうちは厳しめの資料のボーダーちょうどとして、遊タイムに近いぶんの価値だけを出します。</p>
+        <div class="acts"><button type="button" id="c-clear">候補を全部消す</button></div>
+      </details>
+    </div>
+  </section>
 
   <!-- パチンコ -->
   <section id="pachi" class="tabpage">
@@ -532,6 +605,92 @@ svg text { fill: var(--muted); font-size: 11px; }
 <script>
 // 計算（build.py が calc.js をそのまま埋め込む。test.js でシミュレーションと照合済み）
 /*CALC*/const Calc = {
+  /** 台選び：お金を使う前に、データカウンターの数字だけで候補の台1台の見込みを出す。
+   *  c.kind：'ceil'（スロの天井：いまのゲーム数）／'set'（スロの設定：今日のゲーム数とBIG・REG）／'yu'（パチンコの遊タイム：大当たり後の回転数）。
+   *  m：機種データ。ctx：店の条件 { slot:{xch, lendC, hold}, set:{gph, hours, xch, lendC, hold, prior, coin}, pachi:{lend, xch, hold} }。
+   *  返す ev は「この台に座ったときの見込みの収支（円）」：天井は当たるまで、設定は ctx.set.hours 時間打ち続けたとき、遊タイムは当たるまで */
+  candidate(c, m, ctx) {
+    const { pct } = Calc.fmt;
+    if (!m) return { ok: false, why: '機種を選んでください' };
+    if (c.kind === 'ceil') {
+      if (m.ceilingG == null) return { ok: false, why: '天井のない機種（設定で比べる）' };
+      if (!(c.g >= 0)) return { ok: false, why: 'いまのゲーム数を入れてください' };
+      if (!(c.W0 >= 0)) return { ok: false, why: '当たり1回で増える枚数を入れてください' };
+      const isG = (m.ceilingUnit || 'G') === 'G';
+      const Gn = isG ? m.ceilingG : m.ceilingGApprox, Gr = isG ? m.ceilingResetG : m.ceilingResetGApprox;
+      if (!(Gn > 0)) return { ok: false, why: '天井をゲーム数で決められない機種' };
+      const p = Array.isArray(m.pCeil) && m.pCeil[0] > 1 ? m.pCeil[0] : m.p1;
+      const s = ctx.slot;
+      const v = { p, G: c.reset && Gr ? Gr : Gn, g: c.g, W0: c.W0, W1: c.W1 >= 0 ? c.W1 : c.W0, c: m.coin50 > 0 ? m.coin50 : 32, xch: s.xch, hold: s.hold, lendC: s.lendC, zen: c.zen > 0 ? c.zen : 0 };
+      const mix = c.reset && m.ceilingResetMix ? m.ceilingResetMix : null;
+      if (mix) v.G = Math.max(...mix.map((x) => x.G));
+      const r = mix ? Calc.slotMix(v, mix) : Calc.slot(v);
+      const gainMax = Calc.gainCheck({ ...v, G: Gn }, m.payout && m.payout[0]);
+      const vd = Calc.slotVerdict({ overCeil: v.g > v.G, ev: r.evYen, evStop: null, gainMax, payout1: m.payout && m.payout[0], noZen: !(v.zen > 0), approxUnit: isG ? null : m.ceilingUnit, w1Blank: !(c.W1 >= 0), unsure: !c.W0sure, lowEV: null });
+      return { ok: true, ev: r.evYen, cls: vd.cls, text: vd.text, gainMax, suspect: gainMax !== null, hours: r.games / (ctx.slot.gph > 0 ? ctx.slot.gph : 700), what: '当たるまで打つ', detail: `いま${c.g}G・天井${mix ? `${r.nMin + c.g}〜${v.G}` : v.G}G（あと${mix ? `${r.nMin}〜${r.n}` : Math.max(0, v.G - c.g)}G）` };
+    }
+    if (c.kind === 'set') {
+      if (!Array.isArray(m.pBySetting) || !Array.isArray(m.payout)) return { ok: false, why: '設定の数字がない機種' };
+      if (!(c.n > 0)) return { ok: false, why: '今日の通常時のゲーム数を入れてください' };
+      const multi = Array.isArray(m.pBB) && Array.isArray(m.pRB);
+      const N = c.n;
+      const elems = multi ? [{ k: c.bb || 0, N, d: m.pBB }, { k: c.rb || 0, N, d: m.pRB }]
+        : [{ k: m.type === 'ノーマル' ? (c.bb || 0) + (c.rb || 0) : c.k1 || 0, N, d: m.pBySetting }];
+      if (elems.some((e) => e.k > N)) return { ok: false, why: '回数がゲーム数より多い' };
+      const st = ctx.set;
+      const post = Calc.setting(elems, st.prior, multi);
+      if (post.every((x) => x === 0)) return { ok: false, why: 'この機種は計算できない' };
+      const coin = m.coin50 > 0 ? m.coin50 : st.coin;
+      const opt = st.hold < 1 && coin > 0 ? { hours: Math.min(st.hours, 8), d: m.pBySetting.map((x) => (x > 1 ? x : null)), c: coin, spread: m.type !== 'ノーマル', skip: post.map((x) => x < 0.01) } : null;
+      const ev = Calc.settingEV(post, m.payout.map((x) => (x > 0 ? x : null)), st.gph, st.xch, st.hold, st.lendC, opt);
+      const best = post.indexOf(Math.max(...post)), sure = post[best] >= 0.5, high = post[3] + post[4] + post[5];
+      const head = sure ? `設定${best + 1}の可能性が高い（${pct(post[best])}）` : 'まだ設定は判断できない';
+      const vd = Calc.setVerdict({ okEV: Number.isFinite(ev.evHour), pending: false, missing: ev.missing, evHour: ev.evHour, sure, head, high });
+      return { ok: Number.isFinite(ev.evHour), why: '機械割がない', ev: ev.evHour * st.hours, perHour: ev.evHour, hours: st.hours, cls: vd.cls, text: vd.text, what: `${st.hours}時間打ち続ける`, detail: `設定4以上 ${pct(high)}・今日${N}G` };
+    }
+    if (c.kind === 'yu') {
+      if (!m.yutime) return { ok: false, why: '遊タイムの数字がない機種' };
+      if (!(c.s >= 0)) return { ok: false, why: '大当たり後の回転数を入れてください' };
+      const y = Calc.machineY(m);
+      if (!y) return { ok: false, why: 'この機種は計算できない' };
+      const pc = ctx.pachi;
+      // 回転率が分からないうちは、厳しめの資料のボーダーちょうど（ふだんの期待値0）として、遊タイムに近いぶんの価値だけを出す
+      const base = Calc.pachinko({ P: y.P, R: 20, Y: y.Ystrict, lend: pc.lend, xch: pc.xch, hold: pc.hold, sph: 200, hours: 1 });
+      const R = c.R > 0 ? c.R : base.border;
+      const r = Calc.pachinko({ P: y.P, R, Y: y.Ystrict, lend: pc.lend, xch: pc.xch, hold: pc.hold, sph: 200, hours: 1 });
+      // 資料のボーダーは遊タイムこみなので、遊タイムを足す計算には「遊タイムのぶんを抜いた平均出玉」を使う（二重に数えない）
+      const Yb = Calc.yutimeY(y.P, y.bMax, m.yutime.T, m.yutime.J);
+      const yu = Calc.yutime({ P: y.P, T: m.yutime.T, s: c.s, J: m.yutime.J, Y: Yb, Y2: Yb, costSpin: r.cost, e: r.e });
+      const ev = yu.evYen - r.left;
+      const cls = c.s >= m.yutime.T ? 'warn' : ev >= 0 ? 'warn' : 'bad';
+      const text = c.s >= m.yutime.T ? '遊タイムの回転数を超えている：数字を確かめて'
+        : ev < 0 ? '期待値マイナス：まだ早い' : c.R > 0 ? 'プラスの見込み。座ったら回転率を測って確かめる' : 'プラスの見込み（回転率はボーダーちょうどとして計算。座ったら回転率を測る）';
+      const sph = ctx.pachi.sph > 0 ? ctx.pachi.sph : 200;
+      return { ok: true, ev, cls, text, hours: yu.games / sph, what: '当たるまで打つ', detail: `遊タイムまであと${Math.max(0, m.yutime.T - c.s)}回転・入る確率 ${pct(yu.reach)}` };
+    }
+    return { ok: false, why: '種類を選んでください' };
+  },
+  /** 遊タイム機の「遊タイムのぶんを抜いた」平均出玉。資料の等価ボーダー Rb は遊タイムこみで出してあるので、
+   *  ボーダーの回転率で大当たり直後（0回転）から当たるまで打った期待値が0になる出玉を逆算する（等価・現金：1回転 1000/Rb 円、1玉4円）。
+   *  これを使うと、ボーダーちょうどの台では 0回転で期待値0、遊タイムに近いほどプラス、になる */
+  yutimeY(P, Rb, T, J) {
+    const q = 1 / P, reach = Math.pow(1 - q, T), games = (1 - reach) / q, pJ = 1 - Math.pow(1 - q, J);
+    return (games * (1000 / Rb)) / (4 * ((1 - reach) + reach * pJ));
+  },
+  /** 当たり1回の枚数の上限の目安。設定1の機械割が100%未満の機種は、0Gから当たるまで打つと平均でマイナスになる
+   *  （1回の当たりで増える枚数の平均 ＜ 0Gから当たるまでに使う枚数）。入れた枚数でこれを破るなら、枚数が多すぎる。
+   *  v：Calc.slot の入力（通常の天井）。payout1：設定1の機械割（%）。破っていれば上限の枚数、いなければ null */
+  gainCheck(v, payout1) {
+    if (!(payout1 > 0 && payout1 < 100)) return null;
+    const r0 = Calc.slot({ ...v, g: 0 });
+    return r0.payout > r0.coinsIn ? Math.floor(r0.coinsIn) : null;
+  },
+  /** 候補を見込みの高い順（1時間あたり）に。入れた数字があやしい台（当たりの枚数が機械割から見て多すぎる）はその後ろ、計算できない台はいちばん後ろ */
+  rankCandidates(list) {
+    const tier = (x) => (!x.res.ok ? 2 : x.res.suspect ? 1 : 0);
+    const key = (x) => (x.res.hours > 0 ? x.res.ev / Math.max(x.res.hours, 1 / 6) : x.res.ev); // 時給（10分未満は10分として、端数で大きくしすぎない）
+    return [...list].sort((a, b) => tier(a) - tier(b) || (a.res.ok && b.res.ok ? key(b) - key(a) : 0));
+  },
   pachinko(v) {
     const { P, R, Y, lend, xch, hold, sph, hours } = v; // lend：貸し玉1玉の円（4/1）、xch：100円あたりの交換玉数、hold：持ち玉比率(0〜1)
     const e = 100 / xch; // 1玉の交換価値（円）
@@ -594,10 +753,11 @@ svg text { fill: var(--muted); font-size: 11px; }
     return { cls: 'bad', text: `たぶんボーダー未満（超えている確率 ${pct(ci.pAbove)}）：やめどき` };
   },
   /** スロ天井の判定。「狙い目」は、期待値プラス・軍資金でやめても大丈夫・前兆を入れた・天井がゲーム数・天井時の獲得を入れた・平均獲得が確か、のすべてのときだけ */
-  slotVerdict({ overCeil, ev, evStop, noZen, approxUnit, w1Blank, unsure, lowEV }) {
+  slotVerdict({ overCeil, ev, evStop, gainMax, payout1, noZen, approxUnit, w1Blank, unsure, lowEV }) {
     const { yen } = Calc.fmt;
     if (overCeil) return { cls: 'warn', text: 'いまのゲーム数が天井を超えています。数字を確かめて' };
     if (ev < 0) return { cls: 'bad', text: '期待値マイナス：打たない' };
+    if (gainMax !== null && gainMax !== undefined) return { cls: 'warn', text: `当たり1回で増える枚数が多すぎます。この機種は設定1の機械割が${payout1}%なので、平均はおよそ${gainMax}枚より少ないはず（このままだと期待値が高く出る）` };
     if (evStop !== null && evStop !== undefined && evStop < 0) return { cls: 'bad', text: `軍資金が足りない：打たない（天井まで届かずやめると平均 ${yen(evStop)}）` };
     if (noZen) return { cls: 'warn', text: 'プラスの見込み。ただし前兆が0のままなので高めに出ています（3 で前兆を入れる）' };
     if (approxUnit) return { cls: 'warn', text: `プラスの見込み。天井は${approxUnit}をゲーム数に直した目安なので、${approxUnit}の貯まり具合も見る` };
@@ -945,7 +1105,19 @@ function pachi() {
   lastEV.pachi = NaN; lastEV.pachiSpin = NaN; lastEV.pachiSpins = 0;
   document.querySelectorAll('#pachi .result dd').forEach((d) => (d.textContent = '—'));
   const v = { P: num('P'), R: num('R'), Y: num('Y'), lend: 1000 / num('pb'), xch: num('xch'), hold: num('hold') / 100, sph: num('sph'), hours: num('hours') };
-  if ($('R').value === '') { $('p-big').textContent = '下の「2 回転率を測る」で、打ちながら回転数を入れてください。1,000円ぶん打つと最初の数字が出ます。'; setV($('p-verdict'), 'warn', '回転率がまだない'); return; }
+  if ($('R').value === '') {
+    $('p-big').textContent = '下の「2 回転率を測る」で、打ちながら回転数を入れてください。1,000円ぶん打つと最初の数字が出ます。';
+    setV($('p-verdict'), 'warn', '回転率がまだない');
+    // 遊タイム狙いなら、回転率をボーダーちょうどとして遊タイムの見込みを出す（厳しめの資料のボーダーで）
+    if (v.P > 1 && v.Y > 0 && num('xch') > 0 && num('pb') > 0 && num('yT') > 0) {
+      const yS0 = curPY && Math.abs(curPY.Y - v.Y) < 1 && Math.abs(curPY.P - v.P) < 1e-6 ? curPY.Ystrict : v.Y;
+      const b0 = Calc.pachinko({ ...v, Y: yS0, R: 20, hold: v.hold >= 0 && v.hold <= 1 ? v.hold : 0, sph: 200, hours: 1 });
+      const r0 = Calc.pachinko({ ...v, Y: yS0, R: b0.border, hold: v.hold >= 0 && v.hold <= 1 ? v.hold : 0, sph: 200, hours: 1 });
+      const yu = renderYu({ ...v, Y: yS0 }, r0, true);
+      if (yu) { $('p-big').textContent = `遊タイム狙いの見込みは下の「遊タイムのある台」に出しています（${yen(yu.evYen)}）。座ったら回転率も測る。`; setV($('p-verdict'), yu.evYen >= 0 ? 'warn' : 'bad', yu.evYen >= 0 ? '遊タイム狙い：プラスの見込み（回転率はまだ）' : '遊タイム狙い：まだ早い（期待値マイナス）'); }
+    } else $('ymsg').textContent = '遊タイムの数字を入れると、いまの回転数から当たりまで打ったときの期待値が出ます。';
+    return;
+  }
   if (Object.values(v).some((x) => !Number.isFinite(x)) || v.P <= 1 || v.R <= 0 || v.xch <= 0 || !(num('pb') > 0) || v.hold < 0 || v.hold > 1 || v.Y <= 0) { $('p-big').textContent = '入力を確かめてください（持ち玉の割合は0〜100%）'; $('p-verdict').textContent = ''; return; }
   if (100 / v.xch > v.lend + 1e-9) { $('p-big').textContent = `交換率が貸し玉より高くなっています（1玉${(100 / v.xch).toFixed(2)}円で交換・${v.lend.toFixed(2)}円で借りる）。1円パチンコなら交換率は100玉以上。`; setV($('p-verdict'), 'warn', '交換率と貸し玉を確かめる'); return; }
   const r = Calc.pachinko(v);
@@ -984,15 +1156,22 @@ function pachi() {
   $('p-btable').innerHTML = '<tr><th>交換（100円あたり）</th><th>ボーダー</th><th>いまとの差</th></tr>' +
     base.map((x) => { const b = r.borderOf(0, x); return `<tr><td>${x}玉${Math.abs(x - pb / 10) < 1e-9 ? '（等価）' : ''}</td><td>${b.toFixed(1)}回転</td><td>${(v.R - b >= 0 ? '+' : '')}${(v.R - b).toFixed(1)}</td></tr>`; }).join('');
   $('p-hamari').innerHTML = r.hamari.map((h) => bar(`${Math.round(h.k * v.P)}回`, h.p, pct(h.p))).join('') + '<p class="note">大当たり確率の1倍・2倍・3倍の回転数を回しても当たらない確率。</p>';
-  // 遊タイム
+  renderYu(v, r, false);
+}
+// 遊タイム：いまの回転数から当たりまで打った期待値。assumed＝回転率をまだ測っていないので、ボーダーちょうど（ふだんの期待値0）として計算
+function renderYu(v, r, assumed) {
   const yT = num('yT'), ys = num('ys'), yJ = num('yJ'), yY2 = num('yY2');
-  if (yT > 0 && ys >= 0 && yJ > 0) {
-    const yv = { P: v.P, T: yT, s: ys, J: yJ, Y: v.Y, Y2: yY2 > 0 ? yY2 : v.Y, costSpin: r.cost, e: r.e };
-    const yu0 = Calc.yutime(yv), yu = { ...yu0, evYen: yu0.evYen - r.left }; // 1,000円単位で借りた残りの玉の損も引く
-    let st = null;
-    for (let x = 0; x <= yT; x += 10) if (Calc.yutime({ ...yv, s: x }).evYen - r.left >= 0) { st = x; break; }
-    $('ymsg').innerHTML = `${ys > yT ? '<span style="color:var(--bad)">いまの回転数が遊タイムの発動を超えています。数字を確かめてください。</span><br>' : ''}遊タイムまで残り${yu.n}回転・遊タイムに入る確率 ${pct(yu.reach)}<br>当たりまで打った期待値 <span style="color:var(--${yu.evYen >= 0 ? 'good' : 'bad'})">${yen(yu.evYen)}</span>（${st === null ? 'この回転率ではどこから打ってもマイナス' : `${st}回転からプラス`}）`;
-  } else $('ymsg').textContent = '遊タイムの数字を入れると、いまの回転数から当たりまで打ったときの期待値が出ます。';
+  if (!(yT > 0 && ys >= 0 && yJ > 0)) { $('ymsg').textContent = '遊タイムの数字を入れると、いまの回転数から当たりまで打ったときの期待値が出ます。'; return null; }
+  // 手で平均出玉を入れたときは、遊タイムこみの数字だと二重に数えるので注意を出す
+  // 機種を選んでいて平均出玉を変えていなければ、資料のボーダー（遊タイムこみ）から遊タイムのぶんを抜いた出玉を使う（二重に数えない）
+  const fromData = curPY && curPY.yutime && Math.abs(curPY.P - v.P) < 1e-6 && (Math.abs(curPY.Y - v.Y) < 1 || Math.abs(curPY.Ystrict - v.Y) < 1);
+  const Yb = fromData ? Calc.yutimeY(v.P, curPY.bMax, yT, yJ) : v.Y;
+  const yv = { P: v.P, T: yT, s: ys, J: yJ, Y: Yb, Y2: yY2 > 0 ? yY2 : Yb, costSpin: r.cost, e: r.e };
+  const yu0 = Calc.yutime(yv), yu = { ...yu0, evYen: yu0.evYen - r.left }; // 1,000円単位で借りた残りの玉の損も引く
+  let st = null;
+  for (let x = 0; x <= yT; x += 10) if (Calc.yutime({ ...yv, s: x }).evYen - r.left >= 0) { st = x; break; }
+  $('ymsg').innerHTML = `${ys > yT ? '<span style="color:var(--bad)">いまの回転数が遊タイムの発動を超えています。数字を確かめてください。</span><br>' : ''}遊タイムまで残り${yu.n}回転・遊タイムに入る確率 ${pct(yu.reach)}<br>当たりまで打った期待値 <span style="color:var(--${yu.evYen >= 0 ? 'good' : 'bad'})">${yen(yu.evYen)}</span>（${st === null ? 'この回転率ではどこから打ってもマイナス' : `${st}回転からプラス`}）${assumed ? '<br>回転率はまだ測っていないので、ボーダーちょうど（ふだんの期待値0）として、遊タイムの分だけを出しています。座ったら回転率を測る。' : ''}${fromData ? '' : '<br>平均出玉を手で入れたときは、遊タイムを除いた数字を入れる（遊タイムこみの数字だと二重に数えて高く出る）。'}`;
+  return yu;
 }
 
 function slot() {
@@ -1025,7 +1204,10 @@ function slot() {
     lowEV = lo;
     $('s-range').textContent = `${yen(lo)} 〜 ${yen(hi)}`;
   } else $('s-range').textContent = '獲得枚数を2件記録すると出る';
-  { const vd = Calc.slotVerdict({ overCeil: v.g > v.G, ev: r.evYen, evStop, noZen, approxUnit: m && m.ceilingUnit && m.ceilingUnit !== 'G' ? m.ceilingUnit : null, w1Blank, unsure, lowEV }); setV($('s-verdict'), vd.cls, vd.text); }
+  // 当たり1回の枚数が、機種の機械割から見て多すぎないか（設定1が100%未満なら、0Gから打ってプラスにはならない）
+  const gIsG = m && (m.ceilingUnit || 'G') === 'G', gN = m ? (gIsG ? m.ceilingG : m.ceilingGApprox) : null;
+  const gainMax = m && gN > 0 && m.payout ? Calc.gainCheck({ ...v, G: gN }, m.payout[0]) : null;
+  { const vd = Calc.slotVerdict({ overCeil: v.g > v.G, ev: r.evYen, evStop, gainMax, payout1: m && m.payout && m.payout[0], noZen, approxUnit: m && m.ceilingUnit && m.ceilingUnit !== 'G' ? m.ceilingUnit : null, w1Blank, unsure, lowEV }); setV($('s-verdict'), vd.cls, vd.text); }
   $('s-warn').textContent = v.g > v.G ? 'いまのゲーム数が天井を超えています。天井かゲーム数の数字を確かめてください。' : '';
   $('s-q').textContent = sb.qs.map((x) => man(x.yen)).join('／');
   $('s-short').textContent = sb.short === null ? '軍資金を入れると出る' : pct(sb.short);
@@ -1116,22 +1298,147 @@ function shopSummary() {
   $('s-shop-sum').textContent = `${num('slend') || '—'}枚貸し・${num('sxch') || '—'}枚交換${num('sbank') > 0 ? `・軍資金${man(num('sbank'))}` : ''}`;
   $('k-shop-sum').textContent = `持ちメダル${num('khold') >= 0 ? num('khold') : '—'}%・あと${num('khours') || '—'}時間`;
 }
-let renderAll = function () { pachi(); slot(); setting(); renderJournal(); shopSummary(); };
+// ===== 台選び =====
+const cstore = { get() { try { return JSON.parse(localStorage.getItem('ps-cands') || '[]'); } catch (e) { return []; } }, set(o) { try { localStorage.setItem('ps-cands', JSON.stringify(o)); } catch (e) {} } };
+const mdef = { get() { try { return JSON.parse(localStorage.getItem('ps-mdef') || '{}'); } catch (e) { return {}; } }, set(o) { try { localStorage.setItem('ps-mdef', JSON.stringify(o)); } catch (e) {} } };
+let cKind = 'ceil';
+const KIND_NAME = { ceil: '天井', set: '設定', yu: '遊タイム' };
+const KIND_NOTE = {
+  ceil: 'カウンターの「いまのゲーム数」で比べる。当たり1回で増える枚数と前兆は資料にないので自分で入れる（その機種の記録があれば入ります）。',
+  set: '前の人が打ったぶんの「今日のゲーム数」と「BIG・REGの回数」で設定を見込む。回数が多い台ほど見込みがはっきりします。',
+  yu: '大当たり後の回転数で比べる。遊タイムの数字を資料で確かめた機種だけ出ます。',
+};
+function cMachines(k) {
+  if (k === 'yu') return [...MACHINES.pachinko, ...MACHINES.slot.filter((m) => m.kind === 'pachinko')].filter((m) => m.yutime);
+  const sl = MACHINES.slot.filter((m) => m.kind !== 'pachinko');
+  return k === 'ceil' ? sl.filter((m) => m.ceilingG != null) : sl.filter((m) => Array.isArray(m.pBySetting) && Array.isArray(m.payout));
+}
+const cFind = (k, name) => cMachines(k).find((m) => m.name === name);
+function cCtx() {
+  const kp = SETTINGS.map((_, i) => (num('kp' + i) >= 0 ? num('kp' + i) : 0));
+  return {
+    // 座る前の台は現金で打ち始めるので、持ちメダル・持ち玉は0%で比べる
+    slot: { xch: num('sxch') || 5.6, lendC: num('slend') || 50, hold: 0, gph: Math.min(num('kgph') || 700, 1200) },
+    set: { gph: Math.min(num('kgph') || 700, 1200), hours: num('khours') > 0 ? num('khours') : 3, xch: num('kxch') || 5.6, lendC: num('klend') || 50, hold: 0, prior: kp.some((x) => x > 0) ? kp : [50, 20, 15, 7, 5, 3], coin: num('kcoin') },
+    pachi: { lend: 1000 / (num('pb') || 250), xch: num('xch') || 28, hold: 0, sph: num('sph') || 200 },
+  };
+}
+function cForm() {
+  document.querySelectorAll('#c-kind button').forEach((b) => b.setAttribute('aria-checked', String(b.dataset.k === cKind)));
+  $('c-kind-note').textContent = KIND_NOTE[cKind];
+  const cur = $('c-m').value, ms = cMachines(cKind);
+  $('c-m').innerHTML = ms.map((m) => `<option value="${esc(m.name)}">${esc(m.name)}${mark(m)}</option>`).join('');
+  if (ms.some((m) => m.name === cur)) $('c-m').value = cur;
+  cMachineChanged();
+}
+function cMachineChanged() {
+  const m = cFind(cKind, $('c-m').value);
+  const at = m && cKind === 'set' && !(m.type === 'ノーマル');
+  document.querySelectorAll('#pick .cf').forEach((el) => { el.hidden = el.dataset.k !== cKind || (el.dataset.bonus && at) || (el.dataset.at && !at); });
+  $('c-reset-box').hidden = cKind !== 'ceil' || !m || !(m.ceilingResetG || m.ceilingResetMix || m.ceilingResetGApprox);
+  if (cKind === 'ceil' && m) {
+    // 当たりの枚数：その機種の記録の平均（なければ前に入れた値）
+    const all = glog.get()[m.name] || [], xs = all.filter((x) => !x.c).map((x) => x.w), d = mdef.get()[m.name] || {};
+    const st = Calc.logStats(xs);
+    $('c-w0').value = st.n ? Math.round(st.mean) : d.W0 ?? '';
+    $('c-zen').value = m.zenchoG > 0 ? m.zenchoG : d.zen ?? '';
+  }
+}
+function cRead() {
+  const m = cFind(cKind, $('c-m').value), v = (id) => ($(id).value === '' ? undefined : num(id));
+  const c = { id: Date.now(), kind: cKind, name: m ? m.name : '', no: $('c-no').value.trim() };
+  if (cKind === 'ceil') {
+    Object.assign(c, { g: v('c-g'), W0: v('c-w0'), zen: v('c-zen'), reset: $('c-reset').checked && !$('c-reset-box').hidden });
+    const xs = ((glog.get()[c.name] || []).filter((x) => !x.c));
+    c.W0sure = xs.length >= 10 && Math.abs(Calc.logStats(xs.map((x) => x.w)).mean - c.W0) < 1;
+    const ce = (glog.get()[c.name] || []).filter((x) => x.c).map((x) => x.w);
+    if (ce.length) c.W1 = Math.round(Calc.logStats(ce).mean);
+  }
+  if (cKind === 'set') Object.assign(c, { n: v('c-n'), bb: v('c-bb'), rb: v('c-rb'), k1: v('c-k1') });
+  if (cKind === 'yu') Object.assign(c, { s: v('c-s'), R: v('c-r') });
+  return { c, m };
+}
+$('c-kind').addEventListener('click', (ev) => { const b = ev.target.closest('button'); if (!b) return; cKind = b.dataset.k; cForm(); });
+$('c-m').addEventListener('change', cMachineChanged);
+$('c-add').addEventListener('click', () => {
+  const { c, m } = cRead();
+  const res = Calc.candidate(c, m, cCtx());
+  if (!res.ok) { $('c-msg').textContent = res.why + '。'; return; }
+  const list = cstore.get(); list.push(c); cstore.set(list);
+  if (c.kind === 'ceil') { const d = mdef.get(); d[c.name] = { W0: c.W0, zen: c.zen }; mdef.set(d); }
+  $('c-msg').textContent = `${c.no ? c.no + '番台 ' : ''}${c.name} を入れました（${Calc.fmt.yen(res.ev)}）。次の台を入れると並び替わります。`;
+  ['c-no', 'c-g', 'c-n', 'c-bb', 'c-rb', 'c-k1', 'c-s', 'c-r'].forEach((id) => ($(id).value = ''));
+  $('c-reset').checked = false;
+  renderCands();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+$('c-clear').addEventListener('click', () => { cstore.set([]); renderCands(); $('c-msg').textContent = '候補を全部消しました。'; });
+// 入れてからの時間（データカウンターの数字は時間とともに変わる）
+function age(id) {
+  const min = Math.floor((Date.now() - id) / 60000);
+  if (min < 1) return '';
+  return `<div class="c-detail"${min >= 60 ? ' style="color:#f5d27a"' : ''}>${min < 60 ? `${min}分前に入力` : `${Math.floor(min / 60)}時間${min % 60}分前に入力（いまの数字に入れ直す）`}</div>`;
+}
+function renderCands() {
+  if (tab !== 'pick') return; // 開いているときだけ並べ直す（重い計算をほかのタブの入力で走らせない）
+  const ctx = cCtx();
+  const list = cstore.get().map((c) => ({ c, res: Calc.candidate(c, cFind(c.kind, c.name), ctx) }));
+  const ranked = Calc.rankCandidates(list);
+  $('c-empty').hidden = ranked.length > 0;
+  $('c-list').innerHTML = ranked.map(({ c, res }, i) => {
+    const title = `${c.no ? esc(c.no) + '番台　' : ''}${esc(c.name)}`;
+    const cls = res.ok ? res.cls : 'na';
+    return `<li class="cand ${cls}${i === 0 && res.ok && res.ev >= 0 && res.cls !== 'bad' && !res.suspect ? ' first' : ''}">
+      <div class="c-head"><span class="c-rank">${i + 1}</span><span class="c-name">${title}</span><span class="c-kind">${KIND_NAME[c.kind]}</span></div>
+      <div class="c-ev">${res.ok ? `${Calc.fmt.yen(res.ev)}<small>${res.what}・約${res.hours >= 1 ? `${res.hours.toFixed(1)}時間` : `${Math.max(1, Math.round(res.hours * 60))}分`}・時給 ${Calc.fmt.yen(res.ev / Math.max(res.hours, 1 / 6))}</small>` : esc(res.why)}</div>
+      ${res.ok ? `<div class="c-why">${esc(res.text)}</div><div class="c-detail">${esc(res.detail)}</div>` : ''}
+      ${age(c.id)}
+      <div class="c-acts"><button type="button" class="go" data-cgo="${c.id}">この台で計算</button><button type="button" data-cdel="${c.id}">消す</button></div>
+    </li>`;
+  }).join('');
+}
+$('c-list').addEventListener('click', (ev) => {
+  const del = ev.target.closest('[data-cdel]'), go = ev.target.closest('[data-cgo]');
+  if (del) { cstore.set(cstore.get().filter((c) => String(c.id) !== del.dataset.cdel)); renderCands(); return; }
+  if (!go) return;
+  const c = cstore.get().find((x) => String(x.id) === go.dataset.cgo);
+  if (!c) return;
+  const pickOpt = (sel, name) => { const o = [...$(sel).options].find((x) => x.textContent.startsWith(name)); if (o) { $(sel).value = o.value; $(sel).onchange(); } };
+  if (c.kind === 'ceil') {
+    showTab('slot'); pickOpt('sm', c.name);
+    $('sreset').checked = !!c.reset; $('sreset').dispatchEvent(new Event('change'));
+    $('g').value = c.g; if (c.W0 >= 0) $('W0').value = c.W0; if (c.W1 >= 0) $('W1').value = c.W1; if (c.zen >= 0) $('zen').value = c.zen;
+  } else if (c.kind === 'set') {
+    showTab('set'); pickOpt('km', c.name);
+    $('kN').value = c.n; $('khold').value = 0; // 台選びと同じく現金で打ち始める前提
+    if (c.k1 >= 0 && !(c.bb >= 0)) { document.querySelector('#set .memo').open = true; $('k1').value = c.k1; }
+    else { $('kbb').value = c.bb ?? ''; $('krb').value = c.rb ?? ''; }
+  } else {
+    showTab('pachi'); pickOpt('pm', c.name);
+    rlogSet([]); $('rs0').value = ''; $('rs1').value = ''; $('ry').value = 0; $('R').value = c.R > 0 ? c.R : ''; // 前の台の測定を残さない
+    $('ys').value = c.s; $('yu').open = true;
+  }
+  renderAll();
+  window.scrollTo({ top: 0 });
+});
+
+let renderAll = function () { pachi(); slot(); setting(); renderJournal(); shopSummary(); renderCands(); };
 
 // タブ
 let tab = 'pachi';
 function showTab(t) {
   tab = t;
   document.querySelectorAll('.tabpage').forEach((s) => (s.hidden = s.id !== t));
-  $('presets-panel').hidden = t === 'log' || t === 'ens';
+  $('presets-panel').hidden = t === 'log' || t === 'ens' || t === 'pick';
   document.querySelectorAll('.tabs button').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tab === t)));
   try { localStorage.setItem('ps-tab', t); } catch (e) {}
   refreshList();
+  if (t === 'pick') renderCands();
 }
 document.querySelectorAll('.tabs button').forEach((b) => b.addEventListener('click', () => showTab(b.dataset.tab)));
 
 // 機種ごとの保存（タブごと）
-const fields = { pachi: ['P', 'R', 'Y', 'pb', 'xch', 'hold', 'sph', 'hours', 'bank', 'yT', 'ys', 'yJ', 'yY2'], slot: ['g', 'G', 'p', 'W0', 'W1', 'c', 'zen', 'slend', 'sxch', 'shold', 'sbank'], ens: [], set: ['kN', 'kbb', 'krb', 'k1n', 'k1', 'k2n', 'k2', 'k3n', 'k3', 'kgph', 'khours', 'kcoin', 'kxch', 'khold', 'klend', ...SETTINGS.flatMap((_, i) => SETCOLS.map((c) => c[0] + i))], log: [] };
+const fields = { pick: [], pachi: ['P', 'R', 'Y', 'pb', 'xch', 'hold', 'sph', 'hours', 'bank', 'yT', 'ys', 'yJ', 'yY2'], slot: ['g', 'G', 'p', 'W0', 'W1', 'c', 'zen', 'slend', 'sxch', 'shold', 'sbank'], ens: [], set: ['kN', 'kbb', 'krb', 'k1n', 'k1', 'k2n', 'k2', 'k3n', 'k3', 'kgph', 'khours', 'kcoin', 'kxch', 'khold', 'klend', ...SETTINGS.flatMap((_, i) => SETCOLS.map((c) => c[0] + i))], log: [] };
 const store = { get() { try { return JSON.parse(localStorage.getItem('ps-presets') || '{}'); } catch (e) { return {}; } }, set(o) { try { localStorage.setItem('ps-presets', JSON.stringify(o)); return true; } catch (e) { return false; } } };
 function refreshList() {
   const all = store.get()[tab] || {};
@@ -1182,7 +1489,7 @@ function fillMachineSelects() {
     if (!m) { $('pm-note').textContent = ''; renderAll(); return; }
     if (m.P) $('P').value = m.P;
     const my = Calc.machineY(m);
-    if (my) { $('Y').value = Math.round(my.Y); curPY = { ...my, Y: Math.round(my.Y) }; }
+    if (my) { $('Y').value = Math.round(my.Y); curPY = { ...my, Y: Math.round(my.Y), yutime: m.yutime || null }; }
     // 遊タイム（資料で確かめた機種だけ）。いまの回転数は自分で入れる
     if (m.yutime) { $('yT').value = m.yutime.T; $('yJ').value = m.yutime.J; $('yu').open = true; }
     else { $('yT').value = ''; $('yJ').value = ''; }
@@ -1477,15 +1784,15 @@ buildSetTable();
 DEFAULTS = Object.fromEntries(Object.values(fields).flat().map((f) => [f, $(f) ? $(f).value : '']));
 fillMachineSelects();
 document.addEventListener('input', renderAll);
-let startTab = 'pachi';
-try { startTab = localStorage.getItem('ps-tab') || 'pachi'; } catch (e) {}
-fillEns(); renderEns();
-showTab(['pachi', 'slot', 'set', 'ens', 'log'].includes(startTab) ? startTab : 'pachi');
+let startTab = 'pick';
+try { startTab = localStorage.getItem('ps-tab') || 'pick'; } catch (e) {}
+fillEns(); renderEns(); cForm();
+showTab(['pick', 'pachi', 'slot', 'set', 'ens', 'log'].includes(startTab) ? startTab : 'pick');
 renderAll();
 </script>
 
 <script>
-// オフラインで動くように、開いたときに中身を端末に保存する（版 995f9fb50b）
+// オフラインで動くように、開いたときに中身を端末に保存する（版 35db100c1e）
 if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 </script>
 </body>
