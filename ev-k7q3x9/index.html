@@ -156,7 +156,7 @@ details summary { cursor: pointer; color: var(--steel); font-weight: 700; font-s
           <label>いまの総回転数<input id="rs1" type="number" inputmode="numeric" step="1" value="" placeholder="例 1295"></label>
           <label class="wide">使った金額<span class="unit"><input id="ry" type="number" inputmode="numeric" step="1000" value="0"><span>円</span></span></label>
         </div>
-        <div class="steps"><button type="button" id="rseg" class="main">1,000円使い切った（いまの総回転数で区切る）</button></div>
+        <div class="steps"><button type="button" id="rseg" class="main">1,000円使い切った（いまの総回転数で区切る）</button><button type="button" id="rundo">最後の区切りを取り消す</button></div>
         <div class="steps" data-for="ry"><button type="button" data-d="-1000">−1,000円</button><button type="button" data-reset="1">測り直す</button></div>
         <p class="measure" id="rmsg">打ち始めの総回転数を入れる → 1,000円を使い切るたびに「いまの総回転数」を入れて上のボタン。1,000円ごとの回り方のムラも測るので、3回以上区切ると判定が正確になります。<b>大当たりしたら「測り直す」</b>（機種を選び直しても区切りは消える）（持ち玉で回した分・時短中の回転は現金の回転率に入れない）。</p>
       </div>
@@ -412,10 +412,12 @@ details summary { cursor: pointer; color: var(--steel); font-weight: 700; font-s
       return ((1 - h) * 1000 + h * (1000 / lend) * ee) / ((Y / P) * ee);
     };
     const hitWithin = (n) => 1 - Math.pow(1 - 1 / P, n);
+    // 現金は1,000円単位で借りるので、やめるときに残った玉（平均で（1,000円分の玉数−1）÷2 玉）は交換価値でしか戻らない
+    const left = Calc.leftover(1000 / lend, lend, e, hold);
     return {
-      e, cost, gain, evSpin, spins,
+      e, cost, gain, evSpin, spins, left,
       evHour: evSpin * sph,
-      evTotal: evSpin * spins,
+      evTotal: evSpin * spins - left,
       border: border(hold, xch),
       borderCash: border(0, xch),
       hitInSession: hitWithin(spins),
@@ -435,6 +437,64 @@ details summary { cursor: pointer; color: var(--steel); font-weight: 700; font-s
     const b = m.borderEquiv > 0 ? m.borderEquiv : bs[0], bMax = Math.max(...bs), bMin = Math.min(...bs);
     return { P, Y: (250 * P) / b, Ystrict: (250 * P) / bMax, border: b, bMax, bMin };
   },
+  fmt: {
+    yen: (x) => `${x >= 0 ? '+' : '−'}${Math.round(Math.abs(x)).toLocaleString('ja-JP')}円`,
+    pct: (x) => (x > 0.995 ? '99%以上' : x < 0.005 && x > 0 ? '1%未満' : `${(x * 100).toFixed(x < 0.1 ? 1 : 0)}%`),
+    man: (x) => (Math.abs(x) >= 10000 ? `${(x / 10000).toFixed(1)}万円` : `${Math.round(x).toLocaleString('ja-JP')}円`),
+  },
+  /** パチンコの判定。evNormal：資料の代表のボーダーでの期待値、evStrict：いちばん厳しい資料のボーダーでの期待値（strict＝資料がばらつくとき）、
+   *  ci：回転率の確からしさ（rateCI の結果。測っていなければ null）、segN：1,000円ごとの区切りの数。
+   *  「打つ」は、厳しめのボーダーでもプラス・区切り3回以上・ボーダーを超えている確率95%以上のときだけ */
+  pachiVerdict({ evNormal, evStrict, strict, strictBorder, ci, segN }) {
+    const { pct, man } = Calc.fmt;
+    const more = (y) => (Number.isFinite(y) && y <= 100000 ? `あと${man(Math.ceil(y / 1000) * 1000)}ほど測る` : 'ボーダーぎりぎりで期待値はほぼ0');
+    if (evStrict >= 0) {
+      if (!ci) return { cls: 'warn', text: `ボーダー超え（${strict ? '厳しめの資料でも' : 'この数字なら'}）：回転率を上の「測る」で確かめてから打つ` };
+      if (segN < 3) return { cls: 'warn', text: `たぶんボーダー超え：1,000円ごとの区切りをあと${3 - segN}回（台のムラを見てから判定）` };
+      if (ci.pAbove >= 0.95) return { cls: 'good', text: `ボーダー超え（95%以上たしか${strict ? '・厳しめの資料で' : ''}）：打つ` };
+      return { cls: 'warn', text: `たぶんボーダー超え（${pct(ci.pAbove)}）：${more(ci.moreYen)}` };
+    }
+    if (evNormal >= 0) return { cls: 'warn', text: `資料によってはボーダー未満（厳しめのボーダー ${strictBorder.toFixed(1)}回転）：期待値はほぼ0` };
+    if (!ci || ci.pAbove <= 0.05) return { cls: 'bad', text: 'ボーダー未満：やめる' };
+    return { cls: 'bad', text: `たぶんボーダー未満（超えている確率 ${pct(ci.pAbove)}）：やめどき` };
+  },
+  /** スロ天井の判定。「狙い目」は、期待値プラス・軍資金でやめても大丈夫・前兆を入れた・天井がゲーム数・天井時の獲得を入れた・平均獲得が確か、のすべてのときだけ */
+  slotVerdict({ overCeil, ev, evStop, noZen, approxUnit, w1Blank, unsure, lowEV }) {
+    const { yen } = Calc.fmt;
+    if (overCeil) return { cls: 'warn', text: 'ゲーム数が天井を超えている：数字を確かめる' };
+    if (ev < 0) return { cls: 'bad', text: '期待値マイナス：見送り' };
+    if (evStop !== null && evStop !== undefined && evStop < 0) return { cls: 'bad', text: `軍資金が足りない（届かずやめると ${yen(evStop)}）：見送り` };
+    if (noZen) return { cls: 'warn', text: '期待値プラス（前兆を0で計算＝高めに出ている）：前兆のゲーム数を入れてから' };
+    if (approxUnit) return { cls: 'warn', text: `期待値プラス（天井は${approxUnit}をゲーム数に換算した目安）：狙うなら${approxUnit}の貯まり具合も見る` };
+    if (w1Blank) return { cls: 'warn', text: '期待値プラス（天井で当たったときの獲得が未入力＝平均獲得と同じで計算）：天井時の獲得を入れてから' };
+    if (unsure) return { cls: 'warn', text: '期待値プラス（ただし平均獲得が不確か）：平均獲得を確かめてから' };
+    if (lowEV !== null && lowEV !== undefined && lowEV < 0) return { cls: 'warn', text: '期待値プラス（平均獲得の幅しだいでマイナス）：記録を増やす' };
+    return { cls: 'good', text: '期待値プラス：狙い目' };
+  },
+  /** 設定推測の判定。「続行」は、機械割がそろっていて・計算が済んでいて・設定が判断でき（最大の事後確率50%以上）・期待値プラスのときだけ */
+  setVerdict({ okEV, pending, missing, evHour, sure, head, high }) {
+    const { yen, pct } = Calc.fmt;
+    if (!okEV) return { cls: 'warn', text: `${head}（設定4以上の合計 ${pct(high)}。機械割を入れると続けるかの判定が出る）` };
+    if (pending) return { cls: 'warn', text: `計算中…（現金で打つ分の正確な期待値を出しています。${head}）` };
+    if (evHour < 0) return { cls: 'bad', text: `やめどき：1時間 ${yen(evHour)} の見込み（${head}）` };
+    if (missing && missing.length) return { cls: 'warn', text: `${head}。設定${missing.join('・')}の機械割が空なので、期待値はそれを除いた見込み` };
+    if (!sure) return { cls: 'warn', text: `続行候補：1時間 ${yen(evHour)}（${head}。店の配分の見込みしだいで変わる）` };
+    return { cls: 'good', text: `続行：1時間 ${yen(evHour)} の見込み（${head}）` };
+  },
+  /** 1,000円ごとの区切り：打ち始めからの累計 pts=[{y:使った円, s:回った数}] を区切りごと [{s, m:千円数}] に。回転数が減っている区切り（入力の誤り）は使わない。1回も回らなかった区切りは使う */
+  segsFromPts(pts) {
+    const out = [];
+    let py = 0, ps = 0;
+    // 回転数が減っている点（入力の誤り）は飛ばし、次の区切りは最後の正しい点から数える
+    for (const x of pts) { if (x.y > py && x.s >= ps) { out.push({ s: x.s - ps, m: (x.y - py) / 1000 }); py = x.y; ps = x.s; } }
+    return out;
+  },
+  /** 1,000円単位で借りた玉・メダルの、やめるときの残りの損（円）。units：1,000円で借りられる数、unitYen：1つの貸し値、e：交換価値。
+   *  使った数は1,000円分の倍数とは限らないので、最後の1,000円分の残りは平均（units−1）÷2。持ち玉・持ちメダルだけで打つ（hold＝1）なら0 */
+  leftover(units, unitYen, e, hold) {
+    const h = hold > 0 ? Math.min(1, hold) : 0;
+    return h >= 1 || !(units > 1) ? 0 : (1 - h) * ((units - 1) / 2) * Math.max(0, unitYen - e);
+  },
   /** 現金で借りるメダル1枚の円。lendC：1,000円で借りられる枚数（50枚＝20円。消費税分で46枚の店もある＝21.7円） */
   coinYen(lendC) {
     return 1000 / (lendC > 0 ? lendC : 50);
@@ -452,9 +512,10 @@ details summary { cursor: pointer; color: var(--steel); font-weight: 700; font-s
     const coinsIn = games * u;
     const payout = n === 0 ? W1 : W0 * (1 - reach) + W1 * reach;
     const yenPerCoinIn = (1 - hold) * cy + hold * e;
-    const evYen = payout * e - coinsIn * yenPerCoinIn;
+    const left = games > 0 ? Calc.leftover(v.lendC > 0 ? v.lendC : 50, cy, e, hold) : 0; // 1,000円単位で借りた残りのメダル
+    const evYen = payout * e - coinsIn * yenPerCoinIn - left;
     return {
-      n, reach, games, coinsIn, payout, evYen,
+      n, reach, games, coinsIn, payout, evYen, left,
       evCoins: payout - coinsIn,
       maxInvest: (n + zen) * u * cy,
       within: [100, 200, 300].map((k) => ({ k, p: k >= n ? 1 : 1 - Math.pow(1 - q, k) })),
@@ -748,6 +809,7 @@ function pachi() {
   lastEV.pachi = NaN; lastEV.pachiSpin = NaN; lastEV.pachiSpins = 0;
   document.querySelectorAll('#pachi .result dd').forEach((d) => (d.textContent = '—'));
   const v = { P: num('P'), R: num('R'), Y: num('Y'), lend: 1000 / num('pb'), xch: num('xch'), hold: num('hold') / 100, sph: num('sph'), hours: num('hours') };
+  if ($('R').value === '') { $('p-big').textContent = '1,000円あたりの回転数を、上の「回転率を測る」で測るか、自分で入れてください'; setV($('p-verdict'), 'warn', '回転率がまだない'); return; }
   if (Object.values(v).some((x) => !Number.isFinite(x)) || v.P <= 1 || v.R <= 0 || v.xch <= 0 || !(num('pb') > 0) || v.hold < 0 || v.hold > 1 || v.Y <= 0) { $('p-big').textContent = '入力を確かめてください（持ち玉の割合は0〜100%）'; $('p-verdict').textContent = ''; return; }
   if (100 / v.xch > v.lend + 1e-9) { $('p-big').textContent = `交換率が貸し玉より高くなっています（1玉${(100 / v.xch).toFixed(2)}円で交換・${v.lend.toFixed(2)}円で借りる）。1円パチンコなら交換率は100玉以上。`; setV($('p-verdict'), 'warn', '交換率と貸し玉を確かめる'); return; }
   const r = Calc.pachinko(v);
@@ -760,16 +822,9 @@ function pachi() {
   const sS = segs.reduce((a, x) => a + x.s, 0), sM = segs.reduce((a, x) => a + x.m, 0);
   const ci = segs.length ? Calc.rateCI(sS, sM * 1000, v.lend, rS.border, segs)
     : Number.isFinite(a0) && Number.isFinite(a1) && ry > 0 && a1 - a0 > 0 ? Calc.rateCI(a1 - a0, ry, v.lend, rS.border) : null;
-  lastEV.pachiSpin = (yS ? rS : r).evSpin; lastEV.pachiSpins = Number.isFinite(a0) && Number.isFinite(a1) && a1 > a0 ? a1 - a0 : 0;
+  lastEV.pachiSpin = (yS ? rS : r).evSpin; lastEV.pachiSpins = segs.length ? sS : Number.isFinite(a0) && Number.isFinite(a1) && a1 > a0 ? a1 - a0 : 0; lastEV.pachiSeg = segs.length > 0;
   const more = (y) => (Number.isFinite(y) && y <= 100000 ? `あと${man(Math.ceil(y / 1000) * 1000)}ほど測る` : 'ボーダーぎりぎりで期待値はほぼ0');
-  if (rS.evTotal >= 0) {
-    if (!ci) setV($('p-verdict'), 'warn', `ボーダー超え（${yS ? '厳しめの資料でも' : 'この数字なら'}）：回転率を上の「測る」で確かめてから打つ`);
-    else if (segs.length < 3) setV($('p-verdict'), 'warn', `たぶんボーダー超え：1,000円ごとの区切りをあと${3 - segs.length}回（台のムラを見てから判定）`);
-    else if (ci.pAbove >= 0.95) setV($('p-verdict'), 'good', `ボーダー超え（95%以上たしか${yS ? '・厳しめの資料で' : ''}）：打つ`);
-    else setV($('p-verdict'), 'warn', `たぶんボーダー超え（${pct(ci.pAbove)}）：${more(ci.moreYen)}`);
-  } else if (r.evTotal >= 0) setV($('p-verdict'), 'warn', `資料によってはボーダー未満（厳しめのボーダー ${rS.border.toFixed(1)}回転）：期待値はほぼ0`);
-  else if (!ci || ci.pAbove <= 0.05) setV($('p-verdict'), 'bad', 'ボーダー未満：やめる');
-  else setV($('p-verdict'), 'bad', `たぶんボーダー未満（超えている確率 ${pct(ci.pAbove)}）：やめどき`);
+  { const vd = Calc.pachiVerdict({ evNormal: r.evTotal, evStrict: rS.evTotal, strict: !!yS, strictBorder: rS.border, ci, segN: segs.length }); setV($('p-verdict'), vd.cls, vd.text); }
   $('p-sure').textContent = ci ? `${pct(ci.pAbove)}（95%の幅 ${ci.lo.toFixed(1)}〜${ci.hi.toFixed(1)}回転${segs.length >= 3 ? `・区切り${segs.length}回のムラで計算` : '・ムラはまだ測れていない'}）` : '回転率を測ると出る';
   const bk = Calc.pachiBank(v.P, v.R, num('bank'));
   $('p-q').textContent = bk.qs.map((x) => man(x.yen)).join('／');
@@ -793,9 +848,9 @@ function pachi() {
   const yT = num('yT'), ys = num('ys'), yJ = num('yJ'), yY2 = num('yY2');
   if (yT > 0 && ys >= 0 && yJ > 0) {
     const yv = { P: v.P, T: yT, s: ys, J: yJ, Y: v.Y, Y2: yY2 > 0 ? yY2 : v.Y, costSpin: r.cost, e: r.e };
-    const yu = Calc.yutime(yv);
+    const yu0 = Calc.yutime(yv), yu = { ...yu0, evYen: yu0.evYen - r.left }; // 1,000円単位で借りた残りの玉の損も引く
     let st = null;
-    for (let x = 0; x <= yT; x += 10) if (Calc.yutime({ ...yv, s: x }).evYen >= 0) { st = x; break; }
+    for (let x = 0; x <= yT; x += 10) if (Calc.yutime({ ...yv, s: x }).evYen - r.left >= 0) { st = x; break; }
     $('ymsg').innerHTML = `${ys > yT ? '<span style="color:var(--bad)">いまの回転数が遊タイムの発動を超えています。数字を確かめてください。</span><br>' : ''}遊タイムまで残り${yu.n}回転・遊タイムに入る確率 ${pct(yu.reach)}<br>当たりまで打った期待値 <span style="color:var(--${yu.evYen >= 0 ? 'good' : 'bad'})">${yen(yu.evYen)}</span>（${st === null ? 'この回転率ではどこから打ってもマイナス' : `${st}回転からプラス`}）`;
   } else $('ymsg').textContent = '遊タイムの数字を入れると、いまの回転数から当たりまで打ったときの期待値が出ます。';
 }
@@ -829,15 +884,7 @@ function slot() {
     lowEV = lo;
     $('s-range').textContent = `${yen(lo)} 〜 ${yen(hi)}`;
   } else $('s-range').textContent = '獲得枚数を2件記録すると出る';
-  if (v.g > v.G) setV($('s-verdict'), 'warn', 'ゲーム数が天井を超えている：数字を確かめる');
-  else if (r.evYen < 0) setV($('s-verdict'), 'bad', '期待値マイナス：見送り');
-  else if (evStop !== null && evStop < 0) setV($('s-verdict'), 'bad', `軍資金が足りない（届かずやめると ${yen(evStop)}）：見送り`);
-  else if (noZen) setV($('s-verdict'), 'warn', '期待値プラス（前兆を0で計算＝高めに出ている）：前兆のゲーム数を入れてから');
-  else if (m && m.ceilingUnit && m.ceilingUnit !== 'G') setV($('s-verdict'), 'warn', `期待値プラス（天井は${m.ceilingUnit}をゲーム数に換算した目安）：狙うなら${m.ceilingUnit}の貯まり具合も見る`);
-  else if (w1Blank) setV($('s-verdict'), 'warn', '期待値プラス（天井で当たったときの獲得が未入力＝平均獲得と同じで計算）：天井時の獲得を入れてから');
-  else if (unsure) setV($('s-verdict'), 'warn', '期待値プラス（ただし平均獲得が不確か）：平均獲得を確かめてから');
-  else if (lowEV !== null && lowEV < 0) setV($('s-verdict'), 'warn', '期待値プラス（平均獲得の幅しだいでマイナス）：記録を増やす');
-  else setV($('s-verdict'), 'good', '期待値プラス：狙い目');
+  { const vd = Calc.slotVerdict({ overCeil: v.g > v.G, ev: r.evYen, evStop, noZen, approxUnit: m && m.ceilingUnit && m.ceilingUnit !== 'G' ? m.ceilingUnit : null, w1Blank, unsure, lowEV }); setV($('s-verdict'), vd.cls, vd.text); }
   $('s-warn').textContent = v.g > v.G ? 'いまのゲーム数が天井を超えています。天井かゲーム数の数字を確かめてください。' : '';
   $('s-q').textContent = sb.qs.map((x) => man(x.yen)).join('／');
   $('s-short').textContent = sb.short === null ? '軍資金を入れると出る' : pct(sb.short);
@@ -912,12 +959,7 @@ function setting() {
   const okEV = Number.isFinite(ev.evHour) && num('kgph') > 0 && num('kxch') > 0;
   $('k-ev').textContent = okEV ? `${yen(ev.evHour)}${ev.pending ? '（計算中…）' : ''}` : '機械割を入れると出る';
   const head = sure ? `設定${best + 1}の可能性が高い（${pct(post[best])}）` : 'まだ設定は判断できない';
-  if (!okEV) setV($('k-verdict'), high >= 0.5 ? 'good' : 'bad', `${head}（設定4以上の合計 ${pct(high)}）`);
-  else if (ev.pending) setV($('k-verdict'), 'warn', `計算中…（現金で打つ分の正確な期待値を出しています。${head}）`);
-  else if (ev.missing.length && ev.evHour >= 0) setV($('k-verdict'), 'warn', `${head}。設定${ev.missing.join('・')}の機械割が空なので、期待値はそれを除いた見込み`);
-  else if (ev.evHour >= 0 && !sure) setV($('k-verdict'), 'warn', `続行候補：1時間 ${yen(ev.evHour)}（${head}。店の配分の見込みしだいで変わる）`);
-  else if (ev.evHour >= 0) setV($('k-verdict'), 'good', `続行：1時間 ${yen(ev.evHour)} の見込み（${head}）`);
-  else setV($('k-verdict'), 'bad', `やめどき：1時間 ${yen(ev.evHour)} の見込み（${head}）`);
+  { const vd = Calc.setVerdict({ okEV, pending: ev.pending, missing: ev.missing, evHour: ev.evHour, sure, head, high }); setV($('k-verdict'), vd.cls, vd.text); }
   $('k-warn').textContent = (out.length ? `設定${out.join('・')}は解析値が空なので外して計算した。` : '') + (kh < 1 && !opt ? '現金で打つ分は、あと打つ時間とコイン持ちを入れると正確になる（いまは高めに出る）。' : '');
   $('k-bars').innerHTML = post.map((p, i) => bar(`設定${i + 1}`, p, pct(p), i === best)).join('') +
     `<p class="note">${els.map((e) => `${esc(e.name)}：${e.k}回／${N}G（実測 1/${e.k ? (N / e.k).toFixed(1) : '—'}）`).join('　')}。店の配分（${prior.join('：')}）を前提にした確率。</p>`;
@@ -1093,7 +1135,7 @@ document.querySelectorAll('.steps').forEach((box) => box.addEventListener('click
   }
   if (!box.dataset.for) return;
   const el = $(box.dataset.for);
-  if (b.dataset.reset) { $('ry').value = 0; $('rs0').value = $('rs1').value; rlogSet([]); $('rmsg').textContent = '測り直します。いまの総回転数を打ち始めにしました。1,000円を使い切るたびに「いまの総回転数」を入れて「1,000円使い切った」。'; }
+  if (b.dataset.reset) { $('ry').value = 0; $('rs0').value = $('rs1').value; rlogSet([]); $('R').value = ''; $('rmsg').textContent = '測り直します（前の台の回転率は消しました）。いまの総回転数を打ち始めにしました。1,000円を使い切るたびに「いまの総回転数」を入れて「1,000円使い切った」。'; }
   else el.value = Math.max(0, (parseFloat(el.value) || 0) + Number(b.dataset.d));
   renderAll();
 }));
@@ -1102,17 +1144,31 @@ let curPY = null;
 const rlogKey = () => `${$('rs0').value}|${$('pm').value}|${today()}`; // 打ち始めの総回転数・機種・日付が同じときだけ同じ測定
 function rlogGet() { try { const o = JSON.parse(localStorage.getItem('ps-rlog') || '{}'); return o.key === rlogKey() ? o.pts || [] : []; } catch (e) { return []; } }
 function rlogSet(pts) { try { localStorage.setItem('ps-rlog', JSON.stringify({ key: rlogKey(), pts })); } catch (e) {} }
-function rSegs() {
-  const pts = rlogGet(), out = [];
-  let py = 0, ps = 0;
-  for (const x of pts) { if (x.y > py && x.s >= ps) out.push({ s: x.s - ps, m: (x.y - py) / 1000 }); py = x.y; ps = x.s; }
-  return out;
-}
+function rSegs() { return Calc.segsFromPts(rlogGet()); }
+// 打ち間違えた区切りを1つ戻す（使った金額も1つ前の区切りに戻す）
+$('rundo').addEventListener('click', () => {
+  const pts = rlogGet();
+  if (!pts.length) { $('rmsg').textContent = '取り消す区切りがありません。'; return; }
+  pts.pop(); rlogSet(pts);
+  const last = pts[pts.length - 1];
+  $('ry').value = last ? last.y : 0;
+  if (last && Number.isFinite(num('rs0'))) $('rs1').value = num('rs0') + last.s;
+  if (!last) $('R').value = '';
+  renderAll();
+  $('rmsg').textContent = `最後の区切りを取り消しました（区切り${pts.length}回）。いまの総回転数を入れ直して区切ってください。`;
+});
 $('rseg').addEventListener('click', () => {
   const a = num('rs0'), b = num('rs1');
   if (!Number.isFinite(a) || !Number.isFinite(b)) { $('rmsg').textContent = '打ち始めの総回転数と、いまの総回転数を入れてから押してください。'; return; }
   const pts = rlogGet(), last = pts[pts.length - 1] || { y: 0, s: 0 };
-  if (b - a <= last.s) { $('rmsg').textContent = `いまの総回転数を入れ直してから押してください（前の区切りから増えていない）。`; return; }
+  if (b - a < last.s) { $('rmsg').textContent = 'いまの総回転数が前の区切りより小さい。数字を確かめてください（前の区切りを打ち間違えたなら「最後の区切りを取り消す」）。'; return; }
+  // 打ち間違い（桁の入れ違いなど）を区切りにしないよう、極端に多いときは確かめる
+  const segNow = b - a - last.s, prev = Calc.segsFromPts(pts).map((x) => x.s / x.m).sort((p, q) => p - q);
+  const med = prev.length >= 2 ? prev[Math.floor(prev.length / 2)] : null;
+  const lim = 60 * ((num('pb') > 0 ? num('pb') : 250) / 250); // 4円（250玉）で60回転、1円（1,000玉）なら240回転を上限の目安に
+  if ((segNow > lim || (med && segNow > med * 2.5)) && !confirm(`この1,000円で${segNow}回転？（多すぎるので打ち間違いでないか確かめて。間違いなら「キャンセル」）`)) { $('rmsg').textContent = 'いまの総回転数を確かめて入れ直してください。'; return; }
+  // 1回も回らなかった1,000円も本当のデータ（捨てると回転率を甘く見る）。入れ忘れでないかだけ確かめる
+  if (b - a === last.s && !confirm('この1,000円で1回も回らなかった？（いまの総回転数を入れ忘れていたら「キャンセル」）')) { $('rmsg').textContent = 'いまの総回転数を入れてから押してください。'; return; }
   const y = (num('ry') > 0 ? num('ry') : 0) + 1000;
   pts.push({ y, s: b - a }); rlogSet(pts);
   $('ry').value = y;
@@ -1201,7 +1257,7 @@ document.querySelectorAll('[data-journal]').forEach((b) => b.addEventListener('c
   if (Number.isFinite(ev)) { $('jevs').value = ev < 0 ? '-' : '+'; $('jev').value = Math.round(Math.abs(ev)); }
   $('jd').value = today();
   showTab('log');
-  $('j-msg').textContent = t === 'pachi' ? (measured ? `機種と、測った${lastEV.pachiSpins}回転ぶんの期待値を入れました（打ち終わりの総回転数を入れてから押すと正確。時短・確変中の回転が入っていたら、その分の期待値を引いて直す）。` : '機種と、打つ時間ぶんの見込みの期待値を入れました。実際に打った時間に合わせて直してください。') : '機種と期待値を入れました。打ち終わったら実際の収支を入れて「記録する」。';
+  $('j-msg').textContent = t === 'pachi' ? (measured ? (lastEV.pachiSeg ? `機種と、1,000円ごとに区切って現金で回した${lastEV.pachiSpins}回転ぶんの期待値を入れました（持ち玉で回した分は入っていないので、打ったなら足して直す）。` : `機種と、測った${lastEV.pachiSpins}回転ぶんの期待値を入れました（時短・確変中の回転が入っていたら、その分を引いて直す）。`) : '機種と、打つ時間ぶんの見込みの期待値を入れました。実際に打った時間に合わせて直してください。') : '機種と期待値を入れました。打ち終わったら実際の収支を入れて「記録する」。';
 }));
 // このタブの数字を初期値に戻す
 let DEFAULTS = {};
@@ -1270,7 +1326,7 @@ renderAll();
 </script>
 
 <script>
-// オフラインで動くように、開いたときに中身を端末に保存する（版 fcd6f2f2d3）
+// オフラインで動くように、開いたときに中身を端末に保存する（版 def5d96825）
 if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 </script>
 </body>
