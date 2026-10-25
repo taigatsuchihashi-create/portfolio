@@ -17,337 +17,471 @@
 <title>パチ・スロ期待値</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Barlow+Condensed:wght@500;600;700&display=swap">
 <style>
-/* 片手で使う計算機：上に結果、下に入力。島の照明の下でも読めるよう、数字は大きく太く。真鍮色（玉・メダル）を差し色に */
+/* ホールの台の上のデータカウンターのように：結果はLEDの数字のように大きく、入力は「1 機種 → 2 測る → 3 店の条件」の順。
+   タブは親指で押せる下の帯。文字は読みやすさ優先のUDゴシック、数字は細身で桁がそろう書体 */
 :root {
-  --bg: #eef1f5; --surface: #ffffff; --ink: #18212c; --muted: #5a6575; --line: #d4dae3;
-  --brass: #a86f12; --steel: #34557d; --good: #1d8148; --bad: #bf3426; --good-bg: #e3f3ea; --bad-bg: #fbe6e3;
-  --f-display: "Dela Gothic One", "Hiragino Sans", "Yu Gothic", sans-serif;
-  --f-body: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  --bg: #eceff3; --panel: #ffffff; --panel-2: #f5f7fa; --line: #d3d9e1; --ink: #141a21; --muted: #5a6573;
+  --led: #c25e00; --led-soft: #fff1e3; --good: #12804b; --good-soft: #e2f4ea; --bad: #c5352a; --bad-soft: #fbe7e4; --warn: #8a6200; --warn-soft: #fbf1d6;
+  --counter: #11161c; --counter-ink: #f3f5f7; --counter-muted: #9aa6b3;
+  --f-body: "BIZ UDPGothic", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  --f-num: "Barlow Condensed", "BIZ UDPGothic", "Hiragino Sans", sans-serif;
+  /* 計算の画面が使う名前（グラフ・演出の色） */
+  --brass: var(--led); --steel: var(--ink); --surface: var(--panel); --good-bg: var(--good-soft); --bad-bg: var(--bad-soft);
+  --tabbar: 64px;
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --bg: #0f141b; --surface: #171f29; --ink: #e8edf3; --muted: #9ba7b6; --line: #2a3443;
-  --brass: #e3a843; --steel: #86a9d6; --good: #4fc68c; --bad: #f0705f; --good-bg: #173226; --bad-bg: #3a1d1a; color-scheme: dark } }
+  --bg: #0d1116; --panel: #161c23; --panel-2: #1c232c; --line: #2a333e; --ink: #e8ecf0; --muted: #94a0ad;
+  --led: #ffa24a; --led-soft: #3a2614; --good: #43d18f; --good-soft: #12301f; --bad: #ff6d62; --bad-soft: #3a1714; --warn: #f2c65a; --warn-soft: #352a10;
+  --counter: #07090c; --counter-ink: #f3f5f7; --counter-muted: #8f9baa; color-scheme: dark } }
 :root[data-theme="dark"] {
-  --bg: #0f141b; --surface: #171f29; --ink: #e8edf3; --muted: #9ba7b6; --line: #2a3443;
-  --brass: #e3a843; --steel: #86a9d6; --good: #4fc68c; --bad: #f0705f; --good-bg: #173226; --bad-bg: #3a1d1a; color-scheme: dark }
-body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.6;
-  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 12px 40px; }
+  --bg: #0d1116; --panel: #161c23; --panel-2: #1c232c; --line: #2a333e; --ink: #e8ecf0; --muted: #94a0ad;
+  --led: #ffa24a; --led-soft: #3a2614; --good: #43d18f; --good-soft: #12301f; --bad: #ff6d62; --bad-soft: #3a1714; --warn: #f2c65a; --warn-soft: #352a10;
+  --counter: #07090c; --counter-ink: #f3f5f7; --counter-muted: #8f9baa; color-scheme: dark }
+
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.65;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 10px calc(var(--tabbar) + 28px + env(safe-area-inset-bottom, 0px)); }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
-.wrap { max-width: 560px; margin: 0 auto; display: grid; gap: 14px; }
-h1 { font-family: var(--f-display); font-weight: 400; font-size: 1.5rem; margin: 4px 0 0; letter-spacing: .02em; }
-h1 small { font-family: var(--f-body); font-size: .8rem; color: var(--muted); margin-left: 8px; letter-spacing: 0; }
-.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px;
-  background: var(--bg); padding-block: 6px; }
-.tabs button { font: inherit; font-size: .88rem; font-weight: 700; padding: 10px 2px; white-space: nowrap; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--muted); cursor: pointer; }
-.tabs button[aria-selected="true"] { background: var(--steel); border-color: var(--steel); color: #fff; }
-.result { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; display: grid; gap: 8px; }
-.verdict { display: block; font-weight: 700; font-size: 1.05rem; line-height: 1.4; padding: 8px 12px; border-radius: 10px; }
+.wrap { max-width: 560px; margin: 0 auto; display: grid; gap: 12px; }
+.tabpage > .wrap { gap: 12px; }
+
+/* 上：名前だけ。仕事は下のタブ */
+.appbar { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; padding-block: 4px 2px; }
+.appbar h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .04em; }
+.appbar p { margin: 0; font-size: .78rem; color: var(--muted); text-align: right; }
+
+/* 下のタブ（親指で押す） */
+.tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: grid; grid-template-columns: repeat(5, 1fr);
+  background: var(--panel); border-top: 1px solid var(--line);
+  padding: 6px max(8px, env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px)); }
+.tabs button { font: inherit; font-size: .8rem; font-weight: 700; min-height: 52px; padding: 4px 2px; border: 0; border-radius: 10px;
+  background: transparent; color: var(--muted); cursor: pointer; display: grid; place-items: center; gap: 0; line-height: 1.25; }
+.tabs button b { display: block; font-size: .95rem; }
+.tabs button small { font-size: .68rem; font-weight: 400; }
+.tabs button[aria-selected="true"] { background: var(--led-soft); color: var(--led); }
+
+/* 結果：データカウンター */
+.result { background: var(--counter); color: var(--counter-ink); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px 12px; display: grid; gap: 10px; }
+.result .eyebrow { font-size: .72rem; letter-spacing: .14em; color: var(--counter-muted); }
+.verdict { display: block; font-weight: 700; font-size: 1rem; line-height: 1.45; padding: 8px 12px 8px 30px; border-radius: 10px; position: relative; }
+.verdict::before { content: ""; position: absolute; left: 12px; top: 1.05em; width: 9px; height: 9px; border-radius: 50%; background: currentColor; transform: translateY(-50%); }
 .verdict:empty { display: none; }
-.verdict.warn { background: color-mix(in srgb, var(--brass) 16%, transparent); color: var(--brass); }
-.verdict.good { background: var(--good-bg); color: var(--good); } .verdict.bad { background: var(--bad-bg); color: var(--bad); }
-.big { font-family: var(--f-display); font-size: 2.3rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
-.big.good { color: var(--good); } .big.bad { color: var(--bad); }
-.big small { display: block; font-family: var(--f-body); font-size: .85rem; color: var(--muted); font-weight: 500; margin-top: 4px; }
-.kv { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 4px 12px; font-variant-numeric: tabular-nums; }
-.kv dd { overflow-wrap: anywhere; }
-.kv dt { color: var(--muted); } .kv dd { margin: 0; font-weight: 700; text-align: right; }
-.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; display: grid; gap: 12px; }
-.panel h2 { font-size: .95rem; margin: 0; color: var(--brass); letter-spacing: .04em; }
-.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 12px; }
+.verdict.good { background: color-mix(in srgb, #43d18f 18%, transparent); color: #6fe3ad; }
+.verdict.bad { background: color-mix(in srgb, #ff6d62 18%, transparent); color: #ff8f86; }
+.verdict.warn { background: color-mix(in srgb, #f2c65a 16%, transparent); color: #f5d27a; }
+.big { font-family: var(--f-num); font-weight: 700; font-size: 3rem; line-height: 1; letter-spacing: .01em; font-variant-numeric: tabular-nums; color: var(--counter-ink); }
+.big.good { color: #59de9e; } .big.bad { color: #ff7d73; }
+.big small { display: block; font-family: var(--f-body); font-size: .8rem; color: var(--counter-muted); font-weight: 400; letter-spacing: 0; margin-top: 6px; line-height: 1.5; }
+.big:not(.good):not(.bad) { font-family: var(--f-body); font-size: 1rem; font-weight: 700; line-height: 1.6; }
+.gauge { display: grid; gap: 6px; }
+.gauge:empty { display: none; }
+.gauge .row { display: flex; justify-content: space-between; font-size: .78rem; color: var(--counter-muted); }
+.gauge .row b { font-family: var(--f-num); font-size: 1.25rem; font-weight: 600; color: var(--counter-ink); font-variant-numeric: tabular-nums; }
+.gauge .track { position: relative; height: 10px; border-radius: 5px; background: #2a323c; }
+.gauge .fill { position: absolute; inset: 0 auto 0 0; border-radius: 5px; background: #ffa24a; }
+.gauge .mark { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--counter-ink); }
+.result .warnline { color: #ff9a92; }
+.result .why { margin: 0; font-size: .8rem; color: var(--counter-muted); }
+.result .why:empty { display: none; }
+.more { border-top: 1px solid #2a323c; padding-top: 8px; }
+.more > summary { cursor: pointer; font-size: .85rem; font-weight: 700; color: var(--counter-muted); list-style: none; }
+.more > summary::-webkit-details-marker { display: none; }
+.more > summary::after { content: "＋"; float: right; }
+.more[open] > summary::after { content: "－"; }
+.kv { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 6px 12px; margin: 10px 0 2px; font-size: .88rem; font-variant-numeric: tabular-nums; }
+.kv dt { color: var(--counter-muted); } .kv dd { margin: 0; font-weight: 700; text-align: right; overflow-wrap: anywhere; }
+.result .jbtn { justify-self: start; font: inherit; font-size: .85rem; font-weight: 700; min-height: 40px; padding: 6px 14px; border-radius: 10px;
+  border: 1px solid #3a4450; background: transparent; color: var(--counter-ink); cursor: pointer; }
+.result #k-bars .bar { color: var(--counter-ink); }
+.result #k-bars .track { background: #2a323c; }
+.result #k-bars .note { color: var(--counter-muted); }
+
+/* 入力の段（1 → 2 → 3） */
+.step { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; display: grid; gap: 12px; }
+.step > h2, .step > summary { margin: 0; font-size: 1rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.step .no { flex: none; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: var(--panel);
+  font-family: var(--f-num); font-size: .95rem; font-weight: 700; }
+.step .sub { margin-left: auto; font-size: .78rem; font-weight: 400; color: var(--muted); text-align: right; }
+details.step > summary { cursor: pointer; list-style: none; }
+details.step > summary::-webkit-details-marker { display: none; }
+details.step > summary::after { content: "＋"; color: var(--muted); font-weight: 400; }
+details.step[open] > summary::after { content: "－"; }
+details.step:not([open]) { gap: 0; }
+.step h3 { margin: 4px 0 0; font-size: .85rem; color: var(--muted); font-weight: 700; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .grid .wide { grid-column: 1 / -1; }
-label { display: grid; gap: 3px; font-size: .82rem; color: var(--muted); min-width: 0; }
-.pick { border-color: var(--steel); }
-.counter { display: grid; gap: 6px; }
-.steps, .acts { display: flex; flex-wrap: wrap; gap: 6px; }
-.steps button, .acts button { font: inherit; font-weight: 700; min-height: 44px; padding: 6px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; flex: 1 1 auto; }
-.steps button.main, .acts button.main { background: var(--brass); border-color: var(--brass); color: #fff; flex: 2 1 auto; }
-.measure { margin: 0; font-weight: 700; color: var(--steel); }
-input, select { min-height: 44px; font: inherit; font-size: 1.05rem; font-weight: 700; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; width: 100%; box-sizing: border-box; font-variant-numeric: tabular-nums; }
-input:focus-visible, select:focus-visible, button:focus-visible { outline: 2px solid var(--brass); outline-offset: 1px; }
-.unit { display: flex; align-items: center; gap: 6px; } .unit span { color: var(--muted); font-size: .85rem; white-space: nowrap; }
-.note { font-size: .8rem; color: var(--muted); margin: 0; }
+label { display: grid; gap: 4px; font-size: .82rem; color: var(--muted); min-width: 0; line-height: 1.4; }
+label em { font-style: normal; font-size: .75rem; }
+input, select { min-height: 48px; font: inherit; font-size: 1.1rem; font-weight: 700; color: var(--ink); background: var(--panel-2); border: 1px solid var(--line);
+  border-radius: 10px; padding: 8px 12px; width: 100%; box-sizing: border-box; font-variant-numeric: tabular-nums; }
+input[type="number"] { font-family: var(--f-num); font-size: 1.35rem; letter-spacing: .02em; }
+input::placeholder { color: var(--muted); opacity: .45; font-weight: 500; }
+select { font-size: 1rem; }
+input:focus-visible, select:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--led); outline-offset: 2px; }
+.unit { display: flex; align-items: center; gap: 8px; } .unit span { color: var(--muted); font-size: .85rem; white-space: nowrap; }
+.need input { border-color: var(--led); background: var(--led-soft); }
+
+/* 台のカウンターを写す欄は大きく */
+.meter { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.meter label input { font-size: 1.8rem; min-height: 60px; text-align: right; }
+.steps, .acts { display: flex; flex-wrap: wrap; gap: 8px; }
+.steps button, .acts button { font: inherit; font-size: .9rem; font-weight: 700; min-height: 48px; padding: 6px 12px; border-radius: 10px;
+  border: 1px solid var(--line); background: var(--panel-2); color: var(--ink); cursor: pointer; flex: 1 1 auto; }
+.steps button.main, .acts button.main { background: var(--led); border-color: var(--led); color: #fff; flex: 3 1 100%; font-size: 1rem; min-height: 56px; }
+.steps button:active, .acts button:active, .tabs button:active { transform: translateY(1px); }
+.measure { margin: 0; font-size: .88rem; font-weight: 700; color: var(--ink); background: var(--panel-2); border-radius: 10px; padding: 10px 12px; }
+.note { font-size: .8rem; color: var(--muted); margin: 0; line-height: 1.6; }
+.note b { color: var(--ink); }
 .warnline { margin: 0; font-size: .85rem; font-weight: 700; color: var(--bad); }
 .warnline:empty { display: none; }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chips button { font: inherit; font-size: .85rem; font-weight: 700; min-height: 40px; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--muted); cursor: pointer; }
-.chips button[aria-pressed="true"] { background: var(--steel); border-color: var(--steel); color: #fff; }
-.ens { display: grid; gap: 2px; }
-.ens h3 { font-size: .85rem; color: var(--brass); margin: 10px 0 2px; letter-spacing: .04em; }
-.ens details { border-bottom: 1px solid var(--line); }
-.ens summary { list-style: none; display: grid; grid-template-columns: minmax(0, 1fr) 4.6em; gap: 4px 10px; align-items: center; padding: 8px 0; color: var(--ink); font-weight: 700; font-size: .95rem; }
-.ens summary::-webkit-details-marker { display: none; }
-.ens .meter { grid-column: 1 / -1; height: 10px; border-radius: 5px; background: var(--bg); overflow: hidden; }
-.ens .meter i { display: block; height: 100%; border-radius: 5px; }
-.ens .val { text-align: right; font-family: var(--f-display); font-weight: 400; font-size: 1.05rem; font-variant-numeric: tabular-nums; }
-.ens .body { padding: 0 0 10px; font-size: .88rem; color: var(--muted); display: grid; gap: 4px; }
-.tier { display: inline-block; font-size: .72rem; font-weight: 700; padding: 0 6px; border-radius: 999px; margin-left: 6px; vertical-align: 1px; }
-.lv0 { --c: var(--muted); } .lv1 { --c: var(--steel); } .lv2 { --c: var(--brass); } .lv3 { --c: var(--bad); }
-.lv4 { --c: var(--bad); }
-.ens .lv0 i, .ens .lv1 i, .ens .lv2 i, .ens .lv3 i { background: var(--c); }
-.ens .lv4 i { background: linear-gradient(90deg, #e2483d, #e8a33a, #d9cf3b, #3fb56b, #3d8be2, #8a5bd6); }
-.tier { color: var(--c); border: 1px solid var(--c); }
-.guide { display: grid; gap: 8px; font-size: .9rem; }
-.guide p { margin: 0; }
-.holds { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; font-size: .8rem; color: var(--muted); }
-.holds b { display: inline-block; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--line); vertical-align: middle; }
-.chk { display: flex; align-items: center; gap: 8px; font-size: .9rem; color: var(--ink); }
-.chk input { width: 24px; min-height: 24px; }
-.sign { display: grid; grid-template-columns: 5.5em 1fr; gap: 6px; }
-.jbtn { justify-self: start; }
+.memo > summary { cursor: pointer; font-size: .8rem; color: var(--muted); }
+.memo p { font-size: .78rem; color: var(--muted); margin: 6px 0 0; overflow-wrap: anywhere; }
+.machine-key { font-size: .85rem; margin: 0; line-height: 1.6; }
+.machine-key b { font-family: var(--f-num); font-size: 1.05rem; }
+.howto { margin: 0; padding-left: 1.3em; font-size: .85rem; color: var(--muted); display: grid; gap: 2px; }
+.chk { display: flex; align-items: center; gap: 10px; font-size: .9rem; color: var(--ink); background: var(--panel-2); border-radius: 10px; padding: 8px 12px; }
+.chk input { width: 24px; min-height: 24px; accent-color: var(--led); }
+.sign { display: grid; grid-template-columns: 6em 1fr; gap: 8px; }
+
+/* 表・グラフ */
+.tbl { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: .9rem; }
+.tbl td, .tbl th { padding: 6px; border-bottom: 1px solid var(--line); text-align: right; }
+.tbl th { color: var(--muted); font-weight: 400; font-size: .8rem; }
+.tbl th:first-child, .tbl td:first-child { text-align: left; }
 #k-table { table-layout: fixed; }
 #k-table th, #k-table td { padding: 3px 2px; font-size: .78rem; text-align: center; }
 #k-table th:first-child, #k-table td:first-child { width: 2em; }
-#k-table input { min-height: 40px; padding: 4px 2px; font-size: .88rem; text-align: center; min-width: 0; }
-.bar { display: grid; grid-template-columns: 3.4em 1fr 3.4em; align-items: center; gap: 8px; font-variant-numeric: tabular-nums; font-size: .9rem; }
-.bar i { display: block; height: 12px; border-radius: 6px; background: var(--steel); }
-.bar.top i { background: var(--brass); }
-.bar .track { background: var(--bg); border-radius: 6px; }
-.presets { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
-.presets .row { display: grid; grid-template-columns: 1fr auto auto; gap: 6px; grid-column: 1 / -1; }
-.btn { font: inherit; font-weight: 700; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--steel); background: var(--steel); color: #fff; cursor: pointer; white-space: nowrap; }
-.btn.ghost { background: transparent; color: var(--steel); }
+#k-table input { min-height: 42px; padding: 4px 2px; font-size: 1rem; text-align: center; min-width: 0; }
+.bar { display: grid; grid-template-columns: 3.6em 1fr 3.6em; align-items: center; gap: 8px; font-variant-numeric: tabular-nums; font-size: .88rem; }
+.bar i { display: block; height: 12px; border-radius: 6px; background: var(--muted); }
+.bar.top i { background: var(--led); }
+.bar .track { background: var(--panel-2); border-radius: 6px; }
 svg text { fill: var(--muted); font-size: 11px; }
-.tbl { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: .9rem; }
-.tbl td, .tbl th { padding: 4px 6px; border-bottom: 1px solid var(--line); text-align: right; } .tbl th:first-child, .tbl td:first-child { text-align: left; }
-details summary { cursor: pointer; color: var(--steel); font-weight: 700; font-size: .9rem; }
-@media (prefers-reduced-motion: no-preference) { .bar i { transition: width .25s; } }
+.chart-note { font-size: .78rem; color: var(--muted); margin: 4px 0 0; }
+
+/* 演出 */
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips button { font: inherit; font-size: .85rem; font-weight: 700; min-height: 40px; padding: 4px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel-2); color: var(--muted); cursor: pointer; }
+.chips button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--panel); }
+.ens { display: grid; gap: 2px; }
+.ens h3 { font-size: .8rem; color: var(--muted); margin: 12px 0 2px; letter-spacing: .08em; }
+.ens details { border-bottom: 1px solid var(--line); }
+.ens summary { list-style: none; display: grid; grid-template-columns: minmax(0, 1fr) 4.6em; gap: 4px 10px; align-items: center; padding: 9px 0; color: var(--ink); font-weight: 700; font-size: .95rem; cursor: pointer; }
+.ens summary::-webkit-details-marker { display: none; }
+.ens .meter { grid-column: 1 / -1; height: 8px; border-radius: 4px; background: var(--panel-2); overflow: hidden; display: block; }
+.ens .meter i { display: block; height: 100%; border-radius: 4px; }
+.ens .val { text-align: right; font-family: var(--f-num); font-weight: 700; font-size: 1.3rem; font-variant-numeric: tabular-nums; }
+.ens .body { padding: 0 0 10px; font-size: .86rem; color: var(--muted); display: grid; gap: 4px; }
+.tier { display: inline-block; font-size: .7rem; font-weight: 700; padding: 0 6px; border-radius: 999px; margin-left: 6px; vertical-align: 1px; }
+.lv0 { --c: var(--muted); } .lv1 { --c: #3d7fd6; } .lv2 { --c: var(--led); } .lv3 { --c: var(--bad); } .lv4 { --c: var(--bad); }
+.ens .lv0 i, .ens .lv1 i, .ens .lv2 i, .ens .lv3 i { background: var(--c); }
+.ens .lv4 i { background: linear-gradient(90deg, #e2483d, #e8a33a, #d9cf3b, #3fb56b, #3d8be2, #8a5bd6); }
+.tier { color: var(--c); border: 1px solid var(--c); }
+.guide { display: grid; gap: 4px; font-size: .9rem; }
+.guide details { border-bottom: 1px solid var(--line); padding-block: 8px; }
+.guide summary { cursor: pointer; font-weight: 700; }
+.guide p { margin: 6px 0 0; color: var(--muted); font-size: .86rem; }
+.holds { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; font-size: .8rem; color: var(--muted); }
+.holds b { display: inline-block; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--line); vertical-align: middle; }
+
+/* 保存 */
+.presets { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+.presets .row { display: grid; grid-template-columns: 1fr auto auto; gap: 8px; grid-column: 1 / -1; }
+.btn { font: inherit; font-weight: 700; min-height: 48px; padding: 8px 14px; border-radius: 10px; border: 1px solid var(--ink); background: var(--ink); color: var(--panel); cursor: pointer; white-space: nowrap; }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.jbtn { justify-self: start; }
+@media (prefers-reduced-motion: no-preference) { .bar i, .gauge .fill { transition: width .25s; } }
+@media (max-width: 360px) { .grid { grid-template-columns: 1fr; } .big { font-size: 2.6rem; } }
 </style>
 
 <div class="wrap">
-  <h1>パチ・スロ期待値<small>打つ前に台の期待値を計算</small></h1>
-  <div class="tabs" role="tablist">
-    <button role="tab" id="t-pachi" aria-selected="true" data-tab="pachi">パチンコ</button>
-    <button role="tab" id="t-slot" aria-selected="false" data-tab="slot">スロ天井</button>
-    <button role="tab" id="t-set" aria-selected="false" data-tab="set">設定</button>
-    <button role="tab" id="t-ens" aria-selected="false" data-tab="ens">演出</button>
-    <button role="tab" id="t-log" aria-selected="false" data-tab="log">記録</button>
-  </div>
+  <header class="appbar"><h1>パチ・スロ期待値</h1><p>打つか・やめるかを数字で</p></header>
+  <nav class="tabs" role="tablist" aria-label="計算の種類">
+    <button role="tab" id="t-pachi" aria-selected="true" data-tab="pachi"><b>パチンコ</b><small>回転率</small></button>
+    <button role="tab" id="t-slot" aria-selected="false" data-tab="slot"><b>天井</b><small>スロ</small></button>
+    <button role="tab" id="t-set" aria-selected="false" data-tab="set"><b>設定</b><small>スロ</small></button>
+    <button role="tab" id="t-ens" aria-selected="false" data-tab="ens"><b>演出</b><small>信頼度</small></button>
+    <button role="tab" id="t-log" aria-selected="false" data-tab="log"><b>収支</b><small>記録</small></button>
+  </nav>
 
   <!-- パチンコ -->
   <section id="pachi" class="tabpage">
     <div class="wrap">
-      <div class="panel pick">
-        <label>機種<select id="pm"></select></label>
-        <p class="note" id="pm-note"></p>
-      </div>
       <div class="result" aria-live="polite">
+        <span class="eyebrow">この台の判定</span>
         <span class="verdict" id="p-verdict"></span>
         <div class="big" id="p-big"></div>
-        <dl class="kv">
-          <dt>1時間あたり</dt><dd id="p-hour"></dd>
-          <dt>1回転あたり</dt><dd id="p-spin"></dd>
-          <dt>この交換率のボーダー（持ち玉比率こみ）</dt><dd id="p-border"></dd>
-          <dt>打つ間に1回は当たる確率</dt><dd id="p-hit"></dd>
-          <dt>初当たりまでの平均投資（現金）</dt><dd id="p-invest"></dd>
-          <dt>回転率がボーダーを超えている確からしさ</dt><dd id="p-sure">—</dd>
-          <dt>初当たりまでの投資（半分／9割／95%はこの中）</dt><dd id="p-q"></dd>
-          <dt>軍資金で初当たり前に尽きる確率</dt><dd id="p-bust">—</dd>
-        </dl>
+        <div class="gauge" id="p-gauge"></div>
         <p class="warnline" id="p-warn"></p>
-        <p class="note" id="p-why"></p>
-        <button type="button" class="btn ghost jbtn" data-journal="pachi">この台を収支記録へ</button>
+        <p class="why" id="p-why"></p>
+        <details class="more"><summary>くわしい数字</summary>
+          <dl class="kv">
+            <dt>1時間あたり</dt><dd id="p-hour"></dd>
+            <dt>1回転あたり</dt><dd id="p-spin"></dd>
+            <dt>ボーダー（元が取れる回転数）</dt><dd id="p-border"></dd>
+            <dt>ボーダーを超えている確率</dt><dd id="p-sure">—</dd>
+            <dt>打つ間に1回は当たる確率</dt><dd id="p-hit"></dd>
+            <dt>初当たりまでの平均投資</dt><dd id="p-invest"></dd>
+            <dt>初当たりまでの投資（半分／9割／95%の人）</dt><dd id="p-q"></dd>
+            <dt>軍資金が初当たり前に尽きる確率</dt><dd id="p-bust">—</dd>
+          </dl>
+        </details>
+        <button type="button" class="jbtn" data-journal="pachi">この台を収支に記録</button>
       </div>
-      <div class="panel">
-        <h2>回転率を測る（データカウンターの総回転数）</h2>
-        <div class="grid">
+
+      <div class="step">
+        <h2><span class="no">1</span>機種を選ぶ</h2>
+        <select id="pm" aria-label="機種"></select>
+        <div id="pm-note"></div>
+      </div>
+
+      <div class="step">
+        <h2><span class="no">2</span>回転率を測る<span class="sub">台の上のカウンターの<br>「総回転数」を見る</span></h2>
+        <div class="meter">
           <label>打ち始めの総回転数<input id="rs0" type="number" inputmode="numeric" step="1" value="" placeholder="例 1200"></label>
           <label>いまの総回転数<input id="rs1" type="number" inputmode="numeric" step="1" value="" placeholder="例 1295"></label>
-          <label class="wide">使った金額<span class="unit"><input id="ry" type="number" inputmode="numeric" step="1000" value="0"><span>円</span></span></label>
         </div>
-        <div class="steps"><button type="button" id="rseg" class="main">1,000円使い切った（いまの総回転数で区切る）</button><button type="button" id="rundo">最後の区切りを取り消す</button></div>
-        <div class="steps" data-for="ry"><button type="button" data-d="-1000">−1,000円</button><button type="button" data-reset="1">測り直す</button></div>
-        <p class="measure" id="rmsg">打ち始めの総回転数を入れる → 1,000円を使い切るたびに「いまの総回転数」を入れて上のボタン。1,000円ごとの回り方のムラも測るので、3回以上区切ると判定が正確になります。<b>大当たりしたら「測り直す」</b>（機種を選び直しても区切りは消える）（持ち玉で回した分・時短中の回転は現金の回転率に入れない）。</p>
+        <div class="steps"><button type="button" id="rseg" class="main">1,000円使い切った</button></div>
+        <p class="measure" id="rmsg">座ったら「打ち始めの総回転数」を入れる。1,000円を打ち切るたびに「いまの総回転数」を入れて、オレンジのボタンを押す。3回押すと判定が出ます。</p>
+        <div class="steps" data-for="ry"><button type="button" id="rundo">1つ戻す</button><button type="button" data-d="-1000">−1,000円</button><button type="button" data-reset="1">測り直す</button></div>
+        <label>ここまでに使った金額<span class="unit"><input id="ry" type="number" inputmode="numeric" step="1000" value="0"><span>円</span></span></label>
+        <p class="note"><b>大当たりしたら「測り直す」。</b>出た玉で打つ分と、時短中の回転は回転率に入れない。</p>
+        <label>1,000円あたりの回転数<em>（測ると自動で入る。知っていれば直接入れてもよい）</em><span class="unit"><input id="R" type="number" inputmode="decimal" step="any" value=""><span>回転</span></span></label>
       </div>
-      <div class="panel">
-        <h2>台と店の条件</h2>
+
+      <details class="step" id="p-shop">
+        <summary><span class="no">3</span>店の条件<span class="sub" id="p-shop-sum"></span></summary>
+        <div class="grid">
+          <label>1,000円で借りられる玉<span class="unit"><input id="pb" type="number" inputmode="numeric" step="1" value="250"><span>玉</span></span></label>
+          <div class="steps" data-set="pb"><button type="button" data-v="250">4円</button><button type="button" data-v="1000">1円</button></div>
+          <label>交換率（100円で何玉）<span class="unit"><input id="xch" type="number" inputmode="decimal" step="any" value="28"><span>玉</span></span></label>
+          <label>出た玉で打つ割合<span class="unit"><input id="hold" type="number" inputmode="decimal" step="any" value="0"><span>%</span></span></label>
+          <label>打つ時間<span class="unit"><input id="hours" type="number" inputmode="decimal" step="any" value="5"><span>時間</span></span></label>
+          <label>1時間に回る数<em>（大当たり中も含めた平均）</em><span class="unit"><input id="sph" type="number" inputmode="decimal" step="any" value="200"><span>回転</span></span></label>
+          <label class="wide">軍資金（今日使ってよい上限）<span class="unit"><input id="bank" type="number" inputmode="numeric" step="1000" value="" placeholder="30000"><span>円</span></span></label>
+        </div>
+        <p class="note">交換率は店の掲示（例：28玉＝1玉3.57円）。等価は25玉。</p>
+      </details>
+
+      <details class="step">
+        <summary><span class="no">4</span>台の数字<span class="sub">機種を選ぶと入る</span></summary>
         <div class="grid">
           <label>大当たり確率（1/〇）<input id="P" type="number" inputmode="decimal" step="any" value="319.6"></label>
-          <label>1,000円あたりの回転数<input id="R" type="number" inputmode="decimal" step="any" value="19"></label>
-          <label class="wide">初当たり1回あたりの平均出玉（確変・時短の連チャンこみ）<span class="unit"><input id="Y" type="number" inputmode="decimal" step="any" value="4400"><span>玉</span></span></label>
-          <label>1,000円で借りられる玉（店の表示）<span class="unit"><input id="pb" type="number" inputmode="numeric" step="1" value="250"><span>玉</span></span></label>
-          <div class="steps" data-set="pb"><button type="button" data-v="250">4円（250玉）</button><button type="button" data-v="1000">1円（1,000玉）</button></div>
-          <label>交換率（100円あたり）<span class="unit"><input id="xch" type="number" inputmode="decimal" step="any" value="28"><span>玉</span></span></label>
-          <label>持ち玉で打つ割合<span class="unit"><input id="hold" type="number" inputmode="decimal" step="any" value="0"><span>%</span></span></label>
-          <label>1時間あたりの回転数（大当たり中の時間もならした平均）<input id="sph" type="number" inputmode="decimal" step="any" value="200"></label>
-          <label>打つ時間<span class="unit"><input id="hours" type="number" inputmode="decimal" step="any" value="5"><span>時間</span></span></label>
-          <label class="wide">軍資金（使ってよい上限）<span class="unit"><input id="bank" type="number" inputmode="numeric" step="1000" value="" placeholder="例 30000"><span>円</span></span></label>
+          <label>初当たり1回の平均出玉<em>（連チャンこみ）</em><span class="unit"><input id="Y" type="number" inputmode="decimal" step="any" value="4400"><span>玉</span></span></label>
         </div>
-        <p class="note">初期値は例（1/319.6・初当たり1回4,400玉）。機種の数字はスペック表や攻略情報で確かめて入れてください。</p>
-      </div>
-      <div class="panel">
-        <details id="yu">
-          <summary>遊タイムのある台（天井狙い）</summary>
-          <div class="grid" style="margin-top:10px">
-            <label>遊タイムの発動（大当たり後の低確率の回転数）<input id="yT" type="number" inputmode="numeric" step="1" value="" placeholder="例 950"></label>
-            <label>いまの回転数（大当たり後）<input id="ys" type="number" inputmode="numeric" step="1" value="" placeholder="例 600"></label>
-            <label>遊タイムの時短回数<input id="yJ" type="number" inputmode="numeric" step="1" value="" placeholder="例 1200"></label>
-            <label>遊タイム中に当たったときの平均出玉<span class="unit"><input id="yY2" type="number" inputmode="numeric" step="1" value="" placeholder="空欄なら上と同じ"><span>玉</span></span></label>
-          </div>
-          <p class="measure" id="ymsg">遊タイムの数字を入れると、いまの回転数から当たりまで打ったときの期待値が出ます。</p>
-          <p class="note">機種の一覧から選ぶと、資料で確かめた遊タイム（発動回転数・時短回数）が入る。いまの回転数はデータカウンターの「大当たり後の低確率の回転数」を入れる（時短中の回転が入っている台は引く）。当たったら（遊タイムで当たらなければ）やめる前提。大当たり確率・平均出玉・回転率・交換率は上の数字を使います。</p>
-        </details>
-      </div>
-      <div class="panel">
-        <h2>交換率ごとのボーダー（現金投資）</h2>
+        <p class="note">手で入れるときはスペック表の数字を。最初に入っているのは例です。</p>
+      </details>
+
+      <details class="step" id="yu">
+        <summary>遊タイムのある台<span class="sub">大当たり後の回転数で狙う</span></summary>
+        <div class="grid">
+          <label>遊タイムが始まる回転数<input id="yT" type="number" inputmode="numeric" step="1" value="" placeholder="950"></label>
+          <label>いまの回転数<em>（大当たり後・時短を除く）</em><input id="ys" type="number" inputmode="numeric" step="1" value="" placeholder="600"></label>
+          <label>遊タイムの時短の回数<input id="yJ" type="number" inputmode="numeric" step="1" value="" placeholder="1200"></label>
+          <label>遊タイム中の当たりの平均出玉<span class="unit"><input id="yY2" type="number" inputmode="numeric" step="1" value="" placeholder="上と同じ"><span>玉</span></span></label>
+        </div>
+        <p class="measure" id="ymsg">遊タイムの数字を入れると、当たるまで打ったときの期待値が出ます。</p>
+        <p class="note">機種を選ぶと、資料で確かめた機種は始まる回転数と時短の回数が入ります。当たったらやめる前提。</p>
+      </details>
+
+      <details class="step">
+        <summary>参考：交換率ごとのボーダー・ハマる確率</summary>
         <table class="tbl" id="p-btable"></table>
-        <h2>ハマる確率</h2>
+        <h3>ハマる確率</h3>
         <div id="p-hamari"></div>
-      </div>
+      </details>
     </div>
   </section>
 
   <!-- パチスロ天井 -->
   <section id="slot" class="tabpage" hidden>
     <div class="wrap">
-      <div class="panel pick">
-        <label>機種<select id="sm"></select></label>
-        <p class="note" id="sm-note"></p>
-        <label class="chk" id="sreset-box" hidden><input id="sreset" type="checkbox">朝一で設定変更されている（天井が短くなる）</label>
-        <div class="counter">
-          <label>データカウンターの「いまのゲーム数」<span class="unit"><input id="g" type="number" inputmode="numeric" step="1" value="450"><span>G</span></span></label>
-          <div class="steps" data-for="g"><button type="button" data-d="-10">−10</button><button type="button" data-d="10">＋10</button><button type="button" data-d="50">＋50</button><button type="button" data-d="100">＋100</button></div>
-        </div>
-      </div>
       <div class="result" aria-live="polite">
+        <span class="eyebrow">天井まで打ったときの判定</span>
         <span class="verdict" id="s-verdict"></span>
         <div class="big" id="s-big"></div>
-        <dl class="kv">
-          <dt>期待値（枚）</dt><dd id="s-coins"></dd>
-          <dt>天井まで連れていかれる確率</dt><dd id="s-reach"></dd>
-          <dt>当たるまでの平均ゲーム数</dt><dd id="s-games"></dd>
-          <dt>天井までの最大投資（現金）</dt><dd id="s-max"></dd>
-          <dt>この条件で期待値がプラスになるのは</dt><dd id="s-start"></dd>
-          <dt>当たるまでの投資（半分／9割はこの中）</dt><dd id="s-q"></dd>
-          <dt>軍資金で当たりまで届かない確率</dt><dd id="s-short">—</dd>
-          <dt>平均獲得の95%の幅で見た期待値</dt><dd id="s-range">—</dd>
-        </dl>
+        <div class="gauge" id="s-gauge"></div>
         <p class="warnline" id="s-warn"></p>
-        <p class="note" id="s-why"></p>
-        <button type="button" class="btn ghost jbtn" data-journal="slot">この台を収支記録へ</button>
+        <p class="why" id="s-why"></p>
+        <details class="more"><summary>くわしい数字</summary>
+          <dl class="kv">
+            <dt>期待値（枚）</dt><dd id="s-coins"></dd>
+            <dt>天井まで行く確率</dt><dd id="s-reach"></dd>
+            <dt>当たるまでの平均</dt><dd id="s-games"></dd>
+            <dt>天井までの最大投資</dt><dd id="s-max"></dd>
+            <dt>プラスになるゲーム数</dt><dd id="s-start"></dd>
+            <dt>当たるまでの投資（半分／9割の人）</dt><dd id="s-q"></dd>
+            <dt>軍資金で当たりまで届かない確率</dt><dd id="s-short">—</dd>
+            <dt>獲得枚数のブレを見た期待値</dt><dd id="s-range">—</dd>
+          </dl>
+        </details>
+        <button type="button" class="jbtn" data-journal="slot">この台を収支に記録</button>
       </div>
-      <div class="panel">
-        <h2>機種の数字（選ぶと入る）</h2>
+
+      <div class="step">
+        <h2><span class="no">1</span>機種を選ぶ</h2>
+        <select id="sm" aria-label="機種"></select>
+        <div id="sm-note"></div>
+        <label class="chk" id="sreset-box" hidden><input id="sreset" type="checkbox">朝一で設定変更されている（天井が短くなる）</label>
+      </div>
+
+      <div class="step">
+        <h2><span class="no">2</span>いまのゲーム数<span class="sub">台の上のカウンター</span></h2>
+        <div class="meter" style="grid-template-columns:1fr">
+          <label>いまのゲーム数<span class="unit"><input id="g" type="number" inputmode="numeric" step="1" value="450"><span>G</span></span></label>
+        </div>
+        <div class="steps" data-for="g"><button type="button" data-d="-10">−10</button><button type="button" data-d="10">＋10</button><button type="button" data-d="50">＋50</button><button type="button" data-d="100">＋100</button></div>
+      </div>
+
+      <div class="step">
+        <h2><span class="no">3</span>当たりの枚数と前兆<span class="sub">資料にないので<br>自分で入れる</span></h2>
+        <div class="grid">
+          <label class="need">当たり1回で増える枚数<span class="unit"><input id="W0" type="number" inputmode="decimal" step="any" value="" placeholder="400"><span>枚</span></span></label>
+          <label>天井で当たったとき<span class="unit"><input id="W1" type="number" inputmode="decimal" step="any" value="" placeholder="上と同じ"><span>枚</span></span></label>
+          <label class="need">当選から当たりまでの前兆<span class="unit"><input id="zen" type="number" inputmode="numeric" step="1" value="0"><span>G</span></span></label>
+        </div>
+        <p class="note">枚数は当たり中に増えた分（下の「獲得枚数を記録」で自分の平均が出せる）。前兆は当選してから当たりが始まるまでのゲーム数で、0のままだと期待値が高く出ます。</p>
+      </div>
+
+      <details class="step" id="s-shop">
+        <summary><span class="no">4</span>店の条件<span class="sub" id="s-shop-sum"></span></summary>
+        <div class="grid">
+          <label>1,000円で借りられるメダル<span class="unit"><input id="slend" type="number" inputmode="numeric" step="1" value="50"><span>枚</span></span></label>
+          <div class="steps" data-set="slend"><button type="button" data-v="50">50枚</button><button type="button" data-v="46">46枚</button></div>
+          <label>交換率（100円で何枚）<span class="unit"><input id="sxch" type="number" inputmode="decimal" step="any" value="5.6"><span>枚</span></span></label>
+          <label>持ちメダルで打つ割合<span class="unit"><input id="shold" type="number" inputmode="decimal" step="any" value="0"><span>%</span></span></label>
+          <label class="wide">軍資金（今日使ってよい上限）<span class="unit"><input id="sbank" type="number" inputmode="numeric" step="1000" value="" placeholder="20000"><span>円</span></span></label>
+        </div>
+        <p class="note">46枚貸しの店は1枚21.7円になり、期待値がはっきり下がります。</p>
+      </details>
+
+      <details class="step">
+        <summary><span class="no">5</span>台の数字<span class="sub">機種を選ぶと入る</span></summary>
         <div class="grid">
           <label>天井<span class="unit"><input id="G" type="number" inputmode="numeric" step="1" value="800"><span>G</span></span></label>
-          <label class="wide">通常時の当たり確率（AT・ボーナス初当たり 1/〇）<input id="p" type="number" inputmode="decimal" step="any" value="300"></label>
-          <label>当たり1回の平均獲得（純増＝当たり中に増えた枚数）<span class="unit"><input id="W0" type="number" inputmode="decimal" step="any" value="" placeholder="例 400"><span>枚</span></span></label>
-          <label>天井で当たったときの平均獲得（純増）<span class="unit"><input id="W1" type="number" inputmode="decimal" step="any" value="" placeholder="空欄なら上と同じ"><span>枚</span></span></label>
           <label>コイン持ち（50枚で）<span class="unit"><input id="c" type="number" inputmode="decimal" step="any" value="32"><span>G</span></span></label>
-          <label>当選から当たり開始までの前兆（平均）<span class="unit"><input id="zen" type="number" inputmode="numeric" step="1" value="0"><span>G</span></span></label>
-          <label>1,000円で借りられるメダル（店の表示）<span class="unit"><input id="slend" type="number" inputmode="numeric" step="1" value="50"><span>枚</span></span></label>
-          <div class="steps" data-set="slend"><button type="button" data-v="50">50枚</button><button type="button" data-v="46">46枚</button></div>
-          <label>交換率（100円あたり）<span class="unit"><input id="sxch" type="number" inputmode="decimal" step="any" value="5.6"><span>枚</span></span></label>
-          <label>持ちメダルで打つ割合<span class="unit"><input id="shold" type="number" inputmode="decimal" step="any" value="0"><span>%</span></span></label>
-          <label class="wide">軍資金（使ってよい上限）<span class="unit"><input id="sbank" type="number" inputmode="numeric" step="1000" value="" placeholder="例 20000"><span>円</span></span></label>
+          <label class="wide">当たり確率（1/〇）<em>（天井がリセットされる当たり）</em><input id="p" type="number" inputmode="decimal" step="any" value="300"></label>
         </div>
-        <p class="note">貸しメダルは店の表示どおりに（1,000円で46枚の店は1枚21.7円になり、期待値がはっきり下がる）。前兆は、当選してから当たりが始まるまでに回すゲーム数で、当たり1回ごとに必ずかかる（天井到達後も同じ）。<b>0のままだと期待値が高く出る</b>（資料では北斗の拳が最大32G、ミリオンゴッドが2〜24Gなど。平均は資料にない）。当たったらやめる前提（当たり後の引き戻しや上乗せは「平均獲得」に含めて入力）。初期値は例です。</p>
-      </div>
-      <div class="panel">
-        <h2>当たりの獲得枚数を記録（平均獲得を自分の実戦から出す）</h2>
+      </details>
+
+      <details class="step">
+        <summary>獲得枚数を記録<span class="sub">自分の平均を出す</span></summary>
         <p class="note" id="lw-target"></p>
         <div class="grid">
-          <label>獲得枚数（当たり1回ぶん）<span class="unit"><input id="lw" type="number" inputmode="numeric" step="1" value="" placeholder="例 520"><span>枚</span></span></label>
+          <label>当たり1回で増えた枚数<span class="unit"><input id="lw" type="number" inputmode="numeric" step="1" value="" placeholder="520"><span>枚</span></span></label>
           <label class="chk"><input id="lceil" type="checkbox">天井で当たった</label>
         </div>
-        <div class="acts"><button type="button" class="main" id="lw-add">記録する</button><button type="button" id="lw-use">この平均を入れる</button><button type="button" id="lw-undo">最後の1件を消す</button></div>
+        <div class="acts"><button type="button" class="main" id="lw-add">記録する</button><button type="button" id="lw-use">平均を上に入れる</button><button type="button" id="lw-undo">最後の1件を消す</button></div>
         <p class="measure" id="lw-stats"></p>
-        <p class="note">解析サイトに平均獲得枚数が載っていない機種が多いので、当たるたびに獲得枚数を記録して平均を出す。10件までは平均のブレが大きい。記録はこのスマホの中だけ。</p>
-      </div>
-      <div class="panel">
-        <h2>いまのゲーム数ごとの期待値</h2>
+        <p class="note">当たるたびに入れると機種ごとの平均が出ます。10件までは平均がまだぶれます。記録はこのスマホの中だけ。</p>
+      </details>
+
+      <details class="step">
+        <summary>参考：ゲーム数ごとの期待値</summary>
         <div id="s-chart"></div>
-        <h2>この先で当たる確率</h2>
+        <h3>この先で当たる確率</h3>
         <div id="s-within"></div>
-      </div>
+      </details>
     </div>
   </section>
 
   <!-- 設定推測 -->
   <section id="set" class="tabpage" hidden>
     <div class="wrap">
-      <div class="panel pick">
-        <label>機種<select id="km"></select></label>
-        <p class="note" id="km-note"></p>
-      </div>
       <div class="result" aria-live="polite">
+        <span class="eyebrow">設定の見込みと、続けたときの1時間</span>
         <span class="verdict" id="k-verdict"></span>
-        <dl class="kv">
-          <dt>打ち続けた1時間の期待値</dt><dd id="k-ev">—</dd>
-          <dt>設定4以上の合計</dt><dd id="k-high"></dd>
+        <div class="big" id="k-ev">—</div>
+        <dl class="kv" style="margin:0">
+          <dt>設定4以上の確率</dt><dd id="k-high"></dd>
         </dl>
         <div id="k-bars" style="display:grid;gap:6px"></div>
         <p class="warnline" id="k-warn"></p>
       </div>
-      <div class="panel">
-        <h2>データカウンターの数字</h2>
-        <div class="grid">
-          <label>BB（ビッグ）回数<input id="kbb" type="number" inputmode="numeric" step="1" value="" placeholder="例 9"></label>
-          <label>RB（レギュラー）回数<input id="krb" type="number" inputmode="numeric" step="1" value="" placeholder="例 6"></label>
-        </div>
-        <p class="note">BBとRBを入れると、要素1の回数に合算（BB＋RB）が入ります（ジャグラーなど、設定ごとの確率が合算のとき）。</p>
-        <h2>回したゲーム数と出た回数</h2>
-        <div class="grid">
-          <label class="wide">通常時のゲーム数（AT・ボーナス中のゲームは入れない）<span class="unit"><input id="kN" type="number" inputmode="numeric" step="1" value="" placeholder="例 3000"><span>G</span></span></label>
-          <label>要素1の名前<input id="k1n" type="text" value="ボーナス"></label>
-          <label>要素1の回数<input id="k1" type="number" inputmode="numeric" step="1" value="" placeholder="例 12"></label>
-          <label>要素2の名前<input id="k2n" type="text" value="小役"></label>
-          <label>要素2の回数（使わないなら空欄）<input id="k2" type="number" inputmode="numeric" step="1" value=""></label>
-          <label>要素3の名前<input id="k3n" type="text" value=""></label>
-          <label>要素3の回数（使わないなら空欄）<input id="k3" type="number" inputmode="numeric" step="1" value=""></label>
-        </div>
-        <p class="note">同じ当たりを2つの要素で数えない（合算とBIGを両方入れない。BIGとREGを分けて入れるのはよい）。</p>
-        <h2>打ち続けたときの期待値の条件</h2>
-        <div class="grid">
-          <label>1時間に回すゲーム数<span class="unit"><input id="kgph" type="number" inputmode="numeric" step="10" value="700"><span>G</span></span></label>
-          <label>あと打つ時間<span class="unit"><input id="khours" type="number" inputmode="decimal" step="any" value="3"><span>時間</span></span></label>
-          <label>コイン持ち（50枚で）<span class="unit"><input id="kcoin" type="number" inputmode="decimal" step="any" value="" placeholder="例 40"><span>G</span></span></label>
-          <label>交換率（100円あたり）<span class="unit"><input id="kxch" type="number" inputmode="decimal" step="any" value="5.6"><span>枚</span></span></label>
-          <label class="wide">持ちメダルで打つ割合（0%＝手元のメダルがなく現金で借りながら打つ）<span class="unit"><input id="khold" type="number" inputmode="decimal" step="any" value="100"><span>%</span></span></label>
-          <label>1,000円で借りられるメダル<span class="unit"><input id="klend" type="number" inputmode="numeric" step="1" value="50"><span>枚</span></span></label>
-          <div class="steps" data-set="klend"><button type="button" data-v="50">50枚</button><button type="button" data-v="46">46枚</button></div>
-        </div>
-        <p class="note">現金で買うメダルは1枚20円（46枚貸しなら21.7円）、流すときは交換率の価値。機械割は資料の値（技術介入をきちんとした前提のことが多い）。等価でない店で現金を足しながら打つと、設定6でもマイナスになることがある。</p>
-        <h2>設定ごとの確率（1/〇）・機械割（割%）・店の配分</h2>
-        <table class="tbl" id="k-table"></table>
-        <div class="acts" id="k-prior"><button type="button" data-prior="1,1,1,1,1,1">配分を均等に</button><button type="button" data-prior="50,20,15,7,5,3">設定1が半分の店（例）</button></div>
-        <p class="note">確率は機種の解析値（設定差のある要素）。空欄の設定（解析値がない）は外して計算。店の配分は「その店でその設定が入っている割合」の見込み（比なので合計は100でなくてよい）。初期値は設定1が半分の保守的な配分（均等にすると、何も分からない状態でも高設定を甘く見て期待値がプラスから始まる）。イベント日など高設定が多いと分かっている日だけ変える。初期値は例。回数が少ないうちは差がつきにくく、「まだ判断できない」と出ます。</p>
+
+      <div class="step">
+        <h2><span class="no">1</span>機種を選ぶ</h2>
+        <select id="km" aria-label="機種"></select>
+        <div id="km-note"></div>
       </div>
+
+      <div class="step">
+        <h2><span class="no">2</span>カウンターの数字<span class="sub">ボーナスとゲーム数</span></h2>
+        <div class="grid">
+          <label class="wide">通常時のゲーム数<em>（ATやボーナス中は除く）</em><span class="unit"><input id="kN" type="number" inputmode="numeric" step="1" value="" placeholder="3000"><span>G</span></span></label>
+          <label>BIG（BB）の回数<input id="kbb" type="number" inputmode="numeric" step="1" value="" placeholder="9"></label>
+          <label>REG（RB）の回数<input id="krb" type="number" inputmode="numeric" step="1" value="" placeholder="6"></label>
+        </div>
+        <details class="memo"><summary>ほかの数え方（AT機の初当たり・ぶどうなど）</summary>
+          <div class="grid" style="margin-top:10px">
+            <label>要素1の名前<input id="k1n" type="text" value="ボーナス"></label>
+            <label>要素1の回数<input id="k1" type="number" inputmode="numeric" step="1" value="" placeholder="12"></label>
+            <label>要素2の名前<input id="k2n" type="text" value="小役"></label>
+            <label>要素2の回数<input id="k2" type="number" inputmode="numeric" step="1" value=""></label>
+            <label>要素3の名前<input id="k3n" type="text" value=""></label>
+            <label>要素3の回数<input id="k3" type="number" inputmode="numeric" step="1" value=""></label>
+          </div>
+          <p class="note" style="margin-top:8px">BIG・REGを入れると要素1・2に自動で入ります。AT機は要素1に初当たりの回数。同じ当たりを2回数えない（合算とBIGを両方入れない）。</p>
+        </details>
+      </div>
+
+      <details class="step" id="k-cond">
+        <summary><span class="no">3</span>続けるときの条件<span class="sub" id="k-shop-sum"></span></summary>
+        <div class="grid">
+          <label>持ちメダルで打つ割合<em>（0%＝現金で借りながら）</em><span class="unit"><input id="khold" type="number" inputmode="decimal" step="any" value="100"><span>%</span></span></label>
+          <label>あと打つ時間<span class="unit"><input id="khours" type="number" inputmode="decimal" step="any" value="3"><span>時間</span></span></label>
+          <label>1時間に回すゲーム数<span class="unit"><input id="kgph" type="number" inputmode="numeric" step="10" value="700"><span>G</span></span></label>
+          <label>コイン持ち（50枚で）<span class="unit"><input id="kcoin" type="number" inputmode="decimal" step="any" value="" placeholder="40"><span>G</span></span></label>
+          <label>交換率（100円で何枚）<span class="unit"><input id="kxch" type="number" inputmode="decimal" step="any" value="5.6"><span>枚</span></span></label>
+          <label>1,000円で借りられるメダル<span class="unit"><input id="klend" type="number" inputmode="numeric" step="1" value="50"><span>枚</span></span></label>
+          <div class="steps wide" data-set="klend"><button type="button" data-v="50">50枚</button><button type="button" data-v="46">46枚</button></div>
+        </div>
+        <p class="note">等価でない店で現金を足しながら打つと、設定6でもマイナスになることがあります。</p>
+      </details>
+
+      <details class="step">
+        <summary><span class="no">4</span>設定ごとの確率と店の配分<span class="sub">機種を選ぶと入る</span></summary>
+        <table class="tbl" id="k-table"></table>
+        <div class="acts" id="k-prior"><button type="button" data-prior="50,20,15,7,5,3">ふだんの店（設定1が半分）</button><button type="button" data-prior="1,1,1,1,1,1">均等（イベント日など）</button></div>
+        <p class="note">「配分」は、その店にその設定が入っていそうな割合の見込み。ふだんの店は設定1が多いので、最初は設定1が半分にしてあります。回した数が少ないうちは「まだ判断できない」と出ます。</p>
+      </details>
     </div>
   </section>
 
   <!-- 演出 -->
   <section id="ens" class="tabpage" hidden>
     <div class="wrap">
-      <div class="panel pick">
-        <label>機種<select id="em"></select></label>
+      <div class="step">
+        <h2>機種と演出をさがす</h2>
+        <select id="em" aria-label="機種"></select>
         <p class="note" id="em-note"></p>
-      </div>
-      <div class="panel">
-        <label>見た演出をさがす<input id="eq" type="search" placeholder="例 赤保留・群・カットイン" autocomplete="off"></label>
+        <label>見た演出<input id="eq" type="search" placeholder="赤保留・群・カットイン" autocomplete="off"></label>
         <div class="chips" id="ecat"></div>
-        <div class="ens" id="elist"></div>
-        <p class="note">数字は「その演出が出た変動が当たる割合（信頼度）」。タップで説明と資料のちがい。<span id="e-legend"></span></p>
       </div>
-      <div class="panel">
-        <h2>演出の見方（どの機種にも共通）</h2>
+      <div class="step">
+        <div class="ens" id="elist"></div>
+        <p class="note">数字は「その演出が出たときに当たる割合（信頼度）」。押すと説明と資料のちがいが出ます。<span id="e-legend"></span></p>
+      </div>
+      <div class="step">
+        <h2>どの機種にも共通の見方</h2>
         <div class="guide">
           <details open><summary>保留の色は強さの順</summary>
-            <p class="holds"><b style="background:#f4f4f4"></b>白 &lt; <b style="background:#3d8be2"></b>青 &lt; <b style="background:#3fb56b"></b>緑 &lt; <b style="background:#e2483d"></b>赤 &lt; <b style="background:#e8b93a"></b>金 &lt; <b style="background:linear-gradient(135deg,#e2483d,#e8a33a,#3fb56b,#3d8be2,#8a5bd6)"></b>虹（虹はほぼ全機種で確定）</p>
-            <p>色の順はだいたい共通だが、何%かは機種で大きくちがう（赤保留でも2割台の機種もある）。数字は上の機種別で見る。保留が変わる（白→赤など）のは、変わった後の色の強さで見る。</p>
+            <p class="holds"><b style="background:#f4f4f4"></b>白 &lt; <b style="background:#3d8be2"></b>青 &lt; <b style="background:#3fb56b"></b>緑 &lt; <b style="background:#e2483d"></b>赤 &lt; <b style="background:#e8b93a"></b>金 &lt; <b style="background:linear-gradient(135deg,#e2483d,#e8a33a,#3fb56b,#3d8be2,#8a5bd6)"></b>虹（ほぼ確定）</p>
+            <p>順番はだいたい同じでも、何%かは機種でちがう（赤保留で2割台の機種もある）。保留が変わったら、変わった後の色で見る。</p>
           </details>
           <details><summary>信頼度は掛け算しない</summary>
-            <p>「赤保留40%」と「群50%」が両方出ても、当たる確率は 40%×50% でも 足し算でもない。強い演出は当たりのときに重なって出やすいので、重なるほど上がるのは確かだが、正確な値は資料の「組み合わせ」の数字でしか分からない。</p>
+            <p>赤保留40%と群50%が両方出ても、40%×50%でも足し算でもない。重なるほど上がるのは確かだが、正確な値は資料の組み合わせの数字でしか分からない。</p>
           </details>
           <details><summary>演出で期待値は変わらない</summary>
-            <p>当たりかどうかは、玉がスタートに入った瞬間の抽選で決まっている。演出はそれを後から「知らせる」だけ。激アツが外れても台の期待値は下がらないし、熱い演出が続いても上がらない。打ち続けるかどうかは回転率とボーダー（パチンコのタブ）で決める。</p>
+            <p>当たりかどうかは、玉が入った瞬間の抽選で決まっている。演出は後から知らせるだけ。激アツが外れても台の期待値は下がらない。続けるかは回転率で決める。</p>
           </details>
           <details><summary>やめるときの注意</summary>
-            <p>保留（たまっている抽選）が残っているうちは席を立たない。保留は打ったお金ですでに買った抽選なので、消化しきってからやめる。パチスロは、前兆中やCZ・ATの抽選中（ゲーム数がゾーンにかかっているときなど）にやめない。</p>
+            <p>保留が残っているうちは席を立たない（もう買った抽選）。スロは前兆中やCZ・ATの抽選中にやめない。</p>
           </details>
           <details><summary>パチスロの演出</summary>
-            <p>AT機は、演出の強さ＝当選の期待度（前兆・CZの成功期待度）。ジャグラーなどのノーマル機は、GOGOランプが光れば必ずボーナス。レバーを叩いた瞬間に光る「先ペカ」、リールが止まった後に光る「後ペカ」があり、プレミア（音や光の変化）は確定やBIG濃厚の合図。</p>
+            <p>AT機は演出の強さ＝当選の期待度。ジャグラーはGOGOランプが光れば必ずボーナス。レバーで光る「先ペカ」と止めた後の「後ペカ」があり、音や光の変化（プレミア）は確定やBIG濃厚の合図。</p>
           </details>
         </div>
       </div>
@@ -358,40 +492,41 @@ details summary { cursor: pointer; color: var(--steel); font-weight: 700; font-s
   <section id="log" class="tabpage" hidden>
     <div class="wrap">
       <div class="result" aria-live="polite">
+        <span class="eyebrow">これまでの成績</span>
         <span class="verdict" id="j-verdict"></span>
-        <dl class="kv">
+        <dl class="kv" style="margin:0">
           <dt>記録した回数</dt><dd id="j-n"></dd>
-          <dt>期待値の合計（台選びの腕）</dt><dd id="j-ev"></dd>
+          <dt>期待値の合計（台選びの成績）</dt><dd id="j-ev"></dd>
           <dt>実際の収支の合計</dt><dd id="j-res"></dd>
           <dt>差（運のブレ）</dt><dd id="j-luck"></dd>
         </dl>
-        <p class="note">期待値の合計がプラスなら、打つ台の選び方は正しい。実際の収支との差は運のブレで、回数を重ねるほど期待値に近づく。期待値の合計がマイナスなら、台選びを見直す。</p>
+        <p class="why">期待値の合計がプラスなら台選びは合っている。実際の収支との差は運で、回数を重ねるほど期待値に近づく。</p>
       </div>
-      <div class="panel">
+      <div class="step">
         <h2>1回分を記録</h2>
         <div class="grid">
           <label>日付<input id="jd" type="date"></label>
-          <label>機種<input id="jm" type="text" placeholder="例 e東京喰種"></label>
+          <label>機種<input id="jm" type="text" placeholder="e東京喰種"></label>
           <label class="wide">打つと決めたときの期待値<span class="sign"><select id="jevs" aria-label="期待値の符号"><option value="+">プラス</option><option value="-">マイナス</option></select><span class="unit"><input id="jev" type="number" inputmode="numeric" step="1" value=""><span>円</span></span></span></label>
           <label class="wide">実際の収支<span class="sign"><select id="jress" aria-label="勝ち負け"><option value="+">勝ち</option><option value="-">負け</option></select><span class="unit"><input id="jres" type="number" inputmode="numeric" step="1" value=""><span>円</span></span></span></label>
         </div>
         <div class="acts"><button type="button" class="main" id="j-add">記録する</button><button type="button" id="j-undo" hidden>消したのを戻す</button></div>
-        <p class="note" id="j-msg">パチンコ・スロ天井のタブの「この台を収支記録へ」で、機種と期待値が入ります。記録はこのスマホの中だけ。</p>
+        <p class="note" id="j-msg">パチンコ・天井のタブの「この台を収支に記録」で、機種と期待値が入ります。記録はこのスマホの中だけ。</p>
       </div>
-      <div class="panel"><h2>これまでの記録</h2><div id="j-list"></div></div>
+      <div class="step"><h2>これまでの記録</h2><div id="j-list"></div></div>
     </div>
   </section>
 
-  <div class="panel" id="presets-panel">
-    <h2>機種ごとに保存</h2>
+  <details class="step" id="presets-panel">
+    <summary>この台の数字を保存・読み込み</summary>
     <div class="presets">
-      <input id="pname" type="text" placeholder="機種名（例：〇〇 ホール名）" aria-label="保存する名前">
+      <input id="pname" type="text" placeholder="名前（例：〇〇店 5番台）" aria-label="保存する名前">
       <button class="btn" id="psave">保存</button>
-      <div class="row"><select id="plist" aria-label="保存した機種"></select><button class="btn ghost" id="pload">読む</button><button class="btn ghost" id="pdel">消す</button></div>
+      <div class="row"><select id="plist" aria-label="保存した台"></select><button class="btn ghost" id="pload">読む</button><button class="btn ghost" id="pdel">消す</button></div>
     </div>
-    <p class="note" id="pmsg">保存はこのスマホのブラウザの中だけ（別の端末には出ません）。</p>
-    <button type="button" class="btn ghost jbtn" id="preset-reset">このタブの数字を初期値に戻す</button>
-  </div>
+    <p class="note" id="pmsg">保存はこのスマホの中だけ（ほかの端末には出ません）。</p>
+    <button type="button" class="btn ghost jbtn" id="preset-reset">このタブの数字を最初に戻す</button>
+  </details>
 </div>
 
 <script>
@@ -449,7 +584,7 @@ details summary { cursor: pointer; color: var(--steel); font-weight: 700; font-s
     const { pct, man } = Calc.fmt;
     const more = (y) => (Number.isFinite(y) && y <= 100000 ? `あと${man(Math.ceil(y / 1000) * 1000)}ほど測る` : 'ボーダーぎりぎりで期待値はほぼ0');
     if (evStrict >= 0) {
-      if (!ci) return { cls: 'warn', text: `ボーダー超え（${strict ? '厳しめの資料でも' : 'この数字なら'}）：回転率を上の「測る」で確かめてから打つ` };
+      if (!ci) return { cls: 'warn', text: `ボーダー超え（${strict ? '厳しめの資料でも' : 'この数字なら'}）：下の「2 回転率を測る」で確かめてから打つ` };
       if (segN < 3) return { cls: 'warn', text: `たぶんボーダー超え：1,000円ごとの区切りをあと${3 - segN}回（台のムラを見てから判定）` };
       if (ci.pAbove >= 0.95) return { cls: 'good', text: `ボーダー超え（95%以上たしか${strict ? '・厳しめの資料で' : ''}）：打つ` };
       return { cls: 'warn', text: `たぶんボーダー超え（${pct(ci.pAbove)}）：${more(ci.moreYen)}` };
@@ -461,15 +596,15 @@ details summary { cursor: pointer; color: var(--steel); font-weight: 700; font-s
   /** スロ天井の判定。「狙い目」は、期待値プラス・軍資金でやめても大丈夫・前兆を入れた・天井がゲーム数・天井時の獲得を入れた・平均獲得が確か、のすべてのときだけ */
   slotVerdict({ overCeil, ev, evStop, noZen, approxUnit, w1Blank, unsure, lowEV }) {
     const { yen } = Calc.fmt;
-    if (overCeil) return { cls: 'warn', text: 'ゲーム数が天井を超えている：数字を確かめる' };
-    if (ev < 0) return { cls: 'bad', text: '期待値マイナス：見送り' };
-    if (evStop !== null && evStop !== undefined && evStop < 0) return { cls: 'bad', text: `軍資金が足りない（届かずやめると ${yen(evStop)}）：見送り` };
-    if (noZen) return { cls: 'warn', text: '期待値プラス（前兆を0で計算＝高めに出ている）：前兆のゲーム数を入れてから' };
-    if (approxUnit) return { cls: 'warn', text: `期待値プラス（天井は${approxUnit}をゲーム数に換算した目安）：狙うなら${approxUnit}の貯まり具合も見る` };
-    if (w1Blank) return { cls: 'warn', text: '期待値プラス（天井で当たったときの獲得が未入力＝平均獲得と同じで計算）：天井時の獲得を入れてから' };
-    if (unsure) return { cls: 'warn', text: '期待値プラス（ただし平均獲得が不確か）：平均獲得を確かめてから' };
-    if (lowEV !== null && lowEV !== undefined && lowEV < 0) return { cls: 'warn', text: '期待値プラス（平均獲得の幅しだいでマイナス）：記録を増やす' };
-    return { cls: 'good', text: '期待値プラス：狙い目' };
+    if (overCeil) return { cls: 'warn', text: 'いまのゲーム数が天井を超えています。数字を確かめて' };
+    if (ev < 0) return { cls: 'bad', text: '期待値マイナス：打たない' };
+    if (evStop !== null && evStop !== undefined && evStop < 0) return { cls: 'bad', text: `軍資金が足りない：打たない（天井まで届かずやめると平均 ${yen(evStop)}）` };
+    if (noZen) return { cls: 'warn', text: 'プラスの見込み。ただし前兆が0のままなので高めに出ています（3 で前兆を入れる）' };
+    if (approxUnit) return { cls: 'warn', text: `プラスの見込み。天井は${approxUnit}をゲーム数に直した目安なので、${approxUnit}の貯まり具合も見る` };
+    if (w1Blank) return { cls: 'warn', text: 'プラスの見込み。天井で当たったときの枚数も入れると正確になる' };
+    if (unsure) return { cls: 'warn', text: 'プラスの見込み。当たりの枚数は、記録が10回分たまるまでは目安' };
+    if (lowEV !== null && lowEV !== undefined && lowEV < 0) return { cls: 'warn', text: 'プラスの見込み。ただし当たりの枚数のぶれ次第でマイナスもありうる（記録を増やす）' };
+    return { cls: 'good', text: '期待値プラス：打つ' };
   },
   /** 設定推測の判定。「続行」は、機械割がそろっていて・計算が済んでいて・設定が判断でき（最大の事後確率50%以上）・期待値プラスのときだけ */
   setVerdict({ okEV, pending, missing, evHour, sure, head, high }) {
@@ -806,10 +941,11 @@ const verdict = (el, ev, okText, ngText) => { el.textContent = ev >= 0 ? okText 
 const bar = (label, p, right, top) => `<div class="bar${top ? ' top' : ''}"><span>${label}</span><span class="track"><i style="width:${Math.max(1, p * 100).toFixed(1)}%"></i></span><span>${right}</span></div>`;
 
 function pachi() {
+  $('p-big').className = 'big'; $('p-gauge').innerHTML = '';
   lastEV.pachi = NaN; lastEV.pachiSpin = NaN; lastEV.pachiSpins = 0;
   document.querySelectorAll('#pachi .result dd').forEach((d) => (d.textContent = '—'));
   const v = { P: num('P'), R: num('R'), Y: num('Y'), lend: 1000 / num('pb'), xch: num('xch'), hold: num('hold') / 100, sph: num('sph'), hours: num('hours') };
-  if ($('R').value === '') { $('p-big').textContent = '1,000円あたりの回転数を、上の「回転率を測る」で測るか、自分で入れてください'; setV($('p-verdict'), 'warn', '回転率がまだない'); return; }
+  if ($('R').value === '') { $('p-big').textContent = '下の「2 回転率を測る」で、打ちながら回転数を入れてください。1,000円ぶん打つと最初の数字が出ます。'; setV($('p-verdict'), 'warn', '回転率がまだない'); return; }
   if (Object.values(v).some((x) => !Number.isFinite(x)) || v.P <= 1 || v.R <= 0 || v.xch <= 0 || !(num('pb') > 0) || v.hold < 0 || v.hold > 1 || v.Y <= 0) { $('p-big').textContent = '入力を確かめてください（持ち玉の割合は0〜100%）'; $('p-verdict').textContent = ''; return; }
   if (100 / v.xch > v.lend + 1e-9) { $('p-big').textContent = `交換率が貸し玉より高くなっています（1玉${(100 / v.xch).toFixed(2)}円で交換・${v.lend.toFixed(2)}円で借りる）。1円パチンコなら交換率は100玉以上。`; setV($('p-verdict'), 'warn', '交換率と貸し玉を確かめる'); return; }
   const r = Calc.pachinko(v);
@@ -830,13 +966,17 @@ function pachi() {
   $('p-q').textContent = bk.qs.map((x) => man(x.yen)).join('／');
   $('p-bust').textContent = bk.bust === null ? '軍資金を入れると出る' : pct(bk.bust);
   $('p-warn').textContent = bk.bust !== null && bk.bust >= 0.2 && r.evTotal >= 0 ? `軍資金が初当たりまでもたない確率 ${pct(bk.bust)}。尽きても期待値は変わらないが、負けて帰る日が増える。` : '';
-  $('p-why').textContent = !ci ? '' : segs.length >= 3 ? `確からしさは、1,000円ごとの回り方のムラ（区切り${segs.length}回）から出した。区切りが少ないうちは幅が広く出る（t分布）。` : '1,000円ごとに区切るまでは「1玉ごとに同じ確率でスタートに入る」とみた最低限の見積もり（実際の台は寄りのムラでもっとブレる）。区切りが3回たまるまで「打つ」とは言わない。';
+  $('p-why').textContent = !ci ? '' : segs.length >= 3 ? `${pct(ci.pAbove)}は、1,000円ごとの回り方のばらつき（${segs.length}回分）から出した「本当にボーダーを超えている確率」。回数が少ないうちは慎重に出ます。` : '1,000円ごとの区切りが3回たまるまでは「打つ」とは出しません（台の回り方にはムラがあるため）。';
   const sh = yS ? rS : r; // 資料のボーダーがばらつくときは厳しめの資料で見せる
   lastEV.pachi = sh.evTotal;
   $('p-big').className = 'big ' + (sh.evTotal >= 0 ? 'good' : 'bad');
-  $('p-big').innerHTML = `${yen(sh.evTotal)}<small>${v.hours}時間・約${Math.round(r.spins).toLocaleString('ja-JP')}回転の期待値${yS ? `（厳しめの資料のボーダーで。資料の代表値なら ${yen(r.evTotal)}）` : ''}</small>`;
+  $('p-big').innerHTML = `${yen(sh.evTotal)}<small>${v.hours}時間（約${Math.round(r.spins).toLocaleString('ja-JP')}回転）打ったときの平均の収支${yS ? '。資料によってボーダーがちがう機種なので、いちばん厳しい資料で計算' : ''}</small>`;
   $('p-hour').textContent = yen(sh.evHour);
   $('p-spin').textContent = `${sh.evSpin >= 0 ? '+' : '−'}${Math.abs(sh.evSpin).toFixed(2)}円`;
+  // いまの回転率とボーダーを1本の棒で（ボーダーの線より右なら打てる側）
+  { const bd = rS.border, max = Math.max(v.R, bd) * 1.25, pc = (x) => Math.max(0, Math.min(100, (x / max) * 100));
+    $('p-gauge').innerHTML = `<div class="row"><span>いまの回転率 <b>${v.R.toFixed(1)}</b></span><span>ボーダー <b>${bd.toFixed(1)}</b></span></div>` +
+      `<div class="track" role="img" aria-label="回転率 ${v.R.toFixed(1)}、ボーダー ${bd.toFixed(1)}"><span class="fill" style="width:${pc(v.R).toFixed(1)}%;background:${v.R >= bd ? '#59de9e' : '#ff7d73'}"></span><span class="mark" style="left:${pc(bd).toFixed(1)}%"></span></div>`; }
   $('p-border').textContent = `${r.border.toFixed(1)}回転${yS ? `（厳しめの資料 ${rS.border.toFixed(1)}）` : ''}（いま ${v.R}）`;
   $('p-hit').textContent = pct(r.hitInSession);
   $('p-invest').textContent = `${Math.round(r.avgInvest).toLocaleString('ja-JP')}円`;
@@ -857,6 +997,7 @@ function pachi() {
 
 function slot() {
   lastEV.slot = NaN;
+  $('s-big').className = 'big'; $('s-gauge').innerHTML = '';
   document.querySelectorAll('#slot .result dd').forEach((d) => (d.textContent = '—'));
   $('s-chart').innerHTML = ''; $('s-within').innerHTML = ''; $('s-why').textContent = ''; $('s-warn').textContent = '';
   const m0 = slotMachine();
@@ -890,7 +1031,10 @@ function slot() {
   $('s-short').textContent = sb.short === null ? '軍資金を入れると出る' : pct(sb.short);
   $('s-why').textContent = sb.short ? `軍資金は${sb.afford}G分（天井まで残り${r.n}G${v.zen ? `＋前兆${v.zen}G` : ''}）。足りなくなったところでやめると、期待値は ${yen(Calc.slot({ ...v, G: v.g + Math.max(0, sb.afford - v.zen), W1: 0 }).evYen)}（天井まで打てる前提の期待値は成り立たない）。` : '';
   $('s-big').className = 'big ' + (r.evYen >= 0 ? 'good' : 'bad');
-  $('s-big').innerHTML = `${yen(r.evYen)}<small>当たりまで打った場合の期待値${w1Blank ? '（天井時の獲得は空欄なので平均獲得と同じとして計算）' : ''}</small>`;
+  { const pc = Math.max(0, Math.min(100, (v.g / v.G) * 100));
+    $('s-gauge').innerHTML = `<div class="row"><span>いま <b>${v.g}</b>G</span><span>天井 <b>${v.G}</b>G（あと${Math.max(0, v.G - v.g)}G）</span></div>` +
+      `<div class="track" role="img" aria-label="天井まで${pc.toFixed(0)}%"><span class="fill" style="width:${pc.toFixed(1)}%"></span></div>`; }
+  $('s-big').innerHTML = `${yen(r.evYen)}<small>当たるまで打ったときの平均の収支${w1Blank ? '（天井時の獲得は空欄なので平均獲得と同じとして計算）' : ''}</small>`;
   $('s-coins').textContent = `${r.evCoins >= 0 ? '+' : '−'}${Math.round(Math.abs(r.evCoins))}枚`;
   $('s-reach').textContent = pct(r.reach);
   $('s-games').textContent = `${Math.round(r.games)}G（残り${mix ? `${r.nMin}〜${r.n}G（天井は抽選）` : `${r.n}G`}${v.zen ? `・前兆${v.zen}Gこみ` : ''}）`;
@@ -909,7 +1053,7 @@ function slot() {
     <path d="${path}" fill="none" stroke="var(--brass)" stroke-width="2.5"/>
     <circle cx="${x(Math.min(v.g, v.G))}" cy="${y(r.evYen)}" r="5" fill="var(--steel)"/>
     <text x="${L}" y="${H - 6}">0G</text><text x="${W - 8}" y="${H - 6}" text-anchor="end">${v.G}G（天井）</text></svg>
-    <p class="note">真鍮色の線が期待値（円）、青い点がいまの台。線が0の線より上ならプラス。</p>`;
+    <p class="chart-note">オレンジの線がゲーム数ごとの期待値、黒い点がいまの台。0の線より上ならプラス。</p>`;
   $('s-within').innerHTML = r.within.map((w) => bar(`${w.k}G`, w.p, pct(w.p))).join('');
 }
 
@@ -928,8 +1072,8 @@ function setting() {
     const d = SETTINGS.map((_, i) => (num(col + i) > 1 ? num(col + i) : null));
     if (d.filter((x) => x).length >= 2) els.push({ k: num(k), N, d, name: $(nm).value || nm });
   });
-  const fail = (msg) => { $('k-bars').innerHTML = `<p class="note">${msg}</p>`; $('k-verdict').textContent = ''; $('k-ev').textContent = '—'; $('k-high').textContent = '—'; $('k-warn').textContent = ''; lastEV.set = NaN; };
-  if (!Number.isFinite(N) || N <= 0 || !els.length) return fail('総ゲーム数と、要素の回数・設定ごとの確率を入れてください。');
+  const fail = (msg) => { $('k-bars').innerHTML = ''; $('k-verdict').textContent = ''; $('k-ev').className = 'big'; $('k-ev').textContent = msg; $('k-high').textContent = '—'; $('k-warn').textContent = ''; lastEV.set = NaN; };
+  if (!Number.isFinite(N) || N <= 0 || !els.length) return fail('機種を選んで、台の上のカウンターの「通常時のゲーム数」と「BIG・REGの回数」を入れると出ます。');
   if (els.some((e) => e.k < 0 || e.k > N)) return fail('回数が総ゲーム数より多いか、マイナスになっています。');
   const prior = SETTINGS.map((_, i) => (num('kp' + i) >= 0 ? num('kp' + i) : 0));
   if (prior.every((x) => !(x > 0))) return fail('店の配分を1つ以上入れてください。');
@@ -957,7 +1101,8 @@ function setting() {
   if (ev.pending) kTimer = setTimeout(() => { Calc.settingEV(post, pay, gph, num('kxch'), kh, num('klend'), opt); setting(); }, 350);
   lastEV.set = ev.evHour;
   const okEV = Number.isFinite(ev.evHour) && num('kgph') > 0 && num('kxch') > 0;
-  $('k-ev').textContent = okEV ? `${yen(ev.evHour)}${ev.pending ? '（計算中…）' : ''}` : '機械割を入れると出る';
+  $('k-ev').className = 'big' + (okEV && !ev.pending ? (ev.evHour >= 0 ? ' good' : ' bad') : '');
+  $('k-ev').innerHTML = okEV ? (ev.pending ? '計算中…' : `${yen(ev.evHour)}<small>このまま${Math.min(num('khours') || 3, 8)}時間打ち続けたときの、1時間あたりの平均の収支</small>`) : '設定ごとの機械割を入れると出ます';
   const head = sure ? `設定${best + 1}の可能性が高い（${pct(post[best])}）` : 'まだ設定は判断できない';
   { const vd = Calc.setVerdict({ okEV, pending: ev.pending, missing: ev.missing, evHour: ev.evHour, sure, head, high }); setV($('k-verdict'), vd.cls, vd.text); }
   $('k-warn').textContent = (out.length ? `設定${out.join('・')}は解析値が空なので外して計算した。` : '') + (kh < 1 && !opt ? '現金で打つ分は、あと打つ時間とコイン持ちを入れると正確になる（いまは高めに出る）。' : '');
@@ -965,7 +1110,13 @@ function setting() {
     `<p class="note">${els.map((e) => `${esc(e.name)}：${e.k}回／${N}G（実測 1/${e.k ? (N / e.k).toFixed(1) : '—'}）`).join('　')}。店の配分（${prior.join('：')}）を前提にした確率。</p>`;
 }
 
-let renderAll = function () { pachi(); slot(); setting(); renderJournal(); };
+function shopSummary() {
+  const pb = num('pb'), h = num('hold');
+  $('p-shop-sum').textContent = `${pb >= 500 ? '1円' : '4円'}・${num('xch') || '—'}玉交換・${h > 0 ? `出玉${h}%` : '現金'}・${num('hours') || '—'}時間`;
+  $('s-shop-sum').textContent = `${num('slend') || '—'}枚貸し・${num('sxch') || '—'}枚交換${num('sbank') > 0 ? `・軍資金${man(num('sbank'))}` : ''}`;
+  $('k-shop-sum').textContent = `持ちメダル${num('khold') >= 0 ? num('khold') : '—'}%・あと${num('khours') || '—'}時間`;
+}
+let renderAll = function () { pachi(); slot(); setting(); renderJournal(); shopSummary(); };
 
 // タブ
 let tab = 'pachi';
@@ -1038,7 +1189,8 @@ function fillMachineSelects() {
     const bs = Object.entries(m.borderBySource || {}).filter(([k, x]) => x && !/garbled|unreliable/.test(k));
     const hiB = bs.length ? Math.max(...bs.map(([, x]) => x)) : null;
     const bsText = bs.length > 1 ? `<br>資料ごとの等価ボーダー：${bs.map(([k, x]) => `${esc(k.split('_')[0])} ${x}`).join('／')}（持ち玉比率・出玉の前提がちがう）。${hiB > m.borderEquiv ? `厳しめに見るなら等価で${hiB}回転を超えているか。` : ''}` : '';
-    $('pm-note').innerHTML = `${esc(m.maker)}${m.released ? '・' + esc(m.released) : ''}　大当たり 1/${m.P ?? '—'}　等価ボーダー ${m.borderEquiv ?? '—'}回転（平均出玉は等価ボーダーから逆算：250×確率の分母÷ボーダー）${mark(m)}${bsText}${m.note ? '<br>' + esc(m.note) : ''}<br>${srcLinks(m)}`;
+    $('pm-note').innerHTML = `<p class="machine-key">大当たり <b>1/${m.P ?? '—'}</b>　等価ボーダー <b>${m.borderEquiv ?? '—'}</b>回転${mark(m)}${m.yutime ? `　遊タイム ${m.yutime.T}回転` : ''}</p>` +
+      `<details class="memo"><summary>この機種の資料メモ</summary><p>${esc(m.maker)}${m.released ? '・' + esc(m.released) : ''}。平均出玉は等価ボーダーから出している（250×確率の分母÷ボーダー）。${bsText}${m.note ? '<br>' + esc(m.note) : ''}<br>${srcLinks(m)}</p></details>`;
     renderAll();
   };
   $('sm').onchange = () => {
@@ -1065,7 +1217,9 @@ function fillMachineSelects() {
     const ctr = m.ceilingCounter ? `<br><b>いまのゲーム数に入れるのは：${esc(m.ceilingCounter)}</b>` : '';
     const mixTxt = m.ceilingResetMix ? `<br>設定変更時は天井が抽選（${m.ceilingResetMix.map((c) => `${c.G}G ${c.w}%`).join('・')}）。「朝一で設定変更」にチェックすると、いまのゲーム数より先の天井だけで混ぜて計算する。` : '';
     const pcTxt = Array.isArray(m.pCeil) ? `<br>天井の計算の当たり確率は、天井がリセットされる当たり（ST）の 1/${m.pCeil[0]}（設定1）を使う。` : '';
-    $('sm-note').innerHTML = `${ctr}${mixTxt}${pcTxt}${ctr || mixTxt || pcTxt ? '<br>' : ''}${esc(m.maker)}${m.released ? '・' + esc(m.released) : ''}　初当たり 1/${m.p1 ?? '—'}　天井 ${m.ceilingG ?? '—'}${esc(m.ceilingUnit || 'G')}　平均獲得 ${m.avgGain ?? '—'}枚　コイン持ち ${m.coin50 ?? '—'}G${mark(m)}${m.ceilingNote ? '<br>天井：' + esc(m.ceilingNote) : ''}${m.note ? '<br>' + esc(m.note) : ''}${unitWarn}<br>${srcLinks(m)}`;
+    $('sm-note').innerHTML = `<p class="machine-key">天井 <b>${m.ceilingG ?? '—'}</b>${esc(m.ceilingUnit || 'G')}${m.ceilingResetG ? `（朝一 <b>${m.ceilingResetG}</b>G）` : ''}　初当たり <b>1/${m.p1 ?? '—'}</b>　コイン持ち <b>${m.coin50 ?? '—'}</b>G${mark(m)}</p>` +
+      `${ctr || mixTxt || pcTxt || unitWarn ? `<p class="note">${(ctr + mixTxt + pcTxt + unitWarn).replace(/^<br>/, '')}</p>` : ''}` +
+      `<details class="memo"><summary>この機種の資料メモ</summary><p>${esc(m.maker)}${m.released ? '・' + esc(m.released) : ''}${m.ceilingNote ? '<br>天井：' + esc(m.ceilingNote) : ''}${m.note ? '<br>' + esc(m.note) : ''}<br>${srcLinks(m)}</p></details>`;
     renderAll();
   };
   const km = MACHINES.slot.filter((m) => m.kind !== 'pachinko' && Array.isArray(m.pBySetting));
@@ -1085,7 +1239,12 @@ function fillMachineSelects() {
     $('k2n').value = kMulti ? 'REG' : ''; $('k3n').value = kMulti && m.pGrape ? 'ぶどう' : '';
     if (m.coin50) $('kgph').value = 700;
     const miss = SETTINGS.filter((_, i) => !(m.pBySetting[i] > 1));
-    $('km-note').innerHTML = `${esc(m.maker)}　設定ごとの${m.type === 'ノーマル' ? 'ボーナス合算' : '初当たり'}確率と機械割を入れた${mark(m)}${miss.length ? `<br>設定${miss.join('・')}は資料に値がなく空欄（外して計算）。` : ''}${kMulti ? `<br>BIG・REG・ぶどうを分けて計算する（REGに設定差が大きいので合算より正確。同じ1ゲームで重ならない出目なので多項分布）。データカウンターのBB・RB回数を入れると要素1・2に入る。ぶどうは自分で数えて要素3に（数えないなら空欄）。${m.pGrapeAlt ? 'ぶどうの確率は資料で少し食い違う。' : ''}` : m.type === 'ノーマル' ? '<br>データカウンターのBB・RB回数を入れると要素1に合算が入る。' : '<br>要素1の回数には初当たり回数を入れる。'}${m.note ? '<br>' + esc(m.note) : ''}<br>${srcLinks(m)}`;
+    const how = kMulti ? 'カウンターのBIG・REGの回数と、通常時のゲーム数を入れるだけ。REGの確率に設定の差が大きいので、BIGとREGを分けて見ます。ぶどうを数えていれば「ほかの数え方」の要素3へ。'
+      : m.type === 'ノーマル' ? 'カウンターのBIG・REGの回数と、通常時のゲーム数を入れるだけ（合算で見ます）。'
+      : '「ほかの数え方」を開いて、要素1に初当たりの回数を入れる。';
+    $('km-note').innerHTML = `<p class="note"><b>${how}</b>${miss.length ? `設定${miss.join('・')}は資料に数字がないので外して計算します。` : ''}</p>` +
+      `<details class="memo"><summary>この機種の資料メモ</summary><p>${esc(m.maker)}${mark(m)}。設定ごとの${m.type === 'ノーマル' ? 'ボーナス' : '初当たり'}確率と機械割は資料の値。${m.pGrapeAlt ? 'ぶどうの確率は資料で少し食い違う。' : ''}${m.note ? '<br>' + esc(m.note) : ''}<br>${srcLinks(m)}</p></details>`;
+    if (!kMulti && m.type !== 'ノーマル') document.querySelector('#set .memo').open = true;
     renderAll();
   };
 }
@@ -1133,7 +1292,7 @@ document.querySelectorAll('.steps').forEach((box) => box.addEventListener('click
     if (box.dataset.set === 'pb') { const one = Number(b.dataset.v) >= 500, x = num('xch'); if (one && !(x >= 100)) $('xch').value = 112; if (!one && x >= 100) $('xch').value = 28; }
     renderAll(); return;
   }
-  if (!box.dataset.for) return;
+  if (!box.dataset.for || !(b.dataset.d || b.dataset.reset)) return;
   const el = $(box.dataset.for);
   if (b.dataset.reset) { $('ry').value = 0; $('rs0').value = $('rs1').value; rlogSet([]); $('R').value = ''; $('rmsg').textContent = '測り直します（前の台の回転率は消しました）。いまの総回転数を打ち始めにしました。1,000円を使い切るたびに「いまの総回転数」を入れて「1,000円使い切った」。'; }
   else el.value = Math.max(0, (parseFloat(el.value) || 0) + Number(b.dataset.d));
@@ -1267,7 +1426,7 @@ $('preset-reset').addEventListener('click', () => {
   if (pick) { $(pick).value = ''; $(pick + '-note').textContent = ''; }
   if (tab === 'slot') { $('sreset').checked = false; $('sreset-box').hidden = true; }
   if (tab === 'set') { buildSetTable(); $('k1n').value = 'ボーナス'; $('k2n').value = '小役'; $('k3n').value = ''; }
-  if (tab === 'pachi') { curPY = null; rlogSet([]); $('rs0').value = ''; $('rs1').value = ''; $('ry').value = 0; $('rmsg').textContent = '打ち始めの総回転数を入れ、1,000円を使い切るたびに「いまの総回転数」を入れて「1,000円使い切った」を押す。'; }
+  if (tab === 'pachi') { curPY = null; rlogSet([]); $('rs0').value = ''; $('rs1').value = ''; $('ry').value = 0; $('R').value = ''; $('rmsg').textContent = '座ったら「打ち始めの総回転数」を入れる。1,000円を打ち切るたびに「いまの総回転数」を入れて、オレンジのボタンを押す。3回押すと判定が出ます。'; }
   $('pmsg').textContent = '初期値に戻しました。';
   renderAll();
 });
@@ -1326,7 +1485,7 @@ renderAll();
 </script>
 
 <script>
-// オフラインで動くように、開いたときに中身を端末に保存する（版 def5d96825）
+// オフラインで動くように、開いたときに中身を端末に保存する（版 995f9fb50b）
 if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 </script>
 </body>
