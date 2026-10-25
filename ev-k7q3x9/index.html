@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="パチスロ期待値">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0f141b">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px}[hidden]{display:none!important}img{max-width:100%}</style>
+</head>
+<body>
+<title>パチ・スロ期待値</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+/* 片手で使う計算機：上に結果、下に入力。島の照明の下でも読めるよう、数字は大きく太く。真鍮色（玉・メダル）を差し色に */
+:root {
+  --bg: #eef1f5; --surface: #ffffff; --ink: #18212c; --muted: #5a6575; --line: #d4dae3;
+  --brass: #a86f12; --steel: #34557d; --good: #1d8148; --bad: #bf3426; --good-bg: #e3f3ea; --bad-bg: #fbe6e3;
+  --f-display: "Dela Gothic One", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --f-body: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f141b; --surface: #171f29; --ink: #e8edf3; --muted: #9ba7b6; --line: #2a3443;
+  --brass: #e3a843; --steel: #86a9d6; --good: #4fc68c; --bad: #f0705f; --good-bg: #173226; --bad-bg: #3a1d1a; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f141b; --surface: #171f29; --ink: #e8edf3; --muted: #9ba7b6; --line: #2a3443;
+  --brass: #e3a843; --steel: #86a9d6; --good: #4fc68c; --bad: #f0705f; --good-bg: #173226; --bad-bg: #3a1d1a; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 12px 40px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 560px; margin: 0 auto; display: grid; gap: 14px; }
+h1 { font-family: var(--f-display); font-weight: 400; font-size: 1.5rem; margin: 4px 0 0; letter-spacing: .02em; }
+h1 small { font-family: var(--f-body); font-size: .8rem; color: var(--muted); margin-left: 8px; letter-spacing: 0; }
+.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;
+  background: var(--bg); padding-block: 6px; }
+.tabs button { font: inherit; font-weight: 700; padding: 10px 4px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--muted); cursor: pointer; }
+.tabs button[aria-selected="true"] { background: var(--steel); border-color: var(--steel); color: #fff; }
+.result { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; display: grid; gap: 8px; }
+.verdict { display: inline-block; justify-self: start; font-weight: 700; font-size: .85rem; padding: 2px 10px; border-radius: 999px; }
+.verdict.good { background: var(--good-bg); color: var(--good); } .verdict.bad { background: var(--bad-bg); color: var(--bad); }
+.big { font-family: var(--f-display); font-size: 2.3rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.big.good { color: var(--good); } .big.bad { color: var(--bad); }
+.big small { display: block; font-family: var(--f-body); font-size: .85rem; color: var(--muted); font-weight: 500; margin-top: 4px; }
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; font-variant-numeric: tabular-nums; }
+.kv dt { color: var(--muted); } .kv dd { margin: 0; font-weight: 700; text-align: right; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; display: grid; gap: 12px; }
+.panel h2 { font-size: .95rem; margin: 0; color: var(--brass); letter-spacing: .04em; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 12px; }
+.grid .wide { grid-column: 1 / -1; }
+label { display: grid; gap: 3px; font-size: .82rem; color: var(--muted); min-width: 0; }
+.pick { border-color: var(--steel); }
+.counter { display: grid; gap: 6px; }
+.steps { display: flex; flex-wrap: wrap; gap: 6px; }
+.steps button { font: inherit; font-weight: 700; min-height: 44px; padding: 6px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; flex: 1 1 auto; }
+.steps button.main { background: var(--brass); border-color: var(--brass); color: #fff; flex: 2 1 auto; }
+.measure { margin: 0; font-weight: 700; color: var(--steel); }
+input, select { min-height: 44px; font: inherit; font-size: 1.05rem; font-weight: 700; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; width: 100%; box-sizing: border-box; font-variant-numeric: tabular-nums; }
+input:focus-visible, select:focus-visible, button:focus-visible { outline: 2px solid var(--brass); outline-offset: 1px; }
+.unit { display: flex; align-items: center; gap: 6px; } .unit span { color: var(--muted); font-size: .85rem; white-space: nowrap; }
+.note { font-size: .8rem; color: var(--muted); margin: 0; }
+.bar { display: grid; grid-template-columns: 3.4em 1fr 3.4em; align-items: center; gap: 8px; font-variant-numeric: tabular-nums; font-size: .9rem; }
+.bar i { display: block; height: 12px; border-radius: 6px; background: var(--steel); }
+.bar.top i { background: var(--brass); }
+.bar .track { background: var(--bg); border-radius: 6px; }
+.presets { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+.presets .row { display: grid; grid-template-columns: 1fr auto auto; gap: 6px; grid-column: 1 / -1; }
+.btn { font: inherit; font-weight: 700; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--steel); background: var(--steel); color: #fff; cursor: pointer; white-space: nowrap; }
+.btn.ghost { background: transparent; color: var(--steel); }
+svg text { fill: var(--muted); font-size: 11px; }
+.tbl { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: .9rem; }
+.tbl td, .tbl th { padding: 4px 6px; border-bottom: 1px solid var(--line); text-align: right; } .tbl th:first-child, .tbl td:first-child { text-align: left; }
+details summary { cursor: pointer; color: var(--steel); font-weight: 700; font-size: .9rem; }
+@media (prefers-reduced-motion: no-preference) { .bar i { transition: width .25s; } }
+</style>
+
+<div class="wrap">
+  <h1>パチ・スロ期待値<small>打つ前に台の期待値を計算</small></h1>
+  <div class="tabs" role="tablist">
+    <button role="tab" id="t-pachi" aria-selected="true" data-tab="pachi">パチンコ</button>
+    <button role="tab" id="t-slot" aria-selected="false" data-tab="slot">パチスロ天井</button>
+    <button role="tab" id="t-set" aria-selected="false" data-tab="set">設定推測</button>
+  </div>
+
+  <!-- パチンコ -->
+  <section id="pachi" class="tabpage">
+    <div class="wrap">
+      <div class="panel pick">
+        <label>機種<select id="pm"></select></label>
+        <p class="note" id="pm-note"></p>
+      </div>
+      <div class="result" aria-live="polite">
+        <span class="verdict" id="p-verdict"></span>
+        <div class="big" id="p-big"></div>
+        <dl class="kv">
+          <dt>1時間あたり</dt><dd id="p-hour"></dd>
+          <dt>1回転あたり</dt><dd id="p-spin"></dd>
+          <dt>この交換率のボーダー（持ち玉比率こみ）</dt><dd id="p-border"></dd>
+          <dt>打つ間に1回は当たる確率</dt><dd id="p-hit"></dd>
+          <dt>初当たりまでの平均投資（現金）</dt><dd id="p-invest"></dd>
+        </dl>
+      </div>
+      <div class="panel">
+        <h2>回転率を測る（データカウンターの総回転数）</h2>
+        <div class="grid">
+          <label>打ち始めの総回転数<input id="rs0" type="number" inputmode="numeric" step="1" value="" placeholder="例 1200"></label>
+          <label>いまの総回転数<input id="rs1" type="number" inputmode="numeric" step="1" value="" placeholder="例 1295"></label>
+          <label class="wide">使った金額<span class="unit"><input id="ry" type="number" inputmode="numeric" step="1000" value="0"><span>円</span></span></label>
+        </div>
+        <div class="steps" data-for="ry"><button type="button" data-d="1000" class="main">＋1,000円入れた</button><button type="button" data-d="-1000">−1,000円</button><button type="button" data-reset="1">測り直す</button></div>
+        <p class="measure" id="rmsg">打ち始めに総回転数を入れ、1,000円入れるたびに「＋1,000円」、いまの総回転数を入れると回転率が出ます。</p>
+      </div>
+      <div class="panel">
+        <h2>台と店の条件</h2>
+        <div class="grid">
+          <label>大当たり確率（1/〇）<input id="P" type="number" inputmode="decimal" step="any" value="319.6"></label>
+          <label>1,000円あたりの回転数<input id="R" type="number" inputmode="decimal" step="any" value="19"></label>
+          <label class="wide">初当たり1回あたりの平均出玉（確変・時短の連チャンこみ）<span class="unit"><input id="Y" type="number" inputmode="decimal" step="any" value="4400"><span>玉</span></span></label>
+          <label>貸し玉<select id="lend"><option value="4">4円（1,000円＝250玉）</option><option value="1">1円（1,000円＝1,000玉）</option></select></label>
+          <label>交換率（100円あたり）<span class="unit"><input id="xch" type="number" inputmode="decimal" step="any" value="28"><span>玉</span></span></label>
+          <label>持ち玉で打つ割合<span class="unit"><input id="hold" type="number" inputmode="decimal" step="any" value="0"><span>%</span></span></label>
+          <label>1時間あたりの回転数<input id="sph" type="number" inputmode="decimal" step="any" value="200"></label>
+          <label>打つ時間<span class="unit"><input id="hours" type="number" inputmode="decimal" step="any" value="5"><span>時間</span></span></label>
+        </div>
+        <p class="note">初期値は例（1/319.6・初当たり1回4,400玉）。機種の数字はスペック表や攻略情報で確かめて入れてください。</p>
+      </div>
+      <div class="panel">
+        <h2>交換率ごとのボーダー（現金投資）</h2>
+        <table class="tbl" id="p-btable"></table>
+        <h2>ハマる確率</h2>
+        <div id="p-hamari"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- パチスロ天井 -->
+  <section id="slot" class="tabpage" hidden>
+    <div class="wrap">
+      <div class="panel pick">
+        <label>機種<select id="sm"></select></label>
+        <p class="note" id="sm-note"></p>
+        <div class="counter">
+          <label>データカウンターの「いまのゲーム数」<span class="unit"><input id="g" type="number" inputmode="numeric" step="1" value="450"><span>G</span></span></label>
+          <div class="steps" data-for="g"><button type="button" data-d="-10">−10</button><button type="button" data-d="10">＋10</button><button type="button" data-d="50">＋50</button><button type="button" data-d="100">＋100</button></div>
+        </div>
+      </div>
+      <div class="result" aria-live="polite">
+        <span class="verdict" id="s-verdict"></span>
+        <div class="big" id="s-big"></div>
+        <dl class="kv">
+          <dt>期待値（枚）</dt><dd id="s-coins"></dd>
+          <dt>天井まで連れていかれる確率</dt><dd id="s-reach"></dd>
+          <dt>当たるまでの平均ゲーム数</dt><dd id="s-games"></dd>
+          <dt>天井までの最大投資（現金）</dt><dd id="s-max"></dd>
+          <dt>この条件で期待値がプラスになるのは</dt><dd id="s-start"></dd>
+        </dl>
+      </div>
+      <div class="panel">
+        <h2>機種の数字（選ぶと入る）</h2>
+        <div class="grid">
+          <label>天井<span class="unit"><input id="G" type="number" inputmode="numeric" step="1" value="800"><span>G</span></span></label>
+          <label class="wide">通常時の当たり確率（AT・ボーナス初当たり 1/〇）<input id="p" type="number" inputmode="decimal" step="any" value="300"></label>
+          <label>当たり1回の平均獲得<span class="unit"><input id="W0" type="number" inputmode="decimal" step="any" value="400"><span>枚</span></span></label>
+          <label>天井で当たったときの平均獲得<span class="unit"><input id="W1" type="number" inputmode="decimal" step="any" value="600"><span>枚</span></span></label>
+          <label>コイン持ち（50枚で）<span class="unit"><input id="c" type="number" inputmode="decimal" step="any" value="32"><span>G</span></span></label>
+          <label>交換率（100円あたり）<span class="unit"><input id="sxch" type="number" inputmode="decimal" step="any" value="5.6"><span>枚</span></span></label>
+          <label>持ちメダルで打つ割合<span class="unit"><input id="shold" type="number" inputmode="decimal" step="any" value="0"><span>%</span></span></label>
+        </div>
+        <p class="note">貸しメダルは1,000円＝50枚。当たったらやめる前提（当たり後の上乗せは「平均獲得」に含めて入力）。初期値は例です。</p>
+      </div>
+      <div class="panel">
+        <h2>いまのゲーム数ごとの期待値</h2>
+        <div id="s-chart"></div>
+        <h2>この先で当たる確率</h2>
+        <div id="s-within"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 設定推測 -->
+  <section id="set" class="tabpage" hidden>
+    <div class="wrap">
+      <div class="result" aria-live="polite">
+        <span class="verdict" id="k-verdict"></span>
+        <div id="k-bars" style="display:grid;gap:6px"></div>
+      </div>
+      <div class="panel">
+        <h2>データカウンターの数字</h2>
+        <div class="grid">
+          <label>BB（ビッグ）回数<input id="kbb" type="number" inputmode="numeric" step="1" value="" placeholder="例 9"></label>
+          <label>RB（レギュラー）回数<input id="krb" type="number" inputmode="numeric" step="1" value="" placeholder="例 6"></label>
+        </div>
+        <p class="note">BBとRBを入れると、要素1の回数に合算（BB＋RB）が入ります（ジャグラーなど、設定ごとの確率が合算のとき）。</p>
+        <h2>回したゲーム数と出た回数</h2>
+        <div class="grid">
+          <label class="wide">総ゲーム数<span class="unit"><input id="kN" type="number" inputmode="numeric" step="1" value="3000"><span>G</span></span></label>
+          <label>要素1の名前<input id="k1n" type="text" value="ボーナス"></label>
+          <label>要素1の回数<input id="k1" type="number" inputmode="numeric" step="1" value="12"></label>
+          <label>要素2の名前<input id="k2n" type="text" value="小役"></label>
+          <label>要素2の回数（使わないなら空欄）<input id="k2" type="number" inputmode="numeric" step="1" value=""></label>
+        </div>
+        <h2>設定ごとの確率（1/〇）</h2>
+        <table class="tbl" id="k-table"></table>
+        <p class="note">機種の解析値（設定差のある要素）を入れてください。初期値は例。回数が少ないうちは差がつきにくく、「まだ判断できない」と出ます。</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="panel">
+    <h2>機種ごとに保存</h2>
+    <div class="presets">
+      <input id="pname" type="text" placeholder="機種名（例：〇〇 ホール名）" aria-label="保存する名前">
+      <button class="btn" id="psave">保存</button>
+      <div class="row"><select id="plist" aria-label="保存した機種"></select><button class="btn ghost" id="pload">読む</button><button class="btn ghost" id="pdel">消す</button></div>
+    </div>
+    <p class="note" id="pmsg">保存はこのスマホのブラウザの中だけ（別の端末には出ません）。</p>
+  </div>
+</div>
+
+<script>
+// 計算（calc.js と同じ。test.js でシミュレーションと照合済み）
+const Calc = {
+  pachinko(v) {
+    const { P, R, Y, lend, xch, hold, sph, hours } = v;
+    const e = 100 / xch, ballsPerSpin = 1000 / lend / R, costCash = 1000 / R, costHold = ballsPerSpin * e;
+    const cost = (1 - hold) * costCash + hold * costHold, gain = (Y / P) * e, evSpin = gain - cost, spins = sph * hours;
+    const border = (h, x) => { const ee = 100 / x; return ((1 - h) * 1000 + h * (1000 / lend) * ee) / ((Y / P) * ee); };
+    return { evSpin, spins, evHour: evSpin * sph, evTotal: evSpin * spins, border: border(hold, xch),
+      hitInSession: 1 - Math.pow(1 - 1 / P, spins), hamari: [1, 2, 3].map((k) => ({ k, p: Math.pow(1 - 1 / P, k * P) })), avgInvest: P * costCash, borderOf: border };
+  },
+  slot(v) {
+    const { p, G, g, W0, W1, c, xch, hold } = v;
+    const q = 1 / p, n = Math.max(0, G - g), e = 100 / xch, u = 50 / c, reach = Math.pow(1 - q, n);
+    const games = n === 0 ? 0 : (1 - reach) / q, coinsIn = games * u, payout = n === 0 ? W1 : W0 * (1 - reach) + W1 * reach;
+    const evYen = payout * e - coinsIn * ((1 - hold) * 20 + hold * e);
+    return { n, reach, games, coinsIn, payout, evYen, evCoins: payout - coinsIn, maxInvest: n * u * 20,
+      within: [100, 200, 300].map((k) => ({ k, p: k >= n ? 1 : 1 - Math.pow(1 - q, k) })) };
+  },
+  slotCurve(v) {
+    const pts = []; let start = null;
+    for (let g = 0; g <= v.G; g += 10) { const r = Calc.slot({ ...v, g }); pts.push({ g, ev: r.evYen }); if (start === null && r.evYen >= 0) start = g; }
+    return { pts, start };
+  },
+  setting(elems) {
+    const logs = [0, 1, 2, 3, 4, 5].map((s) => elems.reduce((acc, el) => { const pr = 1 / el.d[s]; return acc + el.k * Math.log(pr) + (el.N - el.k) * Math.log(1 - pr); }, 0));
+    const mx = Math.max(...logs), w = logs.map((l) => Math.exp(l - mx)), sum = w.reduce((a, b) => a + b, 0);
+    return w.map((x) => x / sum);
+  },
+};
+
+const $ = (id) => document.getElementById(id);
+const num = (id) => { const x = parseFloat($(id).value); return Number.isFinite(x) ? x : NaN; };
+const yen = (x) => `${x >= 0 ? '+' : '−'}${Math.round(Math.abs(x)).toLocaleString('ja-JP')}円`;
+const pct = (x) => `${(x * 100).toFixed(x < 0.1 ? 1 : 0)}%`;
+const verdict = (el, ev, okText, ngText) => { el.textContent = ev >= 0 ? okText : ngText; el.className = 'verdict ' + (ev >= 0 ? 'good' : 'bad'); };
+const bar = (label, p, right, top) => `<div class="bar${top ? ' top' : ''}"><span>${label}</span><span class="track"><i style="width:${Math.max(1, p * 100).toFixed(1)}%"></i></span><span>${right}</span></div>`;
+
+function pachi() {
+  const v = { P: num('P'), R: num('R'), Y: num('Y'), lend: num('lend'), xch: num('xch'), hold: num('hold') / 100, sph: num('sph'), hours: num('hours') };
+  if (Object.values(v).some((x) => !Number.isFinite(x)) || v.P <= 1 || v.R <= 0 || v.xch <= 0) { $('p-big').textContent = '入力を確かめてください'; return; }
+  const r = Calc.pachinko(v);
+  verdict($('p-verdict'), r.evTotal, 'ボーダー超え：打つ価値あり', 'ボーダー未満：やめどき');
+  $('p-big').className = 'big ' + (r.evTotal >= 0 ? 'good' : 'bad');
+  $('p-big').innerHTML = `${yen(r.evTotal)}<small>${v.hours}時間・約${Math.round(r.spins).toLocaleString('ja-JP')}回転の期待値</small>`;
+  $('p-hour').textContent = yen(r.evHour);
+  $('p-spin').textContent = `${r.evSpin >= 0 ? '+' : '−'}${Math.abs(r.evSpin).toFixed(2)}円`;
+  $('p-border').textContent = `${r.border.toFixed(1)}回転（いま ${v.R}）`;
+  $('p-hit').textContent = pct(r.hitInSession);
+  $('p-invest').textContent = `${Math.round(r.avgInvest).toLocaleString('ja-JP')}円`;
+  const base = v.lend === 4 ? [25, 28, 30, 33] : [100, 112, 120, 132];
+  $('p-btable').innerHTML = '<tr><th>交換（100円あたり）</th><th>ボーダー</th><th>いまとの差</th></tr>' +
+    base.map((x) => { const b = r.borderOf(0, x); return `<tr><td>${x}玉${x === base[0] ? '（等価）' : ''}</td><td>${b.toFixed(1)}回転</td><td>${(v.R - b >= 0 ? '+' : '')}${(v.R - b).toFixed(1)}</td></tr>`; }).join('');
+  $('p-hamari').innerHTML = r.hamari.map((h) => bar(`${Math.round(h.k * v.P)}回`, h.p, pct(h.p))).join('') + '<p class="note">大当たり確率の1倍・2倍・3倍の回転数を回しても当たらない確率。</p>';
+}
+
+function slot() {
+  const v = { p: num('p'), G: num('G'), g: num('g'), W0: num('W0'), W1: num('W1'), c: num('c'), xch: num('sxch'), hold: num('shold') / 100 };
+  if (Object.values(v).some((x) => !Number.isFinite(x)) || v.p <= 1 || v.c <= 0 || v.xch <= 0 || v.G <= 0) { $('s-big').textContent = '入力を確かめてください'; return; }
+  const r = Calc.slot(v);
+  verdict($('s-verdict'), r.evYen, '期待値プラス：狙い目', '期待値マイナス：見送り');
+  $('s-big').className = 'big ' + (r.evYen >= 0 ? 'good' : 'bad');
+  $('s-big').innerHTML = `${yen(r.evYen)}<small>当たりまで打った場合の期待値</small>`;
+  $('s-coins').textContent = `${r.evCoins >= 0 ? '+' : '−'}${Math.round(Math.abs(r.evCoins))}枚`;
+  $('s-reach').textContent = pct(r.reach);
+  $('s-games').textContent = `${Math.round(r.games)}G（残り${r.n}G）`;
+  $('s-max').textContent = `${Math.round(r.maxInvest).toLocaleString('ja-JP')}円`;
+  const cv = Calc.slotCurve(v);
+  $('s-start').textContent = cv.start === null ? 'この条件ではプラスにならない' : `${cv.start}Gから`;
+  // ゲーム数ごとの期待値の線グラフ
+  const W = 320, H = 150, L = 46, B = 22, T = 8;
+  const evs = cv.pts.map((p) => p.ev), lo = Math.min(0, ...evs), hi = Math.max(0, ...evs);
+  const x = (g) => L + (g / v.G) * (W - L - 8), y = (e) => T + (1 - (e - lo) / (hi - lo || 1)) * (H - T - B);
+  const path = cv.pts.map((p, i) => `${i ? 'L' : 'M'}${x(p.g).toFixed(1)},${y(p.ev).toFixed(1)}`).join('');
+  const tick = (e) => `<text x="${L - 6}" y="${y(e) + 4}" text-anchor="end">${Math.round(e / 1000)}千</text>`;
+  $('s-chart').innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="いまのゲーム数ごとの期待値">
+    <line x1="${L}" x2="${W - 8}" y1="${y(0)}" y2="${y(0)}" stroke="var(--line)" stroke-width="1.5"/>
+    ${tick(lo)}${tick(0)}${tick(hi)}
+    <path d="${path}" fill="none" stroke="var(--brass)" stroke-width="2.5"/>
+    <circle cx="${x(Math.min(v.g, v.G))}" cy="${y(r.evYen)}" r="5" fill="var(--steel)"/>
+    <text x="${L}" y="${H - 6}">0G</text><text x="${W - 8}" y="${H - 6}" text-anchor="end">${v.G}G（天井）</text></svg>
+    <p class="note">真鍮色の線が期待値（円）、青い点がいまの台。線が0の線より上ならプラス。</p>`;
+  $('s-within').innerHTML = r.within.map((w) => bar(`${w.k}G`, w.p, pct(w.p))).join('');
+}
+
+const SETTINGS = [1, 2, 3, 4, 5, 6];
+const defD = { a: [399, 386, 372, 345, 323, 300], b: [8, 7.9, 7.8, 7.6, 7.5, 7.3] };
+function buildSetTable() {
+  $('k-table').innerHTML = '<tr><th>設定</th><th>要素1</th><th>要素2</th></tr>' +
+    SETTINGS.map((s, i) => `<tr><td>${s}</td><td><input id="ka${i}" type="number" inputmode="decimal" step="any" value="${defD.a[i]}" aria-label="設定${s}の要素1"></td><td><input id="kb${i}" type="number" inputmode="decimal" step="any" value="${defD.b[i]}" aria-label="設定${s}の要素2"></td></tr>`).join('');
+}
+function setting() {
+  const N = num('kN');
+  const els = [];
+  const a = SETTINGS.map((_, i) => num('ka' + i)), b = SETTINGS.map((_, i) => num('kb' + i));
+  if (Number.isFinite(num('k1')) && a.every((x) => x > 1)) els.push({ k: num('k1'), N, d: a });
+  if ($('k2').value !== '' && Number.isFinite(num('k2')) && b.every((x) => x > 1)) els.push({ k: num('k2'), N, d: b });
+  if (!Number.isFinite(N) || N <= 0 || !els.length || els.some((e) => e.k < 0 || e.k > N)) { $('k-bars').innerHTML = '<p class="note">回数とゲーム数を確かめてください。</p>'; $('k-verdict').textContent = ''; return; }
+  const post = Calc.setting(els);
+  const best = post.indexOf(Math.max(...post));
+  const high = post[3] + post[4] + post[5];
+  const sure = post[best] >= 0.5;
+  $('k-verdict').textContent = sure ? `設定${best + 1}の可能性が高い（${pct(post[best])}）` : `まだ判断できない（設定4以上の合計 ${pct(high)}）`;
+  $('k-verdict').className = 'verdict ' + (high >= 0.5 ? 'good' : 'bad');
+  $('k-bars').innerHTML = post.map((p, i) => bar(`設定${i + 1}`, p, pct(p), i === best)).join('') +
+    `<p class="note">${els.map((e, i) => `${$(i === 0 ? 'k1n' : 'k2n').value}：${e.k}回／${N}G（実測 1/${e.k ? (N / e.k).toFixed(1) : '—'}）`).join('　')}。どの設定も同じ割合で入っていると仮定した場合。</p>`;
+}
+
+let renderAll = function () { pachi(); slot(); setting(); };
+
+// タブ
+let tab = 'pachi';
+function showTab(t) {
+  tab = t;
+  document.querySelectorAll('.tabpage').forEach((s) => (s.hidden = s.id !== t));
+  document.querySelectorAll('.tabs button').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tab === t)));
+  try { localStorage.setItem('ps-tab', t); } catch (e) {}
+  refreshList();
+}
+document.querySelectorAll('.tabs button').forEach((b) => b.addEventListener('click', () => showTab(b.dataset.tab)));
+
+// 機種ごとの保存（タブごと）
+const fields = { pachi: ['P', 'R', 'Y', 'lend', 'xch', 'hold', 'sph', 'hours', 'rs0', 'rs1', 'ry'], slot: ['g', 'G', 'p', 'W0', 'W1', 'c', 'sxch', 'shold'], set: ['kN', 'kbb', 'krb', 'k1n', 'k1', 'k2n', 'k2', ...SETTINGS.flatMap((_, i) => ['ka' + i, 'kb' + i])] };
+const store = { get() { try { return JSON.parse(localStorage.getItem('ps-presets') || '{}'); } catch (e) { return {}; } }, set(o) { try { localStorage.setItem('ps-presets', JSON.stringify(o)); return true; } catch (e) { return false; } } };
+function refreshList() {
+  const all = store.get()[tab] || {};
+  const names = Object.keys(all);
+  $('plist').innerHTML = names.length ? names.map((n) => `<option>${n.replace(/</g, '&lt;')}</option>`).join('') : '<option value="">（まだ保存なし）</option>';
+}
+$('psave').addEventListener('click', () => {
+  const name = $('pname').value.trim();
+  if (!name) { $('pmsg').textContent = '機種名を入れてから保存してください。'; return; }
+  const all = store.get();
+  all[tab] = all[tab] || {};
+  all[tab][name] = Object.fromEntries(fields[tab].map((f) => [f, $(f).value]));
+  $('pmsg').textContent = store.set(all) ? `「${name}」を保存しました。` : 'このブラウザでは保存できません（プライベートモードなど）。';
+  refreshList();
+});
+$('pload').addEventListener('click', () => {
+  const o = (store.get()[tab] || {})[$('plist').value];
+  if (!o) return;
+  Object.entries(o).forEach(([f, val]) => { if ($(f)) $(f).value = val; });
+  $('pname').value = $('plist').value;
+  $('pmsg').textContent = `「${$('plist').value}」を読みました。`;
+  renderAll();
+});
+$('pdel').addEventListener('click', () => {
+  const all = store.get();
+  const n = $('plist').value;
+  if (!all[tab] || !all[tab][n]) return;
+  delete all[tab][n];
+  store.set(all);
+  $('pmsg').textContent = `「${n}」を消しました。`;
+  refreshList();
+});
+
+// 機種データ（data/*.json を build.py が埋め込む。数値は2つ以上の資料で照合したもの。食い違い・1資料だけのものは注記つき）
+const MACHINES = /*MACHINES*/{"pachinko": [{"rank": 1, "name": "新世紀エヴァンゲリオン〜未来への咆哮〜", "maker": "ビスティ", "released": "2021-12-20", "type": "ミドル(VST)", "P": 319.7, "Ptotal": null, "borderEquiv": 17.5, "borders": {"25": 17.5, "28": 18.6, "30": 19.3, "33": 20.4}, "borderBySource": {"pachi7": 17.5, "nana-press": 17.1}, "avgPayout": null, "verified": true, "conflict": true, "note": "確率は2サイトとも1/319.7。ボーダー差0.4(算出条件差)。", "sources": ["https://pachiseven.jp/machines/6414", "https://nana-press.com/kaiseki/machine/252/"]}, {"rank": 2, "name": "PA大海物語5 Withアグネス・ラム", "maker": "三洋物産", "released": "2023-07-03", "type": "甘デジ", "P": 99.9, "Ptotal": null, "borderEquiv": 16.8, "borders": {"25": 16.8, "28": 17.3, "30": 17.6, "33": 18.1}, "borderBySource": {"pachi7": 16.8, "p-town": 18.3}, "avgPayout": null, "verified": true, "conflict": true, "note": "p-townは電サポ-10%等の別前提で18.3。", "sources": ["https://pachiseven.jp/machines/6741", "https://p-town.dmm.com/machines/4358"]}, {"rank": 3, "name": "e東京喰種", "maker": "ビスティ", "released": "2025-04-21", "type": "ミドル(LT/一種二種)", "P": 399.9, "Ptotal": 199.9, "borderEquiv": 16.7, "borders": {"25": 16.7, "28": 17.1, "30": 17.4, "33": 17.8}, "borderBySource": {"pachi7": 16.7, "1geki_65pct_140R": 16.8, "chonborista": 16.7}, "avgPayout": 2998, "verified": true, "conflict": false, "note": "P=図柄揃い、Ptotal=合算。avgPayoutは単一サイト(ちょんぼりすた)の初当たり期待出玉。", "sources": ["https://pachiseven.jp/machines/7159", "https://1geki.jp/pachinko/e_tokyoghoul/11/", "https://chonborista.com/?p=230670"]}, {"rank": 4, "name": "e新世紀エヴァンゲリオン〜はじまりの記憶〜", "maker": "ビスティ", "released": "2025-12-22", "type": "ミドル(LT)", "P": 399.9, "Ptotal": 349.9, "borderEquiv": 16.3, "borders": {"25": 16.3, "28": 17.1, "30": 17.6, "33": 18.3}, "borderBySource": {"pachi7_4h": 16.3, "1geki_65pct_140R": 16.8}, "avgPayout": null, "verified": true, "conflict": true, "note": "差0.5(持ち玉比率等の前提差)。", "sources": ["https://pachiseven.jp/machines/7261", "https://1geki.jp/pachinko/e_eva17/11/"]}, {"rank": 5, "name": "P大海物語5", "maker": "三洋物産", "released": "2023-02-06", "type": "ミドル", "P": 319.6, "Ptotal": null, "borderEquiv": 16.7, "borders": {"25": 16.7, "28": 17.5, "30": 18.0, "33": 18.8}, "borderBySource": {"pachi7": 16.7, "1geki_65pct_140R": 16.7}, "avgPayout": null, "verified": true, "conflict": false, "note": "1gekiの交換率行の並びが崩れており等価16.7は推定。", "sources": ["https://pachiseven.jp/machines/6677", "https://1geki.jp/pachinko/p_oumi5/11/"]}, {"rank": 6, "name": "Pスーパー海物語IN沖縄6", "maker": "三洋物産", "released": "2025-10-06", "type": "ミドル", "P": 319.6, "Ptotal": null, "borderEquiv": 17.9, "borders": {"25": 17.9, "28": 18.6, "30": 19.2, "33": 19.9}, "borderBySource": {"pachi7_4h": 17.9, "1geki_65pct_140R": 17.5}, "avgPayout": null, "verified": true, "conflict": true, "note": "差0.4。", "sources": ["https://pachiseven.jp/machines/7231", "https://1geki.jp/pachinko/p_spumioki6/11/"]}, {"rank": 7, "name": "e Re:ゼロから始める異世界生活 鬼がかり2", "maker": "大都技研", "released": "2026-10-05", "type": "ミドル(RUSH)", "P": 349.9, "Ptotal": null, "borderEquiv": 16.1, "borders": {"25": 16.1, "28": null, "30": null, "33": null}, "borderBySource": {"pachi7": 16.1, "1geki_65pct_140R": 16.1}, "avgPayout": null, "verified": true, "conflict": false, "note": "発売直後。pachi7表は列の意味が不明瞭で25玉(等価)のみ採用。", "sources": ["https://pachiseven.jp/machines/7467", "https://1geki.jp/pachinko/e_re0_oni2/11/"]}, {"rank": 8, "name": "P大海物語4スペシャル BLACK", "maker": "三洋物産", "released": "2021-05-24", "type": "ライトミドル(ST)", "P": 199.8, "Ptotal": null, "borderEquiv": 17.6, "borders": {"25": 17.6, "28": 18.3, "30": 18.7, "33": 19.3}, "borderBySource": {"pachi7": 17.6, "1geki_garbled": 21.4}, "avgPayout": null, "verified": false, "conflict": true, "note": "1gekiの表は列崩れで等価21.4と読めるが信頼不可。実質pachi7のみ。", "sources": ["https://pachiseven.jp/machines/6278", "https://1geki.jp/pachinko/p_oumi4sp_bl/11/"]}, {"rank": 9, "name": "PA大海物語Withアグネス・ラム Premium Edition", "maker": "三洋物産", "released": "2026-09-07", "type": "甘デジ", "P": 99.9, "Ptotal": null, "borderEquiv": 16.4, "borders": {"25": 16.4, "28": null, "30": null, "33": null}, "borderBySource": {"1geki_70pct_99R": 16.4, "chonborista_provisional": 16.3}, "avgPayout": null, "verified": false, "conflict": false, "note": "導入直後で暫定値。pachi7にボーダー欄なし。", "sources": ["https://pachiseven.jp/machines/7413", "https://1geki.jp/pachinko/pa_oumi_agnspe/11/", "https://chonborista.com/pachinko/sanyo/267135/"]}, {"rank": 10, "name": "P大海物語5スペシャル", "maker": "三洋物産", "released": "2024-11-05", "type": "ミドル", "P": 319.6, "Ptotal": null, "borderEquiv": 18.0, "borders": {"25": 18.0, "28": 18.8, "30": 19.3, "33": 20.1}, "borderBySource": {"pachi7_P機_4h": 18.0, "pachi7_e機_4h": 17.2, "1geki_65pct_140R": 17.3}, "avgPayout": null, "verified": true, "conflict": true, "note": "P機/e機あり。差0.7(算出条件差)。", "sources": ["https://pachiseven.jp/machines/7020", "https://1geki.jp/pachinko/p_oumi5sp/11/"]}, {"rank": 11, "name": "PA新海物語", "maker": "三洋物産", "released": "2022-08-22", "type": "甘デジ", "P": 99.9, "Ptotal": null, "borderEquiv": 17.1, "borders": {"25": 17.1, "28": 17.5, "30": 17.8, "33": 18.2}, "borderBySource": {"pachi7": 17.1, "1geki_unreliable": 18.8}, "avgPayout": null, "verified": false, "conflict": true, "note": "1gekiの表は行ラベル崩れで信頼不可。実質pachi7のみ。", "sources": ["https://pachiseven.jp/machines/6567", "https://1geki.jp/pachinko/pa_shinumi_arbb/11/"]}, {"rank": 12, "name": "e牙狼12 黄金騎士 極限", "maker": "サンセイR&D", "released": "2025-08-04", "type": "ミドル(LT)", "P": 437.4, "Ptotal": 349.9, "borderEquiv": 16.9, "borders": {"25": 16.9, "28": 17.6, "30": 18.1, "33": 18.8}, "borderBySource": {"pachi7_4h": 16.9, "1geki_65pct_140R": 17.0}, "avgPayout": null, "verified": true, "conflict": false, "note": "P=図柄揃い、Ptotal=合算(1geki/altema)。", "sources": ["https://pachiseven.jp/machines/7219", "https://1geki.jp/pachinko/e_garo12/11/"]}, {"rank": 13, "name": "e東京喰種 超デカ超一撃ver.", "maker": "ビスティ", "released": "2026-06-08", "type": "ミドル(LT/超高)", "P": 999.0, "Ptotal": 349.9, "borderEquiv": 30.4, "borders": {"25": 30.4, "28": 31.5, "30": 32.3, "33": 33.5}, "borderBySource": {"pachi7_4h": 30.4, "1geki_65pct_140R": 30.9}, "avgPayout": null, "verified": true, "conflict": true, "note": "差0.5。", "sources": ["https://pachiseven.jp/machines/7399", "https://1geki.jp/pachinko/e_tokyoghoul_tyo1geki/11/"]}, {"rank": 14, "name": "eフィーバー機動戦士ガンダムSEED クライマックス", "maker": "SANKYO", "released": "2026-08-03", "type": "ミドル(LT)", "P": 399.9, "Ptotal": null, "borderEquiv": 16.6, "borders": {"25": 16.6, "28": 17.3, "30": 17.8, "33": 18.6}, "borderBySource": {"pachi7_4h": 16.6, "1geki_65pct_140R": 16.6}, "avgPayout": null, "verified": true, "conflict": false, "note": "", "sources": ["https://pachiseven.jp/machines/7406", "https://1geki.jp/pachinko/e_gundamseed/11/"]}, {"rank": 15, "name": "PA海物語3R3", "maker": "三洋物産", "released": "2025-06-02", "type": "甘デジ", "P": 99.9, "Ptotal": null, "borderEquiv": 17.4, "borders": {"25": 17.4, "28": 17.7, "30": 17.9, "33": 18.2}, "borderBySource": {"pachi7_4h": 17.4, "1geki_70pct_90R": 17.3}, "avgPayout": null, "verified": true, "conflict": false, "note": "", "sources": ["https://pachiseven.jp/machines/7162", "https://1geki.jp/pachinko/pa_umi_3r3/11/"]}], "slot": [{"name": "ネオアイムジャグラーEX", "maker": "北電子", "released": "2025-09-01", "kind": "slot", "type": "ノーマル", "p1": 168.5, "pBySetting": [168.5, 161.0, 148.6, 142.2, 128.5, 127.5], "ceilingG": null, "ceilingUnit": "G", "ceilingNote": "天井なし", "avgGain": null, "ceilingGain": null, "coin50": null, "payout": [97.0, 98.0, 99.5, 101.1, 103.3, 105.5], "verified": true, "conflict": false, "note": "合算確率。BIG1/273.1 REG1/439.8(設定1)。獲得枚数BIG約252枚/REG約96枚。coin50は調査中。", "sources": ["https://pachiseven.jp/machines_v2/7179", "https://chonborista.com/?p=236054"]}, {"name": "マイジャグラーV", "maker": "北電子", "released": "2021-12-06", "kind": "slot", "type": "ノーマル", "p1": 163.8, "pBySetting": [163.8, 159.1, 148.6, 135.4, 126.8, 114.6], "ceilingG": null, "ceilingUnit": "G", "ceilingNote": "天井なし", "avgGain": null, "ceilingGain": null, "coin50": null, "payout": [97.0, 98.0, 99.9, 102.8, 105.3, 109.4], "verified": true, "conflict": false, "note": "合算確率。BIG1/273.1 REG1/409.6(設定1)。coin50は未確認。", "sources": ["https://pachiseven.jp/machines_v2/6421", "https://nana-press.com/post/1546517"]}, {"name": "L東京喰種", "maker": "スパイキー/フィールズ", "released": "2025-02-03", "kind": "slot", "type": "AT", "p1": 394.4, "pBySetting": [394.4, 380.5, 357.0, 325.9, 291.2, 261.3], "ceilingG": 600, "ceilingUnit": "G", "ceilingNote": "CZ間600G+α(CZ当選)/AT間1200G+α(AT当選)。設定変更時CZ天井最大200G+α", "avgGain": null, "ceilingGain": null, "coin50": 31, "payout": [97.5, 99.0, 101.6, 105.6, 110.3, 114.9], "verified": true, "conflict": false, "note": "CZ確率1/262.6(設定1)。ATは差枚管理。天井恩恵=CZ/AT当選のみ。導入約12000台(ちょんぼりすた)。avgGain未確認。 [獲得枚数調査]avgGain/ceilingGain: 各サイトに記載なし(2026-10-25調査)。", "sources": ["https://pachiseven.jp/machines_v2/7113", "https://chonborista.com/?p=226073"], "avgGainSources": ["https://pachiseven.jp/machines_v2/7113", "https://chonborista.com/?p=226073", "https://1geki.jp/slot/l_tokyoghoul/3/", "https://p-town.dmm.com/specials/4030"]}, {"name": "スマスロ 甲鉄城のカバネリ 海門決戦", "maker": "サミー/タイヨーエレック", "released": "2026-03-02", "kind": "slot", "type": "AT(ST)", "p1": 254.2, "pBySetting": [254.2, 242.3, 239.6, 214.0, 203.2, 195.1], "ceilingG": 996, "ceilingUnit": "G", "ceilingNote": "996G+α or 6周期でエピソードボーナス(ST直行)。設定変更後・ST駆け抜け後・景之ST後は596G/4周期に短縮", "avgGain": null, "ceilingGain": null, "coin50": 31.4, "payout": [97.5, 98.5, 100.8, 106.0, 111.0, 114.9], "verified": true, "conflict": false, "note": "ST確率1/422.5(設定1)。nana-pressは等価400G〜が期待値1000円以上の目安。avgGain未確認。導入約20000台〜。 [獲得枚数調査]avgGain/ceilingGain: 記載なし(2026-10-25調査、altemaは403)。", "sources": ["https://pachiseven.jp/machines_v2/7326", "https://chonborista.com/?p=248689", "https://nana-press.com/kaiseki/machine/1097/"], "avgGainSources": ["https://pachiseven.jp/machines_v2/7326", "https://chonborista.com/?p=248689"]}, {"name": "ゴーゴージャグラー3", "maker": "北電子", "released": "2023-07-03", "kind": "slot", "type": "ノーマル", "p1": 149.6, "pBySetting": [149.6, 145.3, 139.7, 130.5, 123.7, 117.4], "ceilingG": null, "ceilingUnit": "G", "ceilingNote": "天井なし", "avgGain": null, "ceilingGain": null, "coin50": 40, "payout": [97.2, 98.2, 99.4, 101.6, 103.8, 106.5], "verified": true, "conflict": false, "note": "合算確率。BIG/REG(設定1)=1/259.0 / 1/354.2。coin50=約40Gはちょんぼりすたのみ。", "sources": ["https://chonborista.com/?p=187825", "https://p-town.dmm.com/machines/4375"]}, {"name": "スマスロ モンキーターンV", "maker": "山佐", "released": "2023-12-04", "kind": "slot", "type": "AT", "p1": 299.8, "pBySetting": [299.8, 295.5, null, 258.8, 235.7, 222.9], "ceilingG": 795, "ceilingUnit": "G", "ceilingNote": "795G+α or 6周期でAT当選。短縮時495G+α/4周期(設定変更時・青島敗北時)。設定Lあり", "avgGain": null, "ceilingGain": null, "coin50": 32, "payout": [97.9, 98.9, null, 104.5, 110.2, 114.9], "verified": true, "conflict": false, "note": "設定3の値は取得元の表で欠落しnull。ちょんぼりすた平均TY約440/MY約2723(設定1推定)。導入約15000台。 [獲得枚数調査]avgGain/ceilingGain: 記載なし(平均TY/MYは定義不明で不採用)。", "sources": ["https://pachiseven.jp/machines_v2/6815", "https://chonborista.com/?p=198173"], "avgGainSources": ["https://pachiseven.jp/machines_v2/6815", "https://chonborista.com/?p=198173"]}, {"name": "スマスロ 北斗の拳", "maker": "サミー/タイヨーエレック", "released": "2023-04-03", "kind": "slot", "type": "AT(BB)", "p1": 383.4, "pBySetting": [383.4, 370.5, null, 297.8, 258.7, 235.1], "ceilingG": 1268, "ceilingUnit": "G", "ceilingNote": "通常時1268G+αでバトルボーナス当選(継続率優遇)。設定変更時800G+α。300/777/800G到達時に天井短縮抽選", "avgGain": null, "ceilingGain": 845, "coin50": 34.7, "payout": [98.0, 98.9, null, 105.7, 110.0, 113.0], "verified": true, "conflict": false, "note": "設定3欠落。coin50はパチ7=34.7、ちょんぼりすた=約35(丸め差)。北斗揃い1/7274。天井到達時のAT平均獲得は全体平均の1.5倍以上との記述(パチ7)。 [獲得枚数調査]ceilingGain=845枚はちょんぼりすた「天井到達時は平均845枚」の単一ソース(未検証)。パチセブンは「天井からのAT平均は全体平均の1.5倍以上」と数値なし。avgGain: BB1セット約110枚の記載のみでAT1回平均は記載なし。", "sources": ["https://pachiseven.jp/machines_v2/6692", "https://chonborista.com/?p=181626", "https://nana-press.com/kaiseki/machine/514/"], "avgGainSources": ["https://pachiseven.jp/machines_v2/6692", "https://chonborista.com/?p=181626", "https://nana-press.com/kaiseki/machine/514/", "https://1geki.jp/slot/s_sma_hokutonoken/3/", "https://p-town.dmm.com/specials/2949"]}, {"name": "ファンキージャグラー2", "maker": "北電子", "released": "2021-10-04", "kind": "slot", "type": "ノーマル", "p1": 165.9, "pBySetting": [165.9, 158.3, 150.7, 140.6, 133.2, 119.6], "ceilingG": null, "ceilingUnit": "G", "ceilingNote": "天井なし", "avgGain": null, "ceilingGain": null, "coin50": 42, "payout": [97.0, 98.5, 99.8, 102.0, 104.3, 109.0], "verified": true, "conflict": false, "note": "合算確率。BIG/REG(設定1)=1/266.4 / 1/439.8。coin50約42Gはちょんぼりすたのみ。導入約30000台。", "sources": ["https://pachiseven.jp/machines_v2/6338", "https://chonborista.com/?p=144333"]}, {"name": "スマスロ リコリス・リコイル", "maker": "サミー", "released": "2026-09-07", "kind": "slot", "type": "AT(ST)", "p1": 328.8, "pBySetting": [328.8, 323.4, 312.1, 288.3, 271.6, 256.7], "ceilingG": 850, "ceilingUnit": "G", "ceilingNote": "通常時850G+α(振り分け850/750/600/400/250G)でCZ成功濃厚。CZ間600G、上位CZ失敗後250Gの別条件もあり", "avgGain": null, "ceilingGain": null, "coin50": 31.8, "payout": [97.9, 98.9, 101.3, 106.1, 110.4, 114.6], "verified": true, "conflict": false, "note": "p1はリコリスラッシュ(ST)初当り。CZ確率1/198.7(設定1)。AT純増(ボーナス中)約8.4枚/G。導入約20000台(増産の噂)。 [獲得枚数調査]avgGain/ceilingGain: 記載なし(Legendary Lycoris約2400枚は特化ゾーン期待枚数で不採用)。", "sources": ["https://pachiseven.jp/machines_v2/7419", "https://chonborista.com/?p=261631", "https://nana-press.com/kaiseki/machine/1166/"], "avgGainSources": ["https://pachiseven.jp/machines_v2/7419", "https://chonborista.com/?p=261631", "https://p-town.dmm.com/specials/5388"]}, {"name": "スマスロ 北斗の拳 転生の章2", "maker": "サミー/銀座", "released": "2026-01-05", "kind": "slot", "type": "AT", "p1": 366.0, "pBySetting": [366.0, 357.0, 336.3, 298.7, 283.2, 273.1], "ceilingG": 1536, "ceilingUnit": "あべし", "ceilingNote": "通常時最大1536あべし到達でAT当選(1473あべし以降はATレベル3以上濃厚)。設定変更時1280あべし", "avgGain": null, "ceilingGain": null, "coin50": 31.5, "payout": [97.6, 98.4, 100.7, 106.2, 111.1, 114.9], "verified": true, "conflict": false, "note": "天井は擬似ゲーム数(あべし)でG数と一致しない。 [獲得枚数調査]avgGain/ceilingGain: 記載なし。", "sources": ["https://pachiseven.jp/machines_v2/7282", "https://nana-press.com/kaiseki/machine/1059/", "https://1geki.jp/slot/l_hokuto_tensei2/39/"], "avgGainSources": ["https://pachiseven.jp/machines_v2/7282", "https://1geki.jp/slot/l_hokuto_tensei2/3/", "https://p-town.dmm.com/specials/4745"]}, {"name": "スマスロ ミリオンゴッド-神々の軌跡-", "maker": "ミズホ/ユニバーサル", "released": "2026-04-20", "kind": "slot", "type": "AT(GG)", "p1": 533, "pBySetting": [533, 420, 496, 338, 455, 295], "ceilingG": 1480, "ceilingUnit": "G", "ceilingNote": "AT間最大1480G+αでGG当選(+GGストック1個、ループストックA以上)。天井G数は510/1000/1480の抽選、設定変更時約35%で510/1000", "avgGain": null, "ceilingGain": null, "coin50": 30.8, "payout": [97.2, 99.1, 102.1, 106.9, 111.7, 114.6], "verified": true, "conflict": false, "note": "GG1セット平均約350枚(nana-press)。AT1回平均は未確認。奇数設定=連チャン優遇/偶数=初当り軽い。 [獲得枚数調査]avgGain: GG1セット平均約350枚(1geki/nana-press)のみでAT1回平均は記載なし。ceilingGain記載なし。", "sources": ["https://pachiseven.jp/machines_v2/7345", "https://nana-press.com/kaiseki/machine/1112/", "https://chonborista.com/?p=258499"], "avgGainSources": ["https://pachiseven.jp/machines_v2/7345", "https://1geki.jp/slot/l_milliongod_kiseki/81/", "https://nana-press.com/kaiseki/machine/1112/35723/"]}, {"name": "ハッピージャグラーVIII", "maker": "北電子", "released": "2022-10-24", "kind": "slot", "type": "ノーマル", "p1": 161.8, "pBySetting": [161.8, 154.9, 146.9, 137.7, 127.5, 120.0], "ceilingG": null, "ceilingUnit": "G", "ceilingNote": "天井なし", "avgGain": null, "ceilingGain": null, "coin50": 42, "payout": [97.0, 98.1, 99.9, 102.9, 105.8, 108.4], "verified": true, "conflict": false, "note": "合算確率。BIG/REG(設定1)=1/273.1 / 1/397.2。coin50はちょんぼりすたのみ。導入約22000台。", "sources": ["https://pachiseven.jp/machines_v2/6617", "https://chonborista.com/?p=173776"]}, {"name": "L戦国乙女5 業火を穿つ宿焔の双刃", "maker": "オリンピア/平和", "released": "2026-06-08", "kind": "slot", "type": "AT", "p1": 359.5, "pBySetting": [359.5, 350.8, 332.5, 302.8, 281.0, 262.9], "ceilingG": 999, "ceilingUnit": "G", "ceilingNote": "通常時999G+α or 6周期でAT当選。設定変更時650G/4周期に短縮", "avgGain": null, "ceilingGain": null, "coin50": 31.0, "payout": [97.9, 98.9, 101.0, 106.2, 111.1, 114.9], "verified": true, "conflict": false, "note": "パチ7の上部サマリは天井『調査中』だが本文は999G+α(nana-pressと一致)。導入約20000台〜。 [獲得枚数調査]avgGain/ceilingGain: 記載なし(パチ7は天井等調査中)。", "sources": ["https://pachiseven.jp/machines_v2/7396", "https://chonborista.com/?p=256147", "https://nana-press.com/kaiseki/machine/1160/"], "avgGainSources": ["https://pachiseven.jp/machines_v2/7396", "https://chonborista.com/?p=256147"]}, {"name": "アイムジャグラーEX(6号機)", "maker": "北電子", "released": "2020-12-14", "kind": "slot", "type": "ノーマル", "p1": 168.5, "pBySetting": [168.5, 161.0, 148.6, 142.2, 128.5, 127.5], "ceilingG": null, "ceilingUnit": "G", "ceilingNote": "天井なし", "avgGain": null, "ceilingGain": null, "coin50": 40, "payout": [97.0, 98.0, 99.5, 101.1, 103.3, 105.5], "verified": false, "conflict": false, "note": "合算確率。ちょんぼりすたの表は一部セル欠落。同一数値がネオアイムEXとして掲載され、パチ7に同機の個別ページ未確認。導入予定約55000台。", "sources": ["https://chonborista.com/?p=103087", "https://pachiseven.jp/machines_v2/7179"]}, {"name": "Lパチスロ 革命機ヴァルヴレイヴ2", "maker": "SANKYO", "released": "2025-11-04", "kind": "slot", "type": "AT", "p1": 476, "pBySetting": [476, 473, null, 464, 459, 456], "ceilingG": 1500, "ceilingUnit": "G", "ceilingNote": "通常時1500G+αでボーナスorAT当選", "avgGain": null, "ceilingGain": null, "coin50": 32.7, "payout": [97.7, 99.3, null, 104.7, 110.8, 114.9], "verified": true, "conflict": true, "note": "CZ確率1/324(全設定共通)。p1はボーナス+AT直撃合算。天井はp-townが『6周期/CZ間999G+α』と別条件を記載(要確認)。導入約25000台。 [獲得枚数調査]avgGain: 革命ボーナス平均約460枚(パチセブン/ちょんぼりすた)のみでAT込み平均は記載なし。ceilingGain記載なし。", "sources": ["https://pachiseven.jp/machines_v2/7259", "https://chonborista.com/?p=243853", "https://p-town.dmm.com/specials/4585"], "avgGainSources": ["https://pachiseven.jp/machines_v2/7259", "https://chonborista.com/?p=243853"]}, {"name": "eフィーバー妖怪ウォッチ", "maker": "SANKYO", "released": "2026-11-02", "kind": "pachinko", "type": "スマパチ ミドル 1種2種混合機(LT搭載・転落タイプ)", "p1": 319.7, "pBySetting": null, "ceilingG": null, "ceilingUnit": null, "ceilingNote": "遊タイム非搭載。時短100回(コマチャレンジ)", "avgGain": null, "ceilingGain": null, "coin50": null, "payout": null, "border": {"equal": 17.0, "equalAlt": 17.5, "unit": "回転/1000円(等価4.0円)", "note": "なな徹17.0 / ちょんぼりすた17.5(暫定)。P-townはボーダー準備中"}, "rush": {"rushEntry": 0.61, "totalContinue": 0.8, "rushHit": "1/41.9", "jikanHit": "1/399.6"}, "verified": true, "conflict": true, "note": "パチンコ。パチスロ版は確認できず。導入日はパチ7/1geki/ちょんぼりすた/P-town系で11/2(ちょんぼりすた別ページに10/5の記載あり)。ボーダーは2サイトで17.0と17.5(暫定)。", "sources": ["https://pachiseven.jp/machines_v2/7453", "https://nana-press.com/kaiseki/machine/1234/", "https://chonborista.com/?p=264594", "https://1geki.jp/newmachinecalender/202611/"], "P": 319.7, "borderEquiv": 17.0, "avgPayout": null}]}/*END*/;
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+const mark = (m) => (m.conflict ? '（資料で食い違いあり）' : m.verified === false ? '（1資料のみ）' : '');
+const srcLinks = (m) => (m.sources || []).map((u, i) => `<a href="${esc(u)}" target="_blank" rel="noopener">資料${i + 1}</a>`).join('・');
+function fillMachineSelects() {
+  const pm = MACHINES.pachinko, sm = MACHINES.slot.filter((m) => m.kind !== 'pachinko');
+  const pAll = [...pm, ...MACHINES.slot.filter((m) => m.kind === 'pachinko')];
+  $('pm').innerHTML = '<option value="">（手で入れる）</option>' + pAll.map((m, i) => `<option value="${i}">${esc(m.name)}${mark(m)}</option>`).join('');
+  $('sm').innerHTML = '<option value="">（手で入れる）</option>' + sm.map((m, i) => `<option value="${i}">${esc(m.name)}${mark(m)}</option>`).join('');
+  $('pm').onchange = () => {
+    const m = pAll[$('pm').value];
+    if (!m) { $('pm-note').textContent = ''; return; }
+    if (m.P) $('P').value = m.P;
+    const y = m.avgPayout || (m.P && m.borderEquiv ? Math.round((250 * m.P) / m.borderEquiv) : null);
+    if (y) $('Y').value = y;
+    $('pm-note').innerHTML = `${esc(m.maker)}${m.released ? '・' + esc(m.released) : ''}　大当たり 1/${m.P ?? '—'}　等価ボーダー ${m.borderEquiv ?? '—'}回転${m.avgPayout ? '' : '（平均出玉はボーダーから逆算）'}${mark(m)}${m.note ? '<br>' + esc(m.note) : ''}<br>${srcLinks(m)}`;
+    renderAll();
+  };
+  $('sm').onchange = () => {
+    const m = sm[$('sm').value];
+    if (!m) { $('sm-note').textContent = ''; return; }
+    if (m.p1) $('p').value = m.p1;
+    if (m.ceilingG && (m.ceilingUnit || 'G') === 'G') $('G').value = m.ceilingG;
+    if (m.avgGain) { $('W0').value = m.avgGain; $('W1').value = m.ceilingGain || m.avgGain; }
+    else if (m.ceilingGain) $('W1').value = m.ceilingGain;
+    if (m.coin50) $('c').value = m.coin50;
+    if (Array.isArray(m.pBySetting) && m.pBySetting.length === 6 && m.pBySetting.every((x) => x > 1)) {
+      m.pBySetting.forEach((x, i) => ($('ka' + i).value = x));
+      $('k1n').value = '初当たり';
+    }
+    const unitWarn = m.ceilingG == null ? '<br>天井のない機種（ノーマル・Aタイプ）。天井狙いはできないので、設定推測のタブで使う（設定ごとの確率を入れた）。'
+      : m.ceilingUnit && m.ceilingUnit !== 'G' ? `<br>天井はゲーム数ではなく${esc(m.ceilingUnit)}で決まる機種。いまのゲーム数での計算は目安。`
+      : !m.avgGain ? '<br>平均獲得枚数は資料で確かめられなかった。自分で入れてから見てください。' : '';
+    $('sm-note').innerHTML = `${esc(m.maker)}${m.released ? '・' + esc(m.released) : ''}　初当たり 1/${m.p1 ?? '—'}　天井 ${m.ceilingG ?? '—'}${esc(m.ceilingUnit || 'G')}　平均獲得 ${m.avgGain ?? '—'}枚　コイン持ち ${m.coin50 ?? '—'}G${mark(m)}${m.ceilingNote ? '<br>天井：' + esc(m.ceilingNote) : ''}${m.note ? '<br>' + esc(m.note) : ''}${unitWarn}<br>${srcLinks(m)}`;
+    renderAll();
+  };
+}
+
+// ＋／− ボタン（data-for の入力に足す）
+document.querySelectorAll('.steps').forEach((box) => box.addEventListener('click', (ev) => {
+  const b = ev.target.closest('button'); if (!b) return;
+  const el = $(box.dataset.for);
+  if (b.dataset.reset) { $('ry').value = 0; $('rs0').value = $('rs1').value; }
+  else el.value = Math.max(0, (parseFloat(el.value) || 0) + Number(b.dataset.d));
+  renderAll();
+}));
+// 回転率の測定：（いま−打ち始め）÷（使った金額÷1,000）。出たら「1,000円あたりの回転数」に入れる
+function measure() {
+  const a = num('rs0'), b = num('rs1'), y = num('ry');
+  if (!Number.isFinite(a) || !Number.isFinite(b) || !(y > 0)) return;
+  const spins = b - a;
+  if (spins < 0) { $('rmsg').textContent = 'いまの総回転数が打ち始めより小さい。数字を確かめてください（大当たりで総回転数が0に戻る台もある）。'; return; }
+  const rate = spins / (y / 1000);
+  $('R').value = rate.toFixed(1);
+  $('rmsg').textContent = `${spins}回転 ÷ ${(y / 1000).toLocaleString('ja-JP')}千円 ＝ 1,000円あたり ${rate.toFixed(1)}回転（下の計算に入れました）${y < 5000 ? '。5,000円ほど測るまではブレが大きい' : ''}`;
+}
+// BB＋RB を要素1に
+function bbrb() {
+  const bb = num('kbb'), rb = num('krb');
+  if (Number.isFinite(bb) || Number.isFinite(rb)) { $('k1').value = (bb || 0) + (rb || 0); $('k1n').value = 'ボーナス合算'; }
+}
+const _render = renderAll;
+renderAll = function () { measure(); bbrb(); _render(); };
+
+buildSetTable();
+fillMachineSelects();
+document.addEventListener('input', renderAll);
+let startTab = 'pachi';
+try { startTab = localStorage.getItem('ps-tab') || 'pachi'; } catch (e) {}
+showTab(['pachi', 'slot', 'set'].includes(startTab) ? startTab : 'pachi');
+renderAll();
+</script>
+
+<script>
+// オフラインで動くように、開いたときに中身を端末に保存する（版 386a5da76a）
+if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+</script>
+</body>
+</html>
