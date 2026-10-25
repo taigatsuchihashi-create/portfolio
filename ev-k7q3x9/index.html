@@ -38,17 +38,20 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .wrap { max-width: 560px; margin: 0 auto; display: grid; gap: 14px; }
 h1 { font-family: var(--f-display); font-weight: 400; font-size: 1.5rem; margin: 4px 0 0; letter-spacing: .02em; }
 h1 small { font-family: var(--f-body); font-size: .8rem; color: var(--muted); margin-left: 8px; letter-spacing: 0; }
-.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;
+.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px;
   background: var(--bg); padding-block: 6px; }
 .tabs button { font: inherit; font-weight: 700; padding: 10px 4px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--muted); cursor: pointer; }
 .tabs button[aria-selected="true"] { background: var(--steel); border-color: var(--steel); color: #fff; }
 .result { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; display: grid; gap: 8px; }
-.verdict { display: inline-block; justify-self: start; font-weight: 700; font-size: .85rem; padding: 2px 10px; border-radius: 999px; }
+.verdict { display: block; font-weight: 700; font-size: 1.05rem; line-height: 1.4; padding: 8px 12px; border-radius: 10px; }
+.verdict:empty { display: none; }
+.verdict.warn { background: color-mix(in srgb, var(--brass) 16%, transparent); color: var(--brass); }
 .verdict.good { background: var(--good-bg); color: var(--good); } .verdict.bad { background: var(--bad-bg); color: var(--bad); }
 .big { font-family: var(--f-display); font-size: 2.3rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
 .big.good { color: var(--good); } .big.bad { color: var(--bad); }
 .big small { display: block; font-family: var(--f-body); font-size: .85rem; color: var(--muted); font-weight: 500; margin-top: 4px; }
-.kv { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; font-variant-numeric: tabular-nums; }
+.kv { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 4px 12px; font-variant-numeric: tabular-nums; }
+.kv dd { overflow-wrap: anywhere; }
 .kv dt { color: var(--muted); } .kv dd { margin: 0; font-weight: 700; text-align: right; }
 .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; display: grid; gap: 12px; }
 .panel h2 { font-size: .95rem; margin: 0; color: var(--brass); letter-spacing: .04em; }
@@ -57,14 +60,24 @@ h1 small { font-family: var(--f-body); font-size: .8rem; color: var(--muted); ma
 label { display: grid; gap: 3px; font-size: .82rem; color: var(--muted); min-width: 0; }
 .pick { border-color: var(--steel); }
 .counter { display: grid; gap: 6px; }
-.steps { display: flex; flex-wrap: wrap; gap: 6px; }
-.steps button { font: inherit; font-weight: 700; min-height: 44px; padding: 6px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; flex: 1 1 auto; }
-.steps button.main { background: var(--brass); border-color: var(--brass); color: #fff; flex: 2 1 auto; }
+.steps, .acts { display: flex; flex-wrap: wrap; gap: 6px; }
+.steps button, .acts button { font: inherit; font-weight: 700; min-height: 44px; padding: 6px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; flex: 1 1 auto; }
+.steps button.main, .acts button.main { background: var(--brass); border-color: var(--brass); color: #fff; flex: 2 1 auto; }
 .measure { margin: 0; font-weight: 700; color: var(--steel); }
 input, select { min-height: 44px; font: inherit; font-size: 1.05rem; font-weight: 700; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; width: 100%; box-sizing: border-box; font-variant-numeric: tabular-nums; }
 input:focus-visible, select:focus-visible, button:focus-visible { outline: 2px solid var(--brass); outline-offset: 1px; }
 .unit { display: flex; align-items: center; gap: 6px; } .unit span { color: var(--muted); font-size: .85rem; white-space: nowrap; }
 .note { font-size: .8rem; color: var(--muted); margin: 0; }
+.warnline { margin: 0; font-size: .85rem; font-weight: 700; color: var(--bad); }
+.warnline:empty { display: none; }
+.chk { display: flex; align-items: center; gap: 8px; font-size: .9rem; color: var(--ink); }
+.chk input { width: 24px; min-height: 24px; }
+.sign { display: grid; grid-template-columns: 5.5em 1fr; gap: 6px; }
+.jbtn { justify-self: start; }
+#k-table { table-layout: fixed; }
+#k-table th, #k-table td { padding: 3px 2px; font-size: .78rem; text-align: center; }
+#k-table th:first-child, #k-table td:first-child { width: 2em; }
+#k-table input { min-height: 40px; padding: 4px 2px; font-size: .88rem; text-align: center; min-width: 0; }
 .bar { display: grid; grid-template-columns: 3.4em 1fr 3.4em; align-items: center; gap: 8px; font-variant-numeric: tabular-nums; font-size: .9rem; }
 .bar i { display: block; height: 12px; border-radius: 6px; background: var(--steel); }
 .bar.top i { background: var(--brass); }
@@ -84,8 +97,9 @@ details summary { cursor: pointer; color: var(--steel); font-weight: 700; font-s
   <h1>パチ・スロ期待値<small>打つ前に台の期待値を計算</small></h1>
   <div class="tabs" role="tablist">
     <button role="tab" id="t-pachi" aria-selected="true" data-tab="pachi">パチンコ</button>
-    <button role="tab" id="t-slot" aria-selected="false" data-tab="slot">パチスロ天井</button>
+    <button role="tab" id="t-slot" aria-selected="false" data-tab="slot">スロ天井</button>
     <button role="tab" id="t-set" aria-selected="false" data-tab="set">設定推測</button>
+    <button role="tab" id="t-log" aria-selected="false" data-tab="log">記録</button>
   </div>
 
   <!-- パチンコ -->
@@ -104,7 +118,13 @@ details summary { cursor: pointer; color: var(--steel); font-weight: 700; font-s
           <dt>この交換率のボーダー（持ち玉比率こみ）</dt><dd id="p-border"></dd>
           <dt>打つ間に1回は当たる確率</dt><dd id="p-hit"></dd>
           <dt>初当たりまでの平均投資（現金）</dt><dd id="p-invest"></dd>
+          <dt>回転率がボーダーを超えている確からしさ</dt><dd id="p-sure">—</dd>
+          <dt>初当たりまでの投資（半分／9割／95%はこの中）</dt><dd id="p-q"></dd>
+          <dt>軍資金で初当たり前に尽きる確率</dt><dd id="p-bust">—</dd>
         </dl>
+        <p class="warnline" id="p-warn"></p>
+        <p class="note" id="p-why"></p>
+        <button type="button" class="btn ghost jbtn" data-journal="pachi">この台を収支記録へ</button>
       </div>
       <div class="panel">
         <h2>回転率を測る（データカウンターの総回転数）</h2>
@@ -127,8 +147,22 @@ details summary { cursor: pointer; color: var(--steel); font-weight: 700; font-s
           <label>持ち玉で打つ割合<span class="unit"><input id="hold" type="number" inputmode="decimal" step="any" value="0"><span>%</span></span></label>
           <label>1時間あたりの回転数<input id="sph" type="number" inputmode="decimal" step="any" value="200"></label>
           <label>打つ時間<span class="unit"><input id="hours" type="number" inputmode="decimal" step="any" value="5"><span>時間</span></span></label>
+          <label class="wide">軍資金（使ってよい上限）<span class="unit"><input id="bank" type="number" inputmode="numeric" step="1000" value="" placeholder="例 30000"><span>円</span></span></label>
         </div>
         <p class="note">初期値は例（1/319.6・初当たり1回4,400玉）。機種の数字はスペック表や攻略情報で確かめて入れてください。</p>
+      </div>
+      <div class="panel">
+        <details id="yu">
+          <summary>遊タイムのある台（天井狙い）</summary>
+          <div class="grid" style="margin-top:10px">
+            <label>遊タイムの発動（大当たり後の低確率の回転数）<input id="yT" type="number" inputmode="numeric" step="1" value="" placeholder="例 950"></label>
+            <label>いまの回転数（大当たり後）<input id="ys" type="number" inputmode="numeric" step="1" value="" placeholder="例 600"></label>
+            <label>遊タイムの時短回数<input id="yJ" type="number" inputmode="numeric" step="1" value="" placeholder="例 1200"></label>
+            <label>遊タイム中に当たったときの平均出玉<span class="unit"><input id="yY2" type="number" inputmode="numeric" step="1" value="" placeholder="空欄なら上と同じ"><span>玉</span></span></label>
+          </div>
+          <p class="measure" id="ymsg">遊タイムの数字を入れると、いまの回転数から当たりまで打ったときの期待値が出ます。</p>
+          <p class="note">機種の一覧には遊タイムの数字を入れていない（資料で確かめていないため）。遊タイムのある台はスペック表の数字を入れてください。当たったら（遊タイムで当たらなければ）やめる前提。大当たり確率・平均出玉・回転率・交換率は上の数字を使います。</p>
+        </details>
       </div>
       <div class="panel">
         <h2>交換率ごとのボーダー（現金投資）</h2>
@@ -159,7 +193,13 @@ details summary { cursor: pointer; color: var(--steel); font-weight: 700; font-s
           <dt>当たるまでの平均ゲーム数</dt><dd id="s-games"></dd>
           <dt>天井までの最大投資（現金）</dt><dd id="s-max"></dd>
           <dt>この条件で期待値がプラスになるのは</dt><dd id="s-start"></dd>
+          <dt>当たるまでの投資（半分／9割はこの中）</dt><dd id="s-q"></dd>
+          <dt>軍資金で当たりまで届かない確率</dt><dd id="s-short">—</dd>
+          <dt>平均獲得の95%の幅で見た期待値</dt><dd id="s-range">—</dd>
         </dl>
+        <p class="warnline" id="s-warn"></p>
+        <p class="note" id="s-why"></p>
+        <button type="button" class="btn ghost jbtn" data-journal="slot">この台を収支記録へ</button>
       </div>
       <div class="panel">
         <h2>機種の数字（選ぶと入る）</h2>
@@ -171,8 +211,20 @@ details summary { cursor: pointer; color: var(--steel); font-weight: 700; font-s
           <label>コイン持ち（50枚で）<span class="unit"><input id="c" type="number" inputmode="decimal" step="any" value="32"><span>G</span></span></label>
           <label>交換率（100円あたり）<span class="unit"><input id="sxch" type="number" inputmode="decimal" step="any" value="5.6"><span>枚</span></span></label>
           <label>持ちメダルで打つ割合<span class="unit"><input id="shold" type="number" inputmode="decimal" step="any" value="0"><span>%</span></span></label>
+          <label class="wide">軍資金（使ってよい上限）<span class="unit"><input id="sbank" type="number" inputmode="numeric" step="1000" value="" placeholder="例 20000"><span>円</span></span></label>
         </div>
         <p class="note">貸しメダルは1,000円＝50枚。当たったらやめる前提（当たり後の上乗せは「平均獲得」に含めて入力）。初期値は例です。</p>
+      </div>
+      <div class="panel">
+        <h2>当たりの獲得枚数を記録（平均獲得を自分の実戦から出す）</h2>
+        <p class="note" id="lw-target"></p>
+        <div class="grid">
+          <label>獲得枚数（当たり1回ぶん）<span class="unit"><input id="lw" type="number" inputmode="numeric" step="1" value="" placeholder="例 520"><span>枚</span></span></label>
+          <label class="chk"><input id="lceil" type="checkbox">天井で当たった</label>
+        </div>
+        <div class="acts"><button type="button" class="main" id="lw-add">記録する</button><button type="button" id="lw-use">この平均を入れる</button><button type="button" id="lw-undo">最後の1件を消す</button></div>
+        <p class="measure" id="lw-stats"></p>
+        <p class="note">解析サイトに平均獲得枚数が載っていない機種が多いので、当たるたびに獲得枚数を記録して平均を出す。10件までは平均のブレが大きい。記録はこのスマホの中だけ。</p>
       </div>
       <div class="panel">
         <h2>いまのゲーム数ごとの期待値</h2>
@@ -186,9 +238,18 @@ details summary { cursor: pointer; color: var(--steel); font-weight: 700; font-s
   <!-- 設定推測 -->
   <section id="set" class="tabpage" hidden>
     <div class="wrap">
+      <div class="panel pick">
+        <label>機種<select id="km"></select></label>
+        <p class="note" id="km-note"></p>
+      </div>
       <div class="result" aria-live="polite">
         <span class="verdict" id="k-verdict"></span>
+        <dl class="kv">
+          <dt>打ち続けた1時間の期待値</dt><dd id="k-ev">—</dd>
+          <dt>設定4以上の合計</dt><dd id="k-high"></dd>
+        </dl>
         <div id="k-bars" style="display:grid;gap:6px"></div>
+        <p class="warnline" id="k-warn"></p>
       </div>
       <div class="panel">
         <h2>データカウンターの数字</h2>
@@ -204,15 +265,54 @@ details summary { cursor: pointer; color: var(--steel); font-weight: 700; font-s
           <label>要素1の回数<input id="k1" type="number" inputmode="numeric" step="1" value="12"></label>
           <label>要素2の名前<input id="k2n" type="text" value="小役"></label>
           <label>要素2の回数（使わないなら空欄）<input id="k2" type="number" inputmode="numeric" step="1" value=""></label>
+          <label>要素3の名前<input id="k3n" type="text" value=""></label>
+          <label>要素3の回数（使わないなら空欄）<input id="k3" type="number" inputmode="numeric" step="1" value=""></label>
         </div>
-        <h2>設定ごとの確率（1/〇）</h2>
+        <p class="note">同じ当たりを2つの要素で数えない（合算とBIGを両方入れない。BIGとREGを分けて入れるのはよい）。</p>
+        <h2>打ち続けたときの期待値の条件</h2>
+        <div class="grid">
+          <label>1時間に回すゲーム数<span class="unit"><input id="kgph" type="number" inputmode="numeric" step="10" value="700"><span>G</span></span></label>
+          <label>交換率（100円あたり）<span class="unit"><input id="kxch" type="number" inputmode="decimal" step="any" value="5.6"><span>枚</span></span></label>
+          <label class="wide">持ちメダルで打つ割合（続けるときはふつう100%）<span class="unit"><input id="khold" type="number" inputmode="decimal" step="any" value="100"><span>%</span></span></label>
+        </div>
+        <p class="note">現金で買うメダルは1枚20円、流すときは交換率の価値。等価でない店で現金を足しながら打つと、設定6でもマイナスになることがある。</p>
+        <h2>設定ごとの確率（1/〇）・機械割（割%）・店の配分</h2>
         <table class="tbl" id="k-table"></table>
-        <p class="note">機種の解析値（設定差のある要素）を入れてください。初期値は例。回数が少ないうちは差がつきにくく、「まだ判断できない」と出ます。</p>
+        <div class="acts" id="k-prior"><button type="button" data-prior="1,1,1,1,1,1">配分を均等に</button><button type="button" data-prior="50,20,15,7,5,3">設定1が半分の店（例）</button></div>
+        <p class="note">確率は機種の解析値（設定差のある要素）。空欄の設定（解析値がない）は外して計算。店の配分は「その店でその設定が入っている割合」の見込み（比なので合計は100でなくてよい）。均等のままだと高設定を甘く見積もるので、ふだんの店なら設定1を多めに。初期値は例。回数が少ないうちは差がつきにくく、「まだ判断できない」と出ます。</p>
       </div>
     </div>
   </section>
 
-  <div class="panel">
+  <!-- 収支記録 -->
+  <section id="log" class="tabpage" hidden>
+    <div class="wrap">
+      <div class="result" aria-live="polite">
+        <span class="verdict" id="j-verdict"></span>
+        <dl class="kv">
+          <dt>記録した回数</dt><dd id="j-n"></dd>
+          <dt>期待値の合計（台選びの腕）</dt><dd id="j-ev"></dd>
+          <dt>実際の収支の合計</dt><dd id="j-res"></dd>
+          <dt>差（運のブレ）</dt><dd id="j-luck"></dd>
+        </dl>
+        <p class="note">期待値の合計がプラスなら、打つ台の選び方は正しい。実際の収支との差は運のブレで、回数を重ねるほど期待値に近づく。期待値の合計がマイナスなら、台選びを見直す。</p>
+      </div>
+      <div class="panel">
+        <h2>1回分を記録</h2>
+        <div class="grid">
+          <label>日付<input id="jd" type="date"></label>
+          <label>機種<input id="jm" type="text" placeholder="例 e東京喰種"></label>
+          <label class="wide">打つと決めたときの期待値<span class="sign"><select id="jevs" aria-label="期待値の符号"><option value="+">プラス</option><option value="-">マイナス</option></select><span class="unit"><input id="jev" type="number" inputmode="numeric" step="1" value=""><span>円</span></span></span></label>
+          <label class="wide">実際の収支<span class="sign"><select id="jress" aria-label="勝ち負け"><option value="+">勝ち</option><option value="-">負け</option></select><span class="unit"><input id="jres" type="number" inputmode="numeric" step="1" value=""><span>円</span></span></span></label>
+        </div>
+        <div class="acts"><button type="button" class="main" id="j-add">記録する</button><button type="button" id="j-undo" hidden>消したのを戻す</button></div>
+        <p class="note" id="j-msg">パチンコ・スロ天井のタブの「この台を収支記録へ」で、機種と期待値が入ります。記録はこのスマホの中だけ。</p>
+      </div>
+      <div class="panel"><h2>これまでの記録</h2><div id="j-list"></div></div>
+    </div>
+  </section>
+
+  <div class="panel" id="presets-panel">
     <h2>機種ごとに保存</h2>
     <div class="presets">
       <input id="pname" type="text" placeholder="機種名（例：〇〇 ホール名）" aria-label="保存する名前">
@@ -220,44 +320,165 @@ details summary { cursor: pointer; color: var(--steel); font-weight: 700; font-s
       <div class="row"><select id="plist" aria-label="保存した機種"></select><button class="btn ghost" id="pload">読む</button><button class="btn ghost" id="pdel">消す</button></div>
     </div>
     <p class="note" id="pmsg">保存はこのスマホのブラウザの中だけ（別の端末には出ません）。</p>
+    <button type="button" class="btn ghost jbtn" id="preset-reset">このタブの数字を初期値に戻す</button>
   </div>
 </div>
 
 <script>
-// 計算（calc.js と同じ。test.js でシミュレーションと照合済み）
-const Calc = {
+// 計算（build.py が calc.js をそのまま埋め込む。test.js でシミュレーションと照合済み）
+/*CALC*/const Calc = {
   pachinko(v) {
-    const { P, R, Y, lend, xch, hold, sph, hours } = v;
-    const e = 100 / xch, ballsPerSpin = 1000 / lend / R, costCash = 1000 / R, costHold = ballsPerSpin * e;
-    const cost = (1 - hold) * costCash + hold * costHold, gain = (Y / P) * e, evSpin = gain - cost, spins = sph * hours;
-    const border = (h, x) => { const ee = 100 / x; return ((1 - h) * 1000 + h * (1000 / lend) * ee) / ((Y / P) * ee); };
-    return { evSpin, spins, evHour: evSpin * sph, evTotal: evSpin * spins, border: border(hold, xch),
-      hitInSession: 1 - Math.pow(1 - 1 / P, spins), hamari: [1, 2, 3].map((k) => ({ k, p: Math.pow(1 - 1 / P, k * P) })), avgInvest: P * costCash, borderOf: border };
+    const { P, R, Y, lend, xch, hold, sph, hours } = v; // lend：貸し玉1玉の円（4/1）、xch：100円あたりの交換玉数、hold：持ち玉比率(0〜1)
+    const e = 100 / xch; // 1玉の交換価値（円）
+    const ballsPerSpin = 1000 / lend / R;
+    const costCash = 1000 / R; // 現金で1回転にかかる円
+    const costHold = ballsPerSpin * e; // 持ち玉で1回転にかかる円（換金した場合の価値）
+    const cost = (1 - hold) * costCash + hold * costHold;
+    const gain = (Y / P) * e; // 1回転あたりの期待出玉の価値
+    const evSpin = gain - cost;
+    const spins = sph * hours;
+    const border = (h, x) => {
+      const ee = 100 / x;
+      return ((1 - h) * 1000 + h * (1000 / lend) * ee) / ((Y / P) * ee);
+    };
+    const hitWithin = (n) => 1 - Math.pow(1 - 1 / P, n);
+    return {
+      e, cost, gain, evSpin, spins,
+      evHour: evSpin * sph,
+      evTotal: evSpin * spins,
+      border: border(hold, xch),
+      borderCash: border(0, xch),
+      hitInSession: hitWithin(spins),
+      hamari: [1, 2, 3].map((k) => ({ k, p: Math.pow(1 - 1 / P, k * P) })),
+      avgInvest: P * costCash,
+      borderOf: border,
+    };
   },
   slot(v) {
-    const { p, G, g, W0, W1, c, xch, hold } = v;
-    const q = 1 / p, n = Math.max(0, G - g), e = 100 / xch, u = 50 / c, reach = Math.pow(1 - q, n);
-    const games = n === 0 ? 0 : (1 - reach) / q, coinsIn = games * u, payout = n === 0 ? W1 : W0 * (1 - reach) + W1 * reach;
-    const evYen = payout * e - coinsIn * ((1 - hold) * 20 + hold * e);
-    return { n, reach, games, coinsIn, payout, evYen, evCoins: payout - coinsIn, maxInvest: n * u * 20,
-      within: [100, 200, 300].map((k) => ({ k, p: k >= n ? 1 : 1 - Math.pow(1 - q, k) })) };
+    const { p, G, g, W0, W1, c, xch, hold } = v; // c：50枚あたりのゲーム数、xch：100円あたりの交換枚数
+    const q = 1 / p;
+    const n = Math.max(0, G - g);
+    const e = 100 / xch;
+    const u = 50 / c; // 1ゲームに使う枚数
+    const reach = Math.pow(1 - q, n);
+    const games = n === 0 ? 0 : (1 - reach) / q;
+    const coinsIn = games * u;
+    const payout = n === 0 ? W1 : W0 * (1 - reach) + W1 * reach;
+    const yenPerCoinIn = (1 - hold) * 20 + hold * e;
+    const evYen = payout * e - coinsIn * yenPerCoinIn;
+    return {
+      n, reach, games, coinsIn, payout, evYen,
+      evCoins: payout - coinsIn,
+      maxInvest: n * u * 20,
+      within: [100, 200, 300].map((k) => ({ k, p: k >= n ? 1 : 1 - Math.pow(1 - q, k) })),
+    };
   },
+  /** 期待値がプラスになる最初の現在ゲーム数（10G刻み）と、ゲーム数ごとの期待値 */
   slotCurve(v) {
-    const pts = []; let start = null;
-    for (let g = 0; g <= v.G; g += 10) { const r = Calc.slot({ ...v, g }); pts.push({ g, ev: r.evYen }); if (start === null && r.evYen >= 0) start = g; }
+    const pts = [];
+    let start = null;
+    for (let g = 0; g <= v.G; g += 10) {
+      const r = Calc.slot({ ...v, g });
+      pts.push({ g, ev: r.evYen });
+      if (start === null && r.evYen >= 0) start = g;
+    }
     return { pts, start };
   },
-  setting(elems) {
-    const logs = [0, 1, 2, 3, 4, 5].map((s) => elems.reduce((acc, el) => { const pr = 1 / el.d[s]; return acc + el.k * Math.log(pr) + (el.N - el.k) * Math.log(1 - pr); }, 0));
-    const mx = Math.max(...logs), w = logs.map((l) => Math.exp(l - mx)), sum = w.reduce((a, b) => a + b, 0);
+  /** 設定推測：各要素（回数k / 試行N / 設定ごとの確率の分母 d）から事後確率。
+   *  prior：店の設定配分（6つ、合計は問わない。省略で均等）。d が空（解析値なし）の設定は外す（事後0） */
+  setting(elems, prior) {
+    const pr0 = prior && prior.length === 6 ? prior : [1, 1, 1, 1, 1, 1];
+    const ok = [0, 1, 2, 3, 4, 5].map((s) => pr0[s] > 0 && elems.every((el) => el.d[s] > 1));
+    const logs = [0, 1, 2, 3, 4, 5].map((s) => !ok[s] ? -Infinity :
+      Math.log(pr0[s]) + elems.reduce((acc, el) => {
+        const pr = 1 / el.d[s];
+        return acc + el.k * Math.log(pr) + (el.N - el.k) * Math.log(1 - pr);
+      }, 0)
+    );
+    const mx = Math.max(...logs);
+    if (!Number.isFinite(mx)) return [0, 0, 0, 0, 0, 0];
+    const w = logs.map((l) => Math.exp(l - mx));
+    const sum = w.reduce((a, b) => a + b, 0);
     return w.map((x) => x / sum);
   },
-};
+  /** 設定の事後確率×機械割（%）→ 打ち続けたときの1時間あたりの期待値（円）。gph：1時間に回すゲーム数（3枚掛け）
+   *  機械割が空の設定に事後確率が1%以上残っていれば missing に入れる（その分は計算に入らない） */
+  settingEV(post, payout, gph, xch, hold) {
+    const e = 100 / xch, cost = (1 - hold) * 20 + hold * e, coinsIn = gph * 3;
+    const per = payout.map((r) => (r > 0 ? coinsIn * ((r / 100) * e - cost) : null));
+    let ev = 0, w = 0;
+    const missing = [];
+    post.forEach((p, i) => { if (per[i] === null) { if (p >= 0.01) missing.push(i + 1); } else { ev += p * per[i]; w += p; } });
+    return { evHour: w > 0 ? ev / w : NaN, per, missing, covered: w };
+  },
+  /** 回転率の確からしさ。spins：測った回転数、yen：使った金額、lend：貸し玉（円/玉）、border：比べるボーダー。
+   *  1玉ごとに確率 s でスタートに入る（二項分布）とみた幅。実際の台は寄りのムラや保留でこれよりブレるので、幅は最低限の見積もり */
+  rateCI(spins, yen, lend, border) {
+    const m = yen / 1000, balls = yen / lend, s = Math.min(Math.max(spins / balls, 1e-9), 1 - 1e-9);
+    const R = spins / m;
+    const v1 = (1000 / lend) * s * (1 - s); // 1,000円あたりの回転数の分散
+    const se = Math.sqrt(v1 / m);
+    const z = se > 0 ? (R - border) / se : (R >= border ? Infinity : -Infinity);
+    const need = R === border ? Infinity : (1.645 * 1.645 * v1) / ((R - border) * (R - border)); // 片側95%で言い切れるまでの千円数
+    return { R, se, lo: R - 1.96 * se, hi: R + 1.96 * se, pAbove: Calc.phi(z), moreYen: Math.max(0, need - m) * 1000 };
+  },
+  /** 標準正規分布の累積（Abramowitz–Stegun 7.1.26、誤差 1.5e-7） */
+  phi(z) {
+    if (z === Infinity) return 1;
+    if (z === -Infinity) return 0;
+    const x = Math.abs(z) / Math.SQRT2, t = 1 / (1 + 0.3275911 * x);
+    const erf = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x);
+    return z >= 0 ? 0.5 * (1 + erf) : 0.5 * (1 - erf);
+  },
+  /** 当たるまでの回転（ゲーム）数の分位点：確率 q で当たる回数 k 以内に当たる、最小の k（上限 cap） */
+  geoQuantile(p, q, cap) {
+    const k = Math.ceil(Math.log(1 - q) / Math.log(1 - 1 / p));
+    return cap === undefined ? k : Math.min(k, cap);
+  },
+  /** パチンコの軍資金：初当たりまでの現金投資の50/90/95%点と、軍資金 bank 円で初当たり前に尽きる確率 */
+  pachiBank(P, R, bank) {
+    const qs = [0.5, 0.9, 0.95].map((q) => ({ q, yen: Calc.geoQuantile(P, q) * (1000 / R) }));
+    const spins = Number.isFinite(bank) && bank > 0 ? (bank / 1000) * R : null;
+    return { qs, bust: spins === null ? null : Math.pow(1 - 1 / P, spins) };
+  },
+  /** パチスロの軍資金：残り n ゲームのうちに当たるまでの現金投資の50/90%点（天井で頭打ち）、最大投資、軍資金で天井まで届かない確率 */
+  slotBank(p, n, c, bank) {
+    const u = 50 / c, yenG = u * 20;
+    const qs = [0.5, 0.9].map((q) => ({ q, yen: Calc.geoQuantile(p, q, n) * yenG }));
+    const afford = Number.isFinite(bank) && bank > 0 ? Math.floor(bank / yenG) : null;
+    return { qs, max: n * yenG, afford, short: afford === null ? null : afford >= n ? 0 : Math.pow(1 - 1 / p, afford) };
+  },
+  /** 遊タイム：大当たり後 T 回転（低確率）で J 回の時短。いま s 回転。当たったら（または遊タイムで当たらなければ）やめる前提。
+   *  Y：通常の初当たり1回の平均出玉、Y2：遊タイム中に当たったときの平均出玉、costSpin：1回転の費用（円）、e：1玉の交換価値 */
+  yutime(v) {
+    const { P, T, s, J, Y, Y2, costSpin, e } = v;
+    const q = 1 / P, n = Math.max(0, T - s);
+    const reach = Math.pow(1 - q, n);
+    const games = n === 0 ? 0 : (1 - reach) / q;
+    const pJ = 1 - Math.pow(1 - q, J);
+    const balls = Y * (1 - reach) + reach * pJ * Y2;
+    return { n, reach, games, pJ, evYen: balls * e - games * costSpin };
+  },
+  /** 自分の記録（当たり1回の獲得枚数など）の平均と95%の幅（t分布） */
+  logStats(xs) {
+    const n = xs.length;
+    if (!n) return { n: 0, mean: NaN, sd: NaN, lo: NaN, hi: NaN };
+    const mean = xs.reduce((a, b) => a + b, 0) / n;
+    const sd = n > 1 ? Math.sqrt(xs.reduce((a, b) => a + (b - mean) * (b - mean), 0) / (n - 1)) : NaN;
+    const T = [0, 12.71, 4.303, 3.182, 2.776, 2.571, 2.447, 2.365, 2.306, 2.262, 2.228, 2.201, 2.179, 2.16, 2.145, 2.131, 2.12, 2.11, 2.101, 2.093, 2.086, 2.08, 2.074, 2.069, 2.064, 2.06, 2.056, 2.052, 2.048, 2.045, 2.042];
+    const t = n - 1 < T.length ? T[n - 1] : 1.96;
+    const h = n > 1 ? (t * sd) / Math.sqrt(n) : NaN;
+    return { n, mean, sd, lo: mean - h, hi: mean + h };
+  },
+};/*CALCEND*/
 
 const $ = (id) => document.getElementById(id);
 const num = (id) => { const x = parseFloat($(id).value); return Number.isFinite(x) ? x : NaN; };
 const yen = (x) => `${x >= 0 ? '+' : '−'}${Math.round(Math.abs(x)).toLocaleString('ja-JP')}円`;
-const pct = (x) => `${(x * 100).toFixed(x < 0.1 ? 1 : 0)}%`;
+const pct = (x) => (x > 0.995 ? '99%以上' : x < 0.005 && x > 0 ? '1%未満' : `${(x * 100).toFixed(x < 0.1 ? 1 : 0)}%`);
+const man = (x) => (Math.abs(x) >= 10000 ? `${(x / 10000).toFixed(1)}万円` : `${Math.round(x).toLocaleString('ja-JP')}円`);
+const setV = (el, cls, text) => { el.textContent = text; el.className = 'verdict ' + cls; };
+const lastEV = {};
 const verdict = (el, ev, okText, ngText) => { el.textContent = ev >= 0 ? okText : ngText; el.className = 'verdict ' + (ev >= 0 ? 'good' : 'bad'); };
 const bar = (label, p, right, top) => `<div class="bar${top ? ' top' : ''}"><span>${label}</span><span class="track"><i style="width:${Math.max(1, p * 100).toFixed(1)}%"></i></span><span>${right}</span></div>`;
 
@@ -265,7 +486,23 @@ function pachi() {
   const v = { P: num('P'), R: num('R'), Y: num('Y'), lend: num('lend'), xch: num('xch'), hold: num('hold') / 100, sph: num('sph'), hours: num('hours') };
   if (Object.values(v).some((x) => !Number.isFinite(x)) || v.P <= 1 || v.R <= 0 || v.xch <= 0) { $('p-big').textContent = '入力を確かめてください'; return; }
   const r = Calc.pachinko(v);
-  verdict($('p-verdict'), r.evTotal, 'ボーダー超え：打つ価値あり', 'ボーダー未満：やめどき');
+  lastEV.pachi = r.evTotal;
+  // 測った回転率で、ボーダーを本当に超えているか（測った金額が少ないと言い切れない）
+  const a0 = num('rs0'), a1 = num('rs1'), ry = num('ry');
+  const ci = Number.isFinite(a0) && Number.isFinite(a1) && ry > 0 && a1 - a0 > 0 ? Calc.rateCI(a1 - a0, ry, v.lend, r.border) : null;
+  const more = (y) => (Number.isFinite(y) && y <= 100000 ? `あと${man(Math.ceil(y / 1000) * 1000)}ほど測る` : 'ボーダーぎりぎりで期待値はほぼ0');
+  if (r.evTotal >= 0) {
+    if (!ci) setV($('p-verdict'), 'good', 'ボーダー超え：打つ価値あり（回転率は上の「測る」で確かめる）');
+    else if (ci.pAbove >= 0.95) setV($('p-verdict'), 'good', 'ボーダー超え（95%以上たしか）：打つ');
+    else setV($('p-verdict'), 'warn', `たぶんボーダー超え（${pct(ci.pAbove)}）：${more(ci.moreYen)}`);
+  } else if (!ci || ci.pAbove <= 0.05) setV($('p-verdict'), 'bad', 'ボーダー未満：やめる');
+  else setV($('p-verdict'), 'bad', `たぶんボーダー未満（超えている確率 ${pct(ci.pAbove)}）：やめどき`);
+  $('p-sure').textContent = ci ? `${pct(ci.pAbove)}（95%の幅 ${ci.lo.toFixed(1)}〜${ci.hi.toFixed(1)}回転）` : '回転率を測ると出る';
+  const bk = Calc.pachiBank(v.P, v.R, num('bank'));
+  $('p-q').textContent = bk.qs.map((x) => man(x.yen)).join('／');
+  $('p-bust').textContent = bk.bust === null ? '軍資金を入れると出る' : pct(bk.bust);
+  $('p-warn').textContent = bk.bust !== null && bk.bust >= 0.2 && r.evTotal >= 0 ? `軍資金が初当たりまでもたない確率 ${pct(bk.bust)}。尽きても期待値は変わらないが、負けて帰る日が増える。` : '';
+  $('p-why').textContent = ci ? '確からしさは「1玉ごとに同じ確率でスタートに入る」とみた最低限の見積もり。実際の台は寄りのムラや保留でもっとブレるので、95%に届くまで測ってから判断する。' : '';
   $('p-big').className = 'big ' + (r.evTotal >= 0 ? 'good' : 'bad');
   $('p-big').innerHTML = `${yen(r.evTotal)}<small>${v.hours}時間・約${Math.round(r.spins).toLocaleString('ja-JP')}回転の期待値</small>`;
   $('p-hour').textContent = yen(r.evHour);
@@ -277,13 +514,40 @@ function pachi() {
   $('p-btable').innerHTML = '<tr><th>交換（100円あたり）</th><th>ボーダー</th><th>いまとの差</th></tr>' +
     base.map((x) => { const b = r.borderOf(0, x); return `<tr><td>${x}玉${x === base[0] ? '（等価）' : ''}</td><td>${b.toFixed(1)}回転</td><td>${(v.R - b >= 0 ? '+' : '')}${(v.R - b).toFixed(1)}</td></tr>`; }).join('');
   $('p-hamari').innerHTML = r.hamari.map((h) => bar(`${Math.round(h.k * v.P)}回`, h.p, pct(h.p))).join('') + '<p class="note">大当たり確率の1倍・2倍・3倍の回転数を回しても当たらない確率。</p>';
+  // 遊タイム
+  const yT = num('yT'), ys = num('ys'), yJ = num('yJ'), yY2 = num('yY2');
+  if (yT > 0 && ys >= 0 && yJ > 0) {
+    const yv = { P: v.P, T: yT, s: ys, J: yJ, Y: v.Y, Y2: yY2 > 0 ? yY2 : v.Y, costSpin: r.cost, e: r.e };
+    const yu = Calc.yutime(yv);
+    let st = null;
+    for (let x = 0; x <= yT; x += 10) if (Calc.yutime({ ...yv, s: x }).evYen >= 0) { st = x; break; }
+    $('ymsg').innerHTML = `${ys > yT ? '<span style="color:var(--bad)">いまの回転数が遊タイムの発動を超えています。数字を確かめてください。</span><br>' : ''}遊タイムまで残り${yu.n}回転・遊タイムに入る確率 ${pct(yu.reach)}<br>当たりまで打った期待値 <span style="color:var(--${yu.evYen >= 0 ? 'good' : 'bad'})">${yen(yu.evYen)}</span>（${st === null ? 'この回転率ではどこから打ってもマイナス' : `${st}回転からプラス`}）`;
+  } else $('ymsg').textContent = '遊タイムの数字を入れると、いまの回転数から当たりまで打ったときの期待値が出ます。';
 }
 
 function slot() {
   const v = { p: num('p'), G: num('G'), g: num('g'), W0: num('W0'), W1: num('W1'), c: num('c'), xch: num('sxch'), hold: num('shold') / 100 };
   if (Object.values(v).some((x) => !Number.isFinite(x)) || v.p <= 1 || v.c <= 0 || v.xch <= 0 || v.G <= 0) { $('s-big').textContent = '入力を確かめてください'; return; }
   const r = Calc.slot(v);
-  verdict($('s-verdict'), r.evYen, '期待値プラス：狙い目', '期待値マイナス：見送り');
+  lastEV.slot = r.evYen;
+  const m = slotMachine(), gs = gainStats();
+  const unsure = m && !m.avgGain && gs.norm.n < 10;
+  let lowEV = null;
+  if (gs.norm.n >= 2) {
+    const lo = Calc.slot({ ...v, W0: gs.norm.lo }).evYen, hi = Calc.slot({ ...v, W0: gs.norm.hi }).evYen;
+    lowEV = lo;
+    $('s-range').textContent = `${yen(lo)} 〜 ${yen(hi)}`;
+  } else $('s-range').textContent = '獲得枚数を2件記録すると出る';
+  if (v.g > v.G) setV($('s-verdict'), 'warn', 'ゲーム数が天井を超えている：数字を確かめる');
+  else if (r.evYen < 0) setV($('s-verdict'), 'bad', '期待値マイナス：見送り');
+  else if (unsure) setV($('s-verdict'), 'warn', '期待値プラス（ただし平均獲得が不確か）：平均獲得を確かめてから');
+  else if (lowEV !== null && lowEV < 0) setV($('s-verdict'), 'warn', '期待値プラス（平均獲得の幅しだいでマイナス）：記録を増やす');
+  else setV($('s-verdict'), 'good', '期待値プラス：狙い目');
+  $('s-warn').textContent = v.g > v.G ? 'いまのゲーム数が天井を超えています。天井かゲーム数の数字を確かめてください。' : '';
+  const sb = Calc.slotBank(v.p, r.n, v.c, num('sbank'));
+  $('s-q').textContent = sb.qs.map((x) => man(x.yen)).join('／');
+  $('s-short').textContent = sb.short === null ? '軍資金を入れると出る' : pct(sb.short);
+  $('s-why').textContent = sb.short ? `軍資金は天井まで${sb.afford}G分（残り${r.n}G）。足りなくなったところでやめると、期待値は ${yen(Calc.slot({ ...v, G: v.g + sb.afford, W1: 0 }).evYen)}（天井まで打てる前提の期待値は成り立たない）。` : '';
   $('s-big').className = 'big ' + (r.evYen >= 0 ? 'good' : 'bad');
   $('s-big').innerHTML = `${yen(r.evYen)}<small>当たりまで打った場合の期待値</small>`;
   $('s-coins').textContent = `${r.evCoins >= 0 ? '+' : '−'}${Math.round(Math.abs(r.evCoins))}枚`;
@@ -309,35 +573,53 @@ function slot() {
 }
 
 const SETTINGS = [1, 2, 3, 4, 5, 6];
-const defD = { a: [399, 386, 372, 345, 323, 300], b: [8, 7.9, 7.8, 7.6, 7.5, 7.3] };
+const defD = { a: [399, 386, 372, 345, 323, 300], b: [8, 7.9, 7.8, 7.6, 7.5, 7.3], c: ['', '', '', '', '', ''], r: [97, 98, 99.5, 101.1, 103.3, 105.5], p: [1, 1, 1, 1, 1, 1] };
+const SETCOLS = [['ka', 'a', '要素1'], ['kb', 'b', '要素2'], ['kc', 'c', '要素3'], ['kr', 'r', '割%'], ['kp', 'p', '配分']];
 function buildSetTable() {
-  $('k-table').innerHTML = '<tr><th>設定</th><th>要素1</th><th>要素2</th></tr>' +
-    SETTINGS.map((s, i) => `<tr><td>${s}</td><td><input id="ka${i}" type="number" inputmode="decimal" step="any" value="${defD.a[i]}" aria-label="設定${s}の要素1"></td><td><input id="kb${i}" type="number" inputmode="decimal" step="any" value="${defD.b[i]}" aria-label="設定${s}の要素2"></td></tr>`).join('');
+  $('k-table').innerHTML = '<tr><th>設定</th>' + SETCOLS.map((c) => `<th>${c[2]}</th>`).join('') + '</tr>' +
+    SETTINGS.map((s, i) => `<tr><td>${s}</td>${SETCOLS.map((c) => `<td><input id="${c[0]}${i}" type="number" inputmode="decimal" step="any" value="${defD[c[1]][i]}" aria-label="設定${s}の${c[2]}"></td>`).join('')}</tr>`).join('');
 }
 function setting() {
   const N = num('kN');
   const els = [];
-  const a = SETTINGS.map((_, i) => num('ka' + i)), b = SETTINGS.map((_, i) => num('kb' + i));
-  if (Number.isFinite(num('k1')) && a.every((x) => x > 1)) els.push({ k: num('k1'), N, d: a });
-  if ($('k2').value !== '' && Number.isFinite(num('k2')) && b.every((x) => x > 1)) els.push({ k: num('k2'), N, d: b });
-  if (!Number.isFinite(N) || N <= 0 || !els.length || els.some((e) => e.k < 0 || e.k > N)) { $('k-bars').innerHTML = '<p class="note">回数とゲーム数を確かめてください。</p>'; $('k-verdict').textContent = ''; return; }
-  const post = Calc.setting(els);
-  const best = post.indexOf(Math.max(...post));
-  const high = post[3] + post[4] + post[5];
-  const sure = post[best] >= 0.5;
-  $('k-verdict').textContent = sure ? `設定${best + 1}の可能性が高い（${pct(post[best])}）` : `まだ判断できない（設定4以上の合計 ${pct(high)}）`;
-  $('k-verdict').className = 'verdict ' + (high >= 0.5 ? 'good' : 'bad');
+  [['ka', 'k1', 'k1n'], ['kb', 'k2', 'k2n'], ['kc', 'k3', 'k3n']].forEach(([col, k, nm]) => {
+    if ($(k).value === '' || !Number.isFinite(num(k))) return;
+    const d = SETTINGS.map((_, i) => (num(col + i) > 1 ? num(col + i) : null));
+    if (d.filter((x) => x).length >= 2) els.push({ k: num(k), N, d, name: $(nm).value || nm });
+  });
+  const fail = (msg) => { $('k-bars').innerHTML = `<p class="note">${msg}</p>`; $('k-verdict').textContent = ''; $('k-ev').textContent = '—'; $('k-high').textContent = '—'; $('k-warn').textContent = ''; lastEV.set = NaN; };
+  if (!Number.isFinite(N) || N <= 0 || !els.length) return fail('総ゲーム数と、要素の回数・設定ごとの確率を入れてください。');
+  if (els.some((e) => e.k < 0 || e.k > N)) return fail('回数が総ゲーム数より多いか、マイナスになっています。');
+  const prior = SETTINGS.map((_, i) => (num('kp' + i) >= 0 ? num('kp' + i) : 0));
+  if (prior.every((x) => !(x > 0))) return fail('店の配分を1つ以上入れてください。');
+  const post = Calc.setting(els, prior);
+  if (post.every((x) => x === 0)) return fail('どの設定も計算できません（確率の空欄・配分0を確かめて）。');
+  const out = SETTINGS.filter((_, i) => prior[i] > 0 && els.some((e) => !e.d[i]));
+  const best = post.indexOf(Math.max(...post)), high = post[3] + post[4] + post[5], sure = post[best] >= 0.5;
+  $('k-high').textContent = pct(high);
+  const pay = SETTINGS.map((_, i) => (num('kr' + i) > 0 ? num('kr' + i) : null));
+  const ev = Calc.settingEV(post, pay, num('kgph'), num('kxch'), (num('khold') || 0) / 100);
+  lastEV.set = ev.evHour;
+  const okEV = Number.isFinite(ev.evHour) && num('kgph') > 0 && num('kxch') > 0;
+  $('k-ev').textContent = okEV ? yen(ev.evHour) : '機械割を入れると出る';
+  const head = sure ? `設定${best + 1}の可能性が高い（${pct(post[best])}）` : 'まだ設定は判断できない';
+  if (!okEV) setV($('k-verdict'), high >= 0.5 ? 'good' : 'bad', `${head}（設定4以上の合計 ${pct(high)}）`);
+  else if (ev.missing.length) setV($('k-verdict'), 'warn', `${head}。設定${ev.missing.join('・')}の機械割が空なので、期待値はそれを除いた見込み`);
+  else if (ev.evHour >= 0) setV($('k-verdict'), 'good', `続行：1時間 ${yen(ev.evHour)} の見込み（${head}）`);
+  else setV($('k-verdict'), 'bad', `やめどき：1時間 ${yen(ev.evHour)} の見込み（${head}）`);
+  $('k-warn').textContent = out.length ? `設定${out.join('・')}は解析値が空なので外して計算した。` : '';
   $('k-bars').innerHTML = post.map((p, i) => bar(`設定${i + 1}`, p, pct(p), i === best)).join('') +
-    `<p class="note">${els.map((e, i) => `${$(i === 0 ? 'k1n' : 'k2n').value}：${e.k}回／${N}G（実測 1/${e.k ? (N / e.k).toFixed(1) : '—'}）`).join('　')}。どの設定も同じ割合で入っていると仮定した場合。</p>`;
+    `<p class="note">${els.map((e) => `${esc(e.name)}：${e.k}回／${N}G（実測 1/${e.k ? (N / e.k).toFixed(1) : '—'}）`).join('　')}。店の配分（${prior.join('：')}）を前提にした確率。</p>`;
 }
 
-let renderAll = function () { pachi(); slot(); setting(); };
+let renderAll = function () { pachi(); slot(); setting(); renderJournal(); };
 
 // タブ
 let tab = 'pachi';
 function showTab(t) {
   tab = t;
   document.querySelectorAll('.tabpage').forEach((s) => (s.hidden = s.id !== t));
+  $('presets-panel').hidden = t === 'log';
   document.querySelectorAll('.tabs button').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tab === t)));
   try { localStorage.setItem('ps-tab', t); } catch (e) {}
   refreshList();
@@ -345,7 +627,7 @@ function showTab(t) {
 document.querySelectorAll('.tabs button').forEach((b) => b.addEventListener('click', () => showTab(b.dataset.tab)));
 
 // 機種ごとの保存（タブごと）
-const fields = { pachi: ['P', 'R', 'Y', 'lend', 'xch', 'hold', 'sph', 'hours', 'rs0', 'rs1', 'ry'], slot: ['g', 'G', 'p', 'W0', 'W1', 'c', 'sxch', 'shold'], set: ['kN', 'kbb', 'krb', 'k1n', 'k1', 'k2n', 'k2', ...SETTINGS.flatMap((_, i) => ['ka' + i, 'kb' + i])] };
+const fields = { pachi: ['P', 'R', 'Y', 'lend', 'xch', 'hold', 'sph', 'hours', 'bank', 'rs0', 'rs1', 'ry', 'yT', 'ys', 'yJ', 'yY2'], slot: ['g', 'G', 'p', 'W0', 'W1', 'c', 'sxch', 'shold', 'sbank'], set: ['kN', 'kbb', 'krb', 'k1n', 'k1', 'k2n', 'k2', 'k3n', 'k3', 'kgph', 'kxch', 'khold', ...SETTINGS.flatMap((_, i) => SETCOLS.map((c) => c[0] + i))], log: [] };
 const store = { get() { try { return JSON.parse(localStorage.getItem('ps-presets') || '{}'); } catch (e) { return {}; } }, set(o) { try { localStorage.setItem('ps-presets', JSON.stringify(o)); return true; } catch (e) { return false; } } };
 function refreshList() {
   const all = store.get()[tab] || {};
@@ -406,21 +688,72 @@ function fillMachineSelects() {
     if (m.avgGain) { $('W0').value = m.avgGain; $('W1').value = m.ceilingGain || m.avgGain; }
     else if (m.ceilingGain) $('W1').value = m.ceilingGain;
     if (m.coin50) $('c').value = m.coin50;
-    if (Array.isArray(m.pBySetting) && m.pBySetting.length === 6 && m.pBySetting.every((x) => x > 1)) {
-      m.pBySetting.forEach((x, i) => ($('ka' + i).value = x));
-      $('k1n').value = '初当たり';
-    }
+    const gs = gainStats();
+    if (!m.avgGain && gs.norm.n) $('W0').value = Math.round(gs.norm.mean);
+    if (!m.ceilingGain && gs.ceil.n) $('W1').value = Math.round(gs.ceil.mean);
     const unitWarn = m.ceilingG == null ? '<br>天井のない機種（ノーマル・Aタイプ）。天井狙いはできないので、設定推測のタブで使う（設定ごとの確率を入れた）。'
       : m.ceilingUnit && m.ceilingUnit !== 'G' ? `<br>天井はゲーム数ではなく${esc(m.ceilingUnit)}で決まる機種。いまのゲーム数での計算は目安。`
-      : !m.avgGain ? '<br>平均獲得枚数は資料で確かめられなかった。自分で入れてから見てください。' : '';
+      : !m.avgGain ? (gainStats().norm.n ? `<br>平均獲得枚数は資料になく、自分の記録（${gainStats().norm.n}件）の平均を入れた。` : '<br>平均獲得枚数は資料で確かめられなかった。下の「獲得枚数を記録」で自分の実戦から出すか、自分で入れてから見てください。') : '';
     $('sm-note').innerHTML = `${esc(m.maker)}${m.released ? '・' + esc(m.released) : ''}　初当たり 1/${m.p1 ?? '—'}　天井 ${m.ceilingG ?? '—'}${esc(m.ceilingUnit || 'G')}　平均獲得 ${m.avgGain ?? '—'}枚　コイン持ち ${m.coin50 ?? '—'}G${mark(m)}${m.ceilingNote ? '<br>天井：' + esc(m.ceilingNote) : ''}${m.note ? '<br>' + esc(m.note) : ''}${unitWarn}<br>${srcLinks(m)}`;
     renderAll();
   };
+  const km = MACHINES.slot.filter((m) => m.kind !== 'pachinko' && Array.isArray(m.pBySetting));
+  $('km').innerHTML = '<option value="">（手で入れる）</option>' + km.map((m, i) => `<option value="${i}">${esc(m.name)}${mark(m)}</option>`).join('');
+  $('km').onchange = () => {
+    const m = km[$('km').value];
+    if (!m) { $('km-note').textContent = ''; return; }
+    SETTINGS.forEach((_, i) => {
+      $('ka' + i).value = m.pBySetting[i] > 1 ? m.pBySetting[i] : '';
+      $('kr' + i).value = m.payout && m.payout[i] > 0 ? m.payout[i] : '';
+      $('kb' + i).value = ''; $('kc' + i).value = ''; // 要素2・3は機種の解析値を自分で入れる（例の数字を残さない）
+    });
+    $('k2n').value = ''; $('k2').value = ''; $('k3n').value = ''; $('k3').value = '';
+    $('k1n').value = m.type === 'ノーマル' ? 'ボーナス合算' : '初当たり';
+    if (m.coin50) $('kgph').value = 700;
+    const miss = SETTINGS.filter((_, i) => !(m.pBySetting[i] > 1));
+    $('km-note').innerHTML = `${esc(m.maker)}　設定ごとの${m.type === 'ノーマル' ? 'ボーナス合算' : '初当たり'}確率と機械割を入れた${mark(m)}${miss.length ? `<br>設定${miss.join('・')}は資料に値がなく空欄（外して計算）。` : ''}${m.type === 'ノーマル' ? '<br>データカウンターのBB・RB回数を入れると要素1に合算が入る。' : '<br>要素1の回数には初当たり回数を入れる。'}${m.note ? '<br>' + esc(m.note) : ''}<br>${srcLinks(m)}`;
+    renderAll();
+  };
 }
+function slotMachine() { return MACHINES.slot.filter((m) => m.kind !== 'pachinko')[$('sm').value]; }
+// 獲得枚数の記録（機種ごと・この端末だけ）：[{w: 枚数, c: 天井なら1}]
+const glog = { get() { try { return JSON.parse(localStorage.getItem('ps-gain') || '{}'); } catch (e) { return {}; } }, set(o) { try { localStorage.setItem('ps-gain', JSON.stringify(o)); return true; } catch (e) { return false; } } };
+const slotKey = () => (slotMachine() ? slotMachine().name : '（手で入れた台）');
+function gainStats() {
+  const xs = glog.get()[slotKey()] || [];
+  return { norm: Calc.logStats(xs.filter((x) => !x.c).map((x) => x.w)), ceil: Calc.logStats(xs.filter((x) => x.c).map((x) => x.w)) };
+}
+function showGain() {
+  const g = gainStats(), f = (x) => Math.round(x).toLocaleString('ja-JP');
+  $('lw-target').textContent = `記録先：${slotKey()}（上で選んだ機種）`;
+  const a = g.norm.n ? `通常の当たり ${g.norm.n}件・平均 ${f(g.norm.mean)}枚${g.norm.n >= 2 ? `（95%の幅 ${f(g.norm.lo)}〜${f(g.norm.hi)}）` : ''}` : '通常の当たりの記録なし';
+  const b = g.ceil.n ? `天井 ${g.ceil.n}件・平均 ${f(g.ceil.mean)}枚` : '天井の記録なし';
+  $('lw-stats').textContent = `${a}／${b}${g.norm.n && g.norm.n < 10 ? '。10件までは平均が不確か' : ''}`;
+}
+$('lw-add').addEventListener('click', () => {
+  const w = num('lw');
+  if (!(w >= 0)) return;
+  const all = glog.get(), k = slotKey();
+  (all[k] = all[k] || []).push({ w, c: $('lceil').checked ? 1 : 0 });
+  glog.set(all);
+  $('lw').value = ''; $('lceil').checked = false;
+  showGain(); renderAll();
+});
+$('lw-undo').addEventListener('click', () => {
+  const all = glog.get(), k = slotKey();
+  if (all[k] && all[k].length) { all[k].pop(); glog.set(all); }
+  showGain(); renderAll();
+});
+$('lw-use').addEventListener('click', () => {
+  const g = gainStats();
+  if (g.norm.n) $('W0').value = Math.round(g.norm.mean);
+  if (g.ceil.n) $('W1').value = Math.round(g.ceil.mean);
+  renderAll();
+});
 
 // ＋／− ボタン（data-for の入力に足す）
 document.querySelectorAll('.steps').forEach((box) => box.addEventListener('click', (ev) => {
-  const b = ev.target.closest('button'); if (!b) return;
+  const b = ev.target.closest('button'); if (!b || !box.dataset.for) return;
   const el = $(box.dataset.for);
   if (b.dataset.reset) { $('ry').value = 0; $('rs0').value = $('rs1').value; }
   else el.value = Math.max(0, (parseFloat(el.value) || 0) + Number(b.dataset.d));
@@ -441,20 +774,87 @@ function bbrb() {
   const bb = num('kbb'), rb = num('krb');
   if (Number.isFinite(bb) || Number.isFinite(rb)) { $('k1').value = (bb || 0) + (rb || 0); $('k1n').value = 'ボーナス合算'; }
 }
+document.querySelectorAll('[data-prior]').forEach((b) => b.addEventListener('click', () => {
+  b.dataset.prior.split(',').forEach((x, i) => ($('kp' + i).value = x));
+  renderAll();
+}));
+// 収支記録（この端末だけ）：[{d: 日付, m: 機種, ev: 期待値, res: 実収支}]
+const jstore = { get() { try { return JSON.parse(localStorage.getItem('ps-journal') || '[]'); } catch (e) { return []; } }, set(o) { try { localStorage.setItem('ps-journal', JSON.stringify(o)); return true; } catch (e) { return false; } } };
+let jDeleted = null;
+function renderJournal() {
+  const js = jstore.get();
+  const evS = js.reduce((a, j) => a + j.ev, 0), resS = js.reduce((a, j) => a + j.res, 0);
+  $('j-n').textContent = `${js.length}回`;
+  $('j-ev').textContent = js.length ? yen(evS) : '—';
+  $('j-res').textContent = js.length ? yen(resS) : '—';
+  $('j-luck').textContent = js.length ? yen(resS - evS) : '—';
+  if (!js.length) $('j-verdict').textContent = '';
+  else if (evS >= 0) setV($('j-verdict'), 'good', `台選びはプラス（期待値の合計 ${yen(evS)}）`);
+  else setV($('j-verdict'), 'bad', '期待値の合計がマイナス：台選びを見直す');
+  $('j-list').innerHTML = js.length ? '<table class="tbl"><tr><th>日付・機種</th><th>期待値</th><th>収支</th><th></th></tr>' +
+    js.map((j, i) => ({ j, i })).reverse().map(({ j, i }) => `<tr><td>${esc(j.d)}<br>${esc(j.m)}</td><td>${yen(j.ev)}</td><td>${yen(j.res)}</td><td><button type="button" class="btn ghost" data-jdel="${i}">消す</button></td></tr>`).join('') + '</table>'
+    : '<p class="note">まだ記録なし。</p>';
+}
+$('j-list').addEventListener('click', (ev) => {
+  const b = ev.target.closest('[data-jdel]'); if (!b) return;
+  const js = jstore.get(), i = Number(b.dataset.jdel);
+  jDeleted = { i, j: js[i] };
+  js.splice(i, 1); jstore.set(js);
+  $('j-undo').hidden = false;
+  $('j-msg').textContent = `${jDeleted.j.d} ${jDeleted.j.m} の記録を消しました。`;
+  renderJournal();
+});
+$('j-undo').addEventListener('click', () => {
+  if (!jDeleted) return;
+  const js = jstore.get(); js.splice(jDeleted.i, 0, jDeleted.j); jstore.set(js);
+  jDeleted = null; $('j-undo').hidden = true; $('j-msg').textContent = '戻しました。';
+  renderJournal();
+});
+const today = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
+$('jd').value = today();
+$('j-add').addEventListener('click', () => {
+  const ev = num('jev'), res = num('jres');
+  if (!Number.isFinite(ev) || !Number.isFinite(res)) { $('j-msg').textContent = '期待値と実際の収支を入れてください。'; return; }
+  const js = jstore.get();
+  js.push({ d: $('jd').value || today(), m: $('jm').value.trim() || '（機種名なし）', ev: $('jevs').value === '-' ? -ev : ev, res: $('jress').value === '-' ? -res : res });
+  $('j-msg').textContent = jstore.set(js) ? '記録しました。' : 'このブラウザでは保存できません（プライベートモードなど）。';
+  $('jev').value = ''; $('jres').value = ''; $('jm').value = '';
+  renderJournal();
+});
+document.querySelectorAll('[data-journal]').forEach((b) => b.addEventListener('click', () => {
+  const t = b.dataset.journal, sel = $(t === 'pachi' ? 'pm' : 'sm');
+  $('jm').value = sel.value === '' ? '' : sel.options[sel.selectedIndex].text.replace(/（[^（）]*）$/, '');
+  const ev = lastEV[t];
+  if (Number.isFinite(ev)) { $('jevs').value = ev < 0 ? '-' : '+'; $('jev').value = Math.round(Math.abs(ev)); }
+  $('jd').value = today();
+  showTab('log');
+  $('j-msg').textContent = '機種と期待値を入れました。打ち終わったら実際の収支を入れて「記録する」。';
+}));
+// このタブの数字を初期値に戻す
+let DEFAULTS = {};
+$('preset-reset').addEventListener('click', () => {
+  (fields[tab] || []).forEach((f) => { if ($(f)) $(f).value = DEFAULTS[f] ?? ''; });
+  const pick = { pachi: 'pm', slot: 'sm', set: 'km' }[tab];
+  if (pick) { $(pick).value = ''; $(pick + '-note').textContent = ''; }
+  if (tab === 'pachi') $('rmsg').textContent = '打ち始めに総回転数を入れ、1,000円入れるたびに「＋1,000円」、いまの総回転数を入れると回転率が出ます。';
+  $('pmsg').textContent = '初期値に戻しました。';
+  renderAll();
+});
 const _render = renderAll;
-renderAll = function () { measure(); bbrb(); _render(); };
+renderAll = function () { measure(); bbrb(); _render(); showGain(); };
 
 buildSetTable();
+DEFAULTS = Object.fromEntries(Object.values(fields).flat().map((f) => [f, $(f) ? $(f).value : '']));
 fillMachineSelects();
 document.addEventListener('input', renderAll);
 let startTab = 'pachi';
 try { startTab = localStorage.getItem('ps-tab') || 'pachi'; } catch (e) {}
-showTab(['pachi', 'slot', 'set'].includes(startTab) ? startTab : 'pachi');
+showTab(['pachi', 'slot', 'set', 'log'].includes(startTab) ? startTab : 'pachi');
 renderAll();
 </script>
 
 <script>
-// オフラインで動くように、開いたときに中身を端末に保存する（版 386a5da76a）
+// オフラインで動くように、開いたときに中身を端末に保存する（版 fd7ff96eda）
 if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 </script>
 </body>
