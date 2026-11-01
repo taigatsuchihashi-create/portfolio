@@ -7,8 +7,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="パチスロ期待値">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#0f141b">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#ffffff">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-180.png">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px}[hidden]{display:none!important}img{max-width:100%}</style>
@@ -22,23 +22,16 @@
 /* ホールの台の上のデータカウンターのように：結果はLEDの数字のように大きく、入力は「1 機種 → 2 測る → 3 店の条件」の順。
    タブは親指で押せる下の帯。文字は読みやすさ優先のUDゴシック、数字は細身で桁がそろう書体 */
 :root {
-  --bg: #eceff3; --panel: #ffffff; --panel-2: #f5f7fa; --line: #d3d9e1; --ink: #141a21; --muted: #5a6573;
+  --bg: #ffffff; --panel: #ffffff; --panel-2: #f5f7fa; --line: #d3d9e1; --ink: #141a21; --muted: #5a6573;
   --led: #c25e00; --led-soft: #fff1e3; --good: #12804b; --good-soft: #e2f4ea; --bad: #c5352a; --bad-soft: #fbe7e4; --warn: #8a6200; --warn-soft: #fbf1d6;
-  --counter: #11161c; --counter-ink: #f3f5f7; --counter-muted: #9aa6b3;
+  --counter: #ffffff; --counter-ink: #141a21; --counter-muted: #5a6573; /* 本人の希望でテーマはホワイト（結果の枠も白） */
   --f-body: "BIZ UDPGothic", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
   --f-num: "Barlow Condensed", "BIZ UDPGothic", "Hiragino Sans", sans-serif;
   /* 計算の画面が使う名前（グラフ・演出の色） */
   --brass: var(--led); --steel: var(--ink); --surface: var(--panel); --good-bg: var(--good-soft); --bad-bg: var(--bad-soft);
   --tabbar: 64px;
 }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --bg: #0d1116; --panel: #161c23; --panel-2: #1c232c; --line: #2a333e; --ink: #e8ecf0; --muted: #94a0ad;
-  --led: #ffa24a; --led-soft: #3a2614; --good: #43d18f; --good-soft: #12301f; --bad: #ff6d62; --bad-soft: #3a1714; --warn: #f2c65a; --warn-soft: #352a10;
-  --counter: #07090c; --counter-ink: #f3f5f7; --counter-muted: #8f9baa; color-scheme: dark } }
-:root[data-theme="dark"] {
-  --bg: #0d1116; --panel: #161c23; --panel-2: #1c232c; --line: #2a333e; --ink: #e8ecf0; --muted: #94a0ad;
-  --led: #ffa24a; --led-soft: #3a2614; --good: #43d18f; --good-soft: #12301f; --bad: #ff6d62; --bad-soft: #3a1714; --warn: #f2c65a; --warn-soft: #352a10;
-  --counter: #07090c; --counter-ink: #f3f5f7; --counter-muted: #8f9baa; color-scheme: dark }
+:root { color-scheme: light; }
 
 body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.65;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
@@ -93,7 +86,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .kv { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 6px 12px; margin: 10px 0 2px; font-size: .88rem; font-variant-numeric: tabular-nums; }
 .kv dt { color: var(--counter-muted); } .kv dd { margin: 0; font-weight: 700; text-align: right; overflow-wrap: anywhere; }
 .result .jbtn { justify-self: start; font: inherit; font-size: .85rem; font-weight: 700; min-height: 40px; padding: 6px 14px; border-radius: 10px;
-  border: 1px solid #3a4450; background: transparent; color: var(--counter-ink); cursor: pointer; }
+  border: 1px solid var(--line); background: transparent; color: var(--counter-ink); cursor: pointer; }
 .result #k-bars .bar { color: var(--counter-ink); }
 .result #k-bars .track { background: #2a323c; }
 .result #k-bars .note { color: var(--counter-muted); }
@@ -201,7 +194,7 @@ svg text { fill: var(--muted); font-size: 11px; }
 .cand .c-head { display: flex; align-items: center; gap: 8px; min-width: 0; }
 .cand .c-rank { flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--counter-ink); color: var(--counter); font-family: var(--f-num); font-weight: 700; }
 .cand .c-name { font-weight: 700; min-width: 0; overflow-wrap: anywhere; }
-.cand .c-kind { margin-left: auto; flex: none; font-size: .72rem; color: var(--counter-muted); border: 1px solid #3a4450; border-radius: 999px; padding: 0 8px; }
+.cand .c-kind { margin-left: auto; flex: none; font-size: .72rem; color: var(--counter-muted); border: 1px solid var(--line); border-radius: 999px; padding: 0 8px; }
 .cand .c-ev { font-family: var(--f-num); font-size: 2rem; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
 .cand .c-ev small { font-family: var(--f-body); font-size: .75rem; font-weight: 400; color: var(--counter-muted); margin-left: 8px; }
 .cand.good .c-ev { color: #59de9e; } .cand.bad .c-ev { color: #ff7d73; } .cand.warn .c-ev { color: #f5d27a; }
@@ -209,7 +202,7 @@ svg text { fill: var(--muted); font-size: 11px; }
 .cand .c-why { font-size: .82rem; color: var(--counter-ink); }
 .cand .c-detail { font-size: .78rem; color: var(--counter-muted); }
 .cand .c-acts { display: flex; gap: 8px; margin-top: 4px; }
-.cand .c-acts button { font: inherit; font-size: .82rem; font-weight: 700; min-height: 40px; padding: 4px 12px; border-radius: 10px; border: 1px solid #3a4450; background: transparent; color: var(--counter-ink); cursor: pointer; }
+.cand .c-acts button { font: inherit; font-size: .82rem; font-weight: 700; min-height: 40px; padding: 4px 12px; border-radius: 10px; border: 1px solid var(--line); background: transparent; color: var(--counter-ink); cursor: pointer; }
 .cand .c-acts button.go { background: #ffa24a; border-color: #ffa24a; color: #111; }
 .empty-rank { margin: 0; font-size: .9rem; color: var(--counter-muted); }
 .seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
@@ -1792,7 +1785,7 @@ renderAll();
 </script>
 
 <script>
-// オフラインで動くように、開いたときに中身を端末に保存する（版 35db100c1e）
+// オフラインで動くように、開いたときに中身を端末に保存する（版 b5e3fc59ca）
 if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 </script>
 </body>
