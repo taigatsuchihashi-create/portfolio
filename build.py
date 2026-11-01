@@ -463,7 +463,7 @@ footer .rights a{color:inherit; text-decoration:underline}
         <p>あわせて、マーケティングと事業企画の判断を数字で練習するケース問題を35本作りました。1本は4つの判断の連続で、選ぶとその結果の数字と現場での考え方が出ます。答えを伏せて解き直す点検を重ね、正解が1つに決まることを確かめています。</p>
         <div class="metrics">
           <div><b>6</b><span>Webテストの形式</span></div>
-          <div><b>304</b><span>計数の問題の型</span></div>
+          <div><b>305</b><span>計数の問題の型</span></div>
           <div><b>35</b><span>マーケのケース問題</span></div>
           <div><b>3</b><span>資格試験の模試</span></div>
         </div>
