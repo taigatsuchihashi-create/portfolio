@@ -16,11 +16,11 @@ HTML = r"""<!doctype html>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap">
 <style>
-/* Layout: fixed corporate header, full-bleed alternating bands, a dark stats band,
-   and wide content rows. Numbers carry the hierarchy; bands carry the rhythm. */
+/* 白い方眼紙（企画を書くノート）を下敷きに。ヒーローだけ方眼を見せ、ほかは白と罫線で静かに。
+   差し色は青緑の1色。ラベルは英字の大文字や等幅の書体を使わず、日本語で必要なものだけ。 */
 :root{
   --paper:#FFFFFF;
-  --band:#EEF2F6;
+  --band:#F6F8FA;
   --deep:#0E1726;
   --deep-2:#16233A;
   --ink:#101826;
@@ -31,7 +31,8 @@ HTML = r"""<!doctype html>
   --rule-deep:#28374F;
   --accent:#0B6E8C;
   --accent-soft:#E2F0F5;
-  --mark:#B4541E;
+  --mark:#0B6E8C;
+  --grid:rgba(11,110,140,.085);
 
   --f-display:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
   --f-body:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
@@ -39,22 +40,7 @@ HTML = r"""<!doctype html>
 
   --head-h:62px;
 }
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --paper:#0D1420; --band:#131C2B; --deep:#070C15; --deep-2:#101A2B;
-    --ink:#E7EDF5; --ink-soft:#97A6BB; --rule:#243246; --rule-deep:#1C2941;
-    --accent:#58BFDC; --accent-soft:#12303C; --mark:#E8915E;
-    --on-deep:#E9EFF7; --on-deep-soft:#93A5BE;
-    color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --paper:#0D1420; --band:#131C2B; --deep:#070C15; --deep-2:#101A2B;
-  --ink:#E7EDF5; --ink-soft:#97A6BB; --rule:#243246; --rule-deep:#1C2941;
-  --accent:#58BFDC; --accent-soft:#12303C; --mark:#E8915E;
-  --on-deep:#E9EFF7; --on-deep-soft:#93A5BE;
-  color-scheme:dark;
-}
+:root{color-scheme:light}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth; scroll-padding-top:var(--head-h)}
@@ -70,9 +56,8 @@ a{color:var(--accent)}
   backdrop-filter:saturate(1.4) blur(10px); border-bottom:1px solid var(--rule)}
 .hd-in{max-width:1180px; margin:0 auto; height:var(--head-h); padding-inline:24px;
   display:flex; align-items:center; gap:28px}
-.brand{font-family:var(--f-mono); font-size:12px; font-weight:700; letter-spacing:.17em;
+.brand{font-family:var(--f-display); font-size:16px; font-weight:700; letter-spacing:.08em;
   text-decoration:none; color:var(--ink); white-space:nowrap}
-.brand span{color:var(--accent)}
 .nav{margin-left:auto; display:flex; gap:26px}
 .nav a{font-size:13px; font-weight:500; text-decoration:none; color:var(--ink-soft);
   position:relative; padding-block:4px; transition:color .2s}
@@ -90,32 +75,29 @@ a{color:var(--accent)}
 .narrow{max-width:860px}
 
 /* ===== hero ===== */
-.hero{background:var(--deep); color:var(--on-deep); position:relative; overflow:hidden;
+.hero{background:var(--paper); color:var(--ink); position:relative; overflow:hidden; border-bottom:1px solid var(--rule);
   padding-top:calc(var(--head-h) + clamp(70px,11vw,130px)); padding-bottom:clamp(64px,10vw,120px)}
 .hero::before{content:""; position:absolute; inset:0;
-  background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
-  background-size:46px 46px; pointer-events:none}
-.hero::after{content:""; position:absolute; width:62vw; height:62vw; right:-18vw; top:-26vw; border-radius:50%;
-  background:radial-gradient(circle, rgba(11,110,140,.42) 0%, rgba(11,110,140,0) 68%); pointer-events:none}
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px; pointer-events:none;
+  -webkit-mask-image:linear-gradient(180deg,#000 55%,transparent);mask-image:linear-gradient(180deg,#000 55%,transparent)}
+.hero::after{content:none}
 .hero .in{position:relative}
-.eyebrow{font-family:var(--f-mono); font-size:11px; font-weight:700; letter-spacing:.2em;
-  text-transform:uppercase; color:var(--accent); margin:0 0 22px}
-.hero .eyebrow{color:#5FC6E2}
+
 h1{font-family:var(--f-display); font-weight:900; font-size:clamp(34px,6.6vw,70px);
   line-height:1.12; letter-spacing:.005em; margin:0; text-wrap:balance; max-width:16em}
-.hero .lede{font-size:clamp(16px,2vw,19px); line-height:1.95; margin:30px 0 0; max-width:34em; color:var(--on-deep)}
-.hero .who{font-family:var(--f-mono); font-size:12px; letter-spacing:.12em; color:var(--on-deep-soft); margin:34px 0 0}
-.hero .who b{color:var(--on-deep); font-weight:700}
+.hero .lede{font-size:clamp(16px,2vw,19px); line-height:1.95; margin:30px 0 0; max-width:34em; color:var(--ink)}
+.hero .who{font-size:13.5px; color:var(--ink-soft); margin:34px 0 0; line-height:1.9}
+.hero .who b{color:var(--ink); font-weight:700; font-size:15px; margin-right:.6em}
 
 /* ===== stats band ===== */
-.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule-deep);
-  border:1px solid var(--rule-deep); margin-top:clamp(40px,6vw,64px)}
-.stats div{background:var(--deep-2); padding:26px 22px; min-width:0}
-.stats b{display:block; font-family:var(--f-mono); font-weight:700; font-size:clamp(26px,3.6vw,40px);
-  line-height:1.15; letter-spacing:-.02em; font-variant-numeric:tabular-nums; color:#fff}
-.stats span{display:block; font-family:var(--f-mono); font-size:10.5px; letter-spacing:.1em;
-  text-transform:uppercase; color:var(--on-deep-soft); margin-top:9px}
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule);
+  border:1px solid var(--rule); margin-top:clamp(40px,6vw,64px)}
+.stats div{background:var(--paper); padding:24px 22px; min-width:0}
+.stats b{display:block; font-family:var(--f-display); font-weight:900; font-size:clamp(26px,3.6vw,40px);
+  line-height:1.15; font-variant-numeric:tabular-nums; color:var(--ink)}
+.stats span{display:block; font-size:12.5px; color:var(--ink-soft); margin-top:8px}
 @media (max-width:760px){ .stats{grid-template-columns:repeat(2,1fr)} }
 
 /* ===== section head ===== */
@@ -133,8 +115,7 @@ h1{font-family:var(--f-display); font-weight:900; font-size:clamp(34px,6.6vw,70p
 .work .body{min-width:0}
 .work h3{font-family:var(--f-display); font-weight:700; font-size:clamp(21px,2.7vw,30px);
   line-height:1.45; margin:0 0 6px; text-wrap:balance}
-.role{font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
-  color:var(--mark); margin:0 0 20px}
+.role{font-size:13px; color:var(--accent); font-weight:500; margin:0 0 20px}
 .work p{margin:0 0 16px}
 .work p:last-of-type{margin-bottom:0}
 @media (max-width:860px){ .work{grid-template-columns:1fr} .work.flip .media{order:0} }
@@ -144,7 +125,7 @@ h1{font-family:var(--f-display); font-weight:900; font-size:clamp(34px,6.6vw,70p
 .media img{display:block; width:100%; height:auto; border:1px solid var(--rule);
   transition:transform .3s cubic-bezier(.22,.8,.3,1), box-shadow .3s ease}
 .media figure:hover img{transform:translateY(-4px); box-shadow:0 14px 34px rgba(16,24,38,.16)}
-.media figcaption{font-family:var(--f-mono); font-size:10.5px; color:var(--ink-soft); margin-top:7px}
+.media figcaption{font-size:12px; color:var(--ink-soft); margin-top:7px}
 
 .quote{border-left:3px solid var(--accent); background:var(--accent-soft);
   padding:16px 20px; margin:20px 0; font-weight:500; border-radius:0 3px 3px 0}
@@ -155,17 +136,16 @@ h1{font-family:var(--f-display); font-weight:900; font-size:clamp(34px,6.6vw,70p
 /* 指標が1つだけのときは、枠を横いっぱいに伸ばさず内容幅に収める */
 .metrics:has(div:only-child){display:inline-flex}
 .metrics div:hover{background:var(--accent-soft)}
-.metrics b{display:block; font-family:var(--f-mono); font-weight:700; font-size:19px;
+.metrics b{display:block; font-family:var(--f-display); font-weight:900; font-size:20px;
   font-variant-numeric:tabular-nums; line-height:1.3}
-.metrics span{display:block; font-family:var(--f-mono); font-size:10px; letter-spacing:.08em;
-  text-transform:uppercase; color:var(--ink-soft); margin-top:3px}
-.stack{font-family:var(--f-mono); font-size:11.5px; color:var(--ink-soft); margin:16px 0 0}
+.metrics span{display:block; font-size:12px; color:var(--ink-soft); margin-top:3px}
+.stack{font-size:12.5px; color:var(--ink-soft); margin:16px 0 0}
 .pts{list-style:none; padding:0; margin:14px 0 0}
 .pts li{position:relative; padding-left:20px; margin-bottom:8px}
-.pts li::before{content:"—"; position:absolute; left:0; color:var(--accent); font-family:var(--f-mono)}
+.pts li::before{content:""; position:absolute; left:2px; top:.8em; width:8px; height:8px; border:2px solid var(--accent); border-radius:50%}
 
 .links{display:flex; flex-wrap:wrap; gap:10px; margin:22px 0 0}
-.lnk{display:inline-block; font-family:var(--f-mono); font-size:12px; font-weight:700; letter-spacing:.05em;
+.lnk{display:inline-block; font-size:14px; font-weight:700;
   text-decoration:none; padding:11px 20px; border:1px solid var(--accent); color:var(--accent);
   background:transparent; transition:background .2s,color .2s,transform .2s}
 .lnk.solid{background:var(--accent); color:#fff; border-color:var(--accent)}
@@ -175,31 +155,29 @@ h1{font-family:var(--f-display); font-weight:900; font-size:clamp(34px,6.6vw,70p
 /* ===== approach ===== */
 .grid4{display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(18px,2.4vw,28px)}
 .card{background:var(--paper); border:1px solid var(--rule); padding:26px 22px; min-width:0}
-.card .n{font-family:var(--f-mono); font-size:11px; font-weight:700; letter-spacing:.14em; color:var(--accent)}
+.card .n{font-family:var(--f-display); font-size:22px; font-weight:900; color:var(--accent); line-height:1}
 .card h4{font-family:var(--f-display); font-weight:700; font-size:17px; margin:12px 0 10px; line-height:1.5}
 .card p{margin:0; font-size:14.5px; line-height:1.85; color:var(--ink-soft)}
 .card .ev{margin:16px 0 0; padding:13px 0 0; border-top:1px solid var(--rule); font-size:13px; line-height:1.8}
-.card .ev b{display:block; font-family:var(--f-mono); font-weight:700; font-size:10px;
-  letter-spacing:.1em; color:var(--accent); margin:0 0 6px}
+.card .ev b{display:block; font-weight:700; font-size:12px; color:var(--accent); margin:0 0 6px}
 @media (max-width:980px){ .grid4{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:560px){ .grid4{grid-template-columns:1fr} }
 
 /* ===== contact ===== */
 .contact{display:grid; grid-template-columns:1fr auto; gap:28px; align-items:center}
 .contact h2{font-family:var(--f-display); font-weight:900; font-size:clamp(22px,3vw,32px); margin:0 0 12px}
-.mail{font-family:var(--f-mono); font-size:clamp(15px,2.4vw,20px); font-weight:700; word-break:break-all; margin:0}
-button{font-family:var(--f-mono); font-size:12px; font-weight:700; letter-spacing:.06em; cursor:pointer;
+.mail{font-size:clamp(16px,2.4vw,21px); font-weight:700; word-break:break-all; margin:0}
+button{font-family:var(--f-body); font-size:14px; font-weight:700; cursor:pointer;
   background:var(--accent); color:#fff; border:0; padding:13px 24px; white-space:nowrap; transition:filter .2s}
 button:hover{filter:brightness(1.12)}
 button:focus-visible,a:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
 @media (max-width:640px){ .contact{grid-template-columns:1fr} }
 
-footer{background:var(--deep); color:var(--on-deep-soft); padding-block:34px}
-footer .in{display:flex; flex-wrap:wrap; gap:12px 28px; align-items:center;
-  font-family:var(--f-mono); font-size:11px; letter-spacing:.06em}
+footer{background:var(--band); color:var(--ink-soft); padding-block:34px; border-top:1px solid var(--rule)}
+footer .in{display:flex; flex-wrap:wrap; gap:12px 28px; align-items:center; font-size:12px}
 footer .sp{margin-left:auto}
-footer .rights{margin-top:18px; padding-top:16px; border-top:1px solid rgba(255,255,255,.14);
-  font-size:11px; line-height:1.85; color:var(--on-deep-soft); opacity:.72; max-width:78ch}
+footer .rights{margin-top:18px; padding-top:16px; border-top:1px solid var(--rule);
+  font-size:11.5px; line-height:1.85; color:var(--ink-soft); max-width:78ch}
 footer .rights p{margin:0 0 5px}
 footer .rights p:last-child{margin-bottom:0}
 footer .rights a{color:inherit; text-decoration:underline}
@@ -237,15 +215,15 @@ footer .rights a{color:inherit; text-decoration:underline}
 
 /* 背景のグローはピントが合うように現れる（バンダイナムコのブラー解除） */
 @keyframes glowIn{ from{ opacity:0; filter:blur(30px); transform:scale(1.08) } to{ opacity:1; filter:none; transform:none } }
-.hero::after{ animation:glowIn 1.9s var(--ease-rev) backwards }
+
 @keyframes gridIn{ from{ opacity:0 } to{ opacity:1 } }
 .hero::before{ animation:gridIn 1.6s ease-out .25s backwards }
 
 /* 数字の下に線が伸びる */
 .stats div{ position:relative; overflow:hidden }
 .stats div::after{ content:""; position:absolute; left:22px; right:22px; bottom:0; height:2px;
-  background:var(--accent); transform-origin:left;
-  animation:barIn 1.1s var(--ease-rev) var(--bd,.9s) backwards }
+  background:var(--accent); transform-origin:left; opacity:.0;
+  animation:none }
 @keyframes barIn{ from{ transform:scaleX(0) } to{ transform:scaleX(1) } }
 
 @media (prefers-reduced-motion:reduce){
@@ -255,12 +233,12 @@ footer .rights a{color:inherit; text-decoration:underline}
 
 /* ===== motion ===== */
 @keyframes rise{from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:none}}
-.hero .eyebrow,.hero h1,.hero .lede,.hero .who,.hero .stats{animation:rise .55s cubic-bezier(.22,.8,.3,1) backwards}
+.hero h1,.hero .lede,.hero .who,.hero .stats{animation:rise .55s cubic-bezier(.22,.8,.3,1) backwards}
 .hero h1{animation-delay:.07s} .hero .lede{animation-delay:.15s}
 .hero .who{animation-delay:.22s} .hero .stats{animation-delay:.28s}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .hero .eyebrow,.hero h1,.hero .lede,.hero .who,.hero .stats{animation:none}
+  .hero h1,.hero .lede,.hero .who,.hero .stats{animation:none}
   .media img,.lnk,.nav a::after,.metrics div{transition:none}
 }
 </style>
@@ -269,7 +247,7 @@ footer .rights a{color:inherit; text-decoration:underline}
 
 <header class="hd">
   <div class="hd-in">
-    <a class="brand" href="#top">TSUCHIHASHI<span>.</span>TAIGA</a>
+    <a class="brand" href="#top">槌橋 泰雅</a>
     <nav class="nav">
       <a href="#works">企画書</a>
       <a href="#tools">開発</a>
@@ -282,10 +260,9 @@ footer .rights a{color:inherit; text-decoration:underline}
 
 <section class="hero" id="top">
   <div class="in">
-    <p class="eyebrow">Portfolio / 2028年卒</p>
     <h1>面白さを分析して、<br>自分の手で形にする。</h1>
     <p class="lede">遊んで終わりにせず、なぜ面白いのかを構造で捉える。その分析を、企画書と、自分で書いたツールの両方で形にしてきました。ゲームプランナーを志望しています。</p>
-    <p class="who"><b>槌橋 泰雅</b>　関西学院大学 国際学部 国際学科 3年　／　カウナス工科大学（リトアニア）交換留学　／　TOEIC L&amp;R 785・IELTS 5.5</p>
+    <p class="who"><b>槌橋 泰雅</b>2028年卒　関西学院大学 国際学部 国際学科 3年　／　カウナス工科大学（リトアニア）交換留学　／　TOEIC L&amp;R 785・IELTS 5.5</p>
     <div class="stats">
       <div><b data-count="700000">700,000</b><span>収集・分析した試合数</span></div>
       <div><b data-count="162000">162,000</b><span>算出した相性の組み合わせ</span></div>
@@ -299,7 +276,6 @@ footer .rights a{color:inherit; text-decoration:underline}
   <div class="in">
     <div class="sh">
       <div class="rule"></div>
-      <p class="eyebrow">Works</p>
       <h2>企画書</h2>
       <p>どちらも全ページをPDFで公開しています。</p>
     </div>
@@ -340,7 +316,6 @@ footer .rights a{color:inherit; text-decoration:underline}
   <div class="in">
     <div class="sh">
       <div class="rule"></div>
-      <p class="eyebrow">Development</p>
       <h2>つくったツール</h2>
       <p>いずれも専門知識がない状態から着手し、調べながら作り直して実用水準まで仕上げたものです。</p>
     </div>
@@ -437,7 +412,6 @@ footer .rights a{color:inherit; text-decoration:underline}
   <div class="in narrow">
     <div class="sh">
       <div class="rule"></div>
-      <p class="eyebrow">Analysis</p>
       <h2>イナズマイレブン ― 必殺技はなぜ報酬として機能するのか</h2>
     </div>
     <p>このシリーズの必殺技は、演出ではなく報酬として設計されています。プレイヤーが我慢した時間に対して、必殺技という形で一気に支払いが行われる。ただし報酬は、与えすぎれば価値が下がります。続編を重ねるほど演出が派手になり、一発の重みが薄れていく構造をインフレとして整理しました。</p>
@@ -450,14 +424,13 @@ footer .rights a{color:inherit; text-decoration:underline}
   <div class="in">
     <div class="sh">
       <div class="rule"></div>
-      <p class="eyebrow">Approach</p>
       <h2>仕事の進め方</h2>
     </div>
     <div class="grid4">
-      <div class="card"><div class="n">01</div><h4>課題を自分で見つける</h4><p>違和感を覚えた時点で、まず何が起きているのかを言葉にする。</p><p class="ev"><b>実例</b>『ブロスタ』で初心者が序盤に脱落する原因を、操作ではなくピックの段階にあると考えたところから作り始めた。</p></div>
-      <div class="card"><div class="n">02</div><h4>数字で裏を取る</h4><p>感覚で語らず、他人が検証できる形に落とす。</p><p class="ev"><b>実例</b>ピック提案は70万試合の集計を根拠にし、企画書の市場分析は公表された実測値だけで裏を取った。</p></div>
-      <div class="card"><div class="n">03</div><h4>形にする</h4><p>専門知識がなくても、調べながら作り直して実用水準まで持っていく。</p><p class="ev"><b>実例</b>APIが必要なデータを返さないところから設計を考え直し、ツールを5本、実際に使える状態まで作った。</p></div>
-      <div class="card"><div class="n">04</div><h4>外の評価で作り直す</h4><p>評価されない可能性のある場所に、自分から出ていく。</p><p class="ev"><b>実例</b>企画書を社外のワークショップで制作者の方に見ていただき、いただいた指摘をもとに全面的に作り直した。</p></div>
+      <div class="card"><div class="n">1</div><h4>課題を自分で見つける</h4><p>違和感を覚えた時点で、まず何が起きているのかを言葉にする。</p><p class="ev"><b>実例</b>『ブロスタ』で初心者が序盤に脱落する原因を、操作ではなくピックの段階にあると考えたところから作り始めた。</p></div>
+      <div class="card"><div class="n">2</div><h4>数字で裏を取る</h4><p>感覚で語らず、他人が検証できる形に落とす。</p><p class="ev"><b>実例</b>ピック提案は70万試合の集計を根拠にし、企画書の市場分析は公表された実測値だけで裏を取った。</p></div>
+      <div class="card"><div class="n">3</div><h4>形にする</h4><p>専門知識がなくても、調べながら作り直して実用水準まで持っていく。</p><p class="ev"><b>実例</b>APIが必要なデータを返さないところから設計を考え直し、ツールを5本、実際に使える状態まで作った。</p></div>
+      <div class="card"><div class="n">4</div><h4>外の評価で作り直す</h4><p>評価されない可能性のある場所に、自分から出ていく。</p><p class="ev"><b>実例</b>企画書を社外のワークショップで制作者の方に見ていただき、いただいた指摘をもとに全面的に作り直した。</p></div>
     </div>
   </div>
 </section>
@@ -476,7 +449,7 @@ footer .rights a{color:inherit; text-decoration:underline}
   <div class="in">
     <span>&copy; 2026 Taiga Tsuchihashi</span>
     <span>All Rights Reserved</span>
-    <span class="sp">最終更新 2026年10月</span>
+    <span class="sp">最終更新 2026年11月</span>
   </div>
   <div class="in">
     <div class="rights">
