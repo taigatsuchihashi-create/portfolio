@@ -23,7 +23,7 @@
    タブは親指で押せる下の帯。文字は読みやすさ優先のUDゴシック、数字は細身で桁がそろう書体 */
 :root {
   --bg: #ffffff; --panel: #ffffff; --panel-2: #f5f7fa; --line: #d3d9e1; --ink: #141a21; --muted: #5a6573;
-  --led: #c25e00; --led-soft: #fff1e3; --good: #12804b; --good-soft: #e2f4ea; --bad: #c5352a; --bad-soft: #fbe7e4; --warn: #8a6200; --warn-soft: #fbf1d6;
+  --led: #a85000; --led-soft: #fff1e3; --good: #12804b; --good-soft: #e2f4ea; --bad: #c5352a; --bad-soft: #fbe7e4; --warn: #8a6200; --warn-soft: #fbf1d6;
   --counter: #ffffff; --counter-ink: #141a21; --counter-muted: #5a6573; /* 本人の希望でテーマはホワイト（結果の枠も白） */
   --f-body: "BIZ UDPGothic", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
   --f-num: "Barlow Condensed", "BIZ UDPGothic", "Hiragino Sans", sans-serif;
@@ -61,24 +61,24 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .verdict { display: block; font-weight: 700; font-size: 1rem; line-height: 1.45; padding: 8px 12px 8px 30px; border-radius: 10px; position: relative; }
 .verdict::before { content: ""; position: absolute; left: 12px; top: 1.05em; width: 9px; height: 9px; border-radius: 50%; background: currentColor; transform: translateY(-50%); }
 .verdict:empty { display: none; }
-.verdict.good { background: color-mix(in srgb, #43d18f 18%, transparent); color: #6fe3ad; }
-.verdict.bad { background: color-mix(in srgb, #ff6d62 18%, transparent); color: #ff8f86; }
-.verdict.warn { background: color-mix(in srgb, #f2c65a 16%, transparent); color: #f5d27a; }
+.verdict.good { background: var(--good-soft); color: var(--good); }
+.verdict.bad { background: var(--bad-soft); color: var(--bad); }
+.verdict.warn { background: var(--warn-soft); color: var(--warn); }
 .big { font-family: var(--f-num); font-weight: 700; font-size: 3rem; line-height: 1; letter-spacing: .01em; font-variant-numeric: tabular-nums; color: var(--counter-ink); }
-.big.good { color: #59de9e; } .big.bad { color: #ff7d73; }
+.big.good { color: var(--good); } .big.bad { color: var(--bad); }
 .big small { display: block; font-family: var(--f-body); font-size: .8rem; color: var(--counter-muted); font-weight: 400; letter-spacing: 0; margin-top: 6px; line-height: 1.5; }
 .big:not(.good):not(.bad) { font-family: var(--f-body); font-size: 1rem; font-weight: 700; line-height: 1.6; }
 .gauge { display: grid; gap: 6px; }
 .gauge:empty { display: none; }
 .gauge .row { display: flex; justify-content: space-between; font-size: .78rem; color: var(--counter-muted); }
 .gauge .row b { font-family: var(--f-num); font-size: 1.25rem; font-weight: 600; color: var(--counter-ink); font-variant-numeric: tabular-nums; }
-.gauge .track { position: relative; height: 10px; border-radius: 5px; background: #2a323c; }
-.gauge .fill { position: absolute; inset: 0 auto 0 0; border-radius: 5px; background: #ffa24a; }
+.gauge .track { position: relative; height: 10px; border-radius: 5px; background: var(--panel-2); border: 1px solid var(--line); }
+.gauge .fill { position: absolute; inset: 0 auto 0 0; border-radius: 5px; background: var(--led); }
 .gauge .mark { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--counter-ink); }
-.result .warnline { color: #ff9a92; }
+.result .warnline { color: var(--bad); }
 .result .why { margin: 0; font-size: .8rem; color: var(--counter-muted); }
 .result .why:empty { display: none; }
-.more { border-top: 1px solid #2a323c; padding-top: 8px; }
+.more { border-top: 1px solid var(--line); padding-top: 8px; }
 .more > summary { cursor: pointer; font-size: .85rem; font-weight: 700; color: var(--counter-muted); list-style: none; }
 .more > summary::-webkit-details-marker { display: none; }
 .more > summary::after { content: "＋"; float: right; }
@@ -88,7 +88,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .result .jbtn { justify-self: start; font: inherit; font-size: .85rem; font-weight: 700; min-height: 40px; padding: 6px 14px; border-radius: 10px;
   border: 1px solid var(--line); background: transparent; color: var(--counter-ink); cursor: pointer; }
 .result #k-bars .bar { color: var(--counter-ink); }
-.result #k-bars .track { background: #2a323c; }
+.result #k-bars .track { background: var(--panel-2); }
 .result #k-bars .note { color: var(--counter-muted); }
 
 /* 入力の段（1 → 2 → 3） */
@@ -189,15 +189,15 @@ svg text { fill: var(--muted); font-size: 11px; }
 /* 台選び：候補の並び（カウンターの中） */
 .rank { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .rank:empty { display: none; }
-.cand { border: 1px solid #2a323c; border-radius: 12px; padding: 10px 12px; display: grid; gap: 4px; }
-.cand.first { border-color: #59de9e; background: color-mix(in srgb, #43d18f 8%, transparent); }
+.cand { border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; display: grid; gap: 4px; }
+.cand.first { border-color: var(--good); background: var(--good-soft); }
 .cand .c-head { display: flex; align-items: center; gap: 8px; min-width: 0; }
 .cand .c-rank { flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--counter-ink); color: var(--counter); font-family: var(--f-num); font-weight: 700; }
 .cand .c-name { font-weight: 700; min-width: 0; overflow-wrap: anywhere; }
 .cand .c-kind { margin-left: auto; flex: none; font-size: .72rem; color: var(--counter-muted); border: 1px solid var(--line); border-radius: 999px; padding: 0 8px; }
 .cand .c-ev { font-family: var(--f-num); font-size: 2rem; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
 .cand .c-ev small { font-family: var(--f-body); font-size: .75rem; font-weight: 400; color: var(--counter-muted); margin-left: 8px; }
-.cand.good .c-ev { color: #59de9e; } .cand.bad .c-ev { color: #ff7d73; } .cand.warn .c-ev { color: #f5d27a; }
+.cand.good .c-ev { color: var(--good); } .cand.bad .c-ev { color: var(--bad); } .cand.warn .c-ev { color: var(--warn); }
 .cand.na .c-ev { font-family: var(--f-body); font-size: .9rem; color: var(--counter-muted); }
 .cand .c-why { font-size: .82rem; color: var(--counter-ink); }
 .cand .c-detail { font-size: .78rem; color: var(--counter-muted); }
@@ -1141,7 +1141,7 @@ function pachi() {
   // いまの回転率とボーダーを1本の棒で（ボーダーの線より右なら打てる側）
   { const bd = rS.border, max = Math.max(v.R, bd) * 1.25, pc = (x) => Math.max(0, Math.min(100, (x / max) * 100));
     $('p-gauge').innerHTML = `<div class="row"><span>いまの回転率 <b>${v.R.toFixed(1)}</b></span><span>ボーダー <b>${bd.toFixed(1)}</b></span></div>` +
-      `<div class="track" role="img" aria-label="回転率 ${v.R.toFixed(1)}、ボーダー ${bd.toFixed(1)}"><span class="fill" style="width:${pc(v.R).toFixed(1)}%;background:${v.R >= bd ? '#59de9e' : '#ff7d73'}"></span><span class="mark" style="left:${pc(bd).toFixed(1)}%"></span></div>`; }
+      `<div class="track" role="img" aria-label="回転率 ${v.R.toFixed(1)}、ボーダー ${bd.toFixed(1)}"><span class="fill" style="width:${pc(v.R).toFixed(1)}%;background:${v.R >= bd ? 'var(--good)' : 'var(--bad)'}"></span><span class="mark" style="left:${pc(bd).toFixed(1)}%"></span></div>`; }
   $('p-border').textContent = `${r.border.toFixed(1)}回転${yS ? `（厳しめの資料 ${rS.border.toFixed(1)}）` : ''}（いま ${v.R}）`;
   $('p-hit').textContent = pct(r.hitInSession);
   $('p-invest').textContent = `${Math.round(r.avgInvest).toLocaleString('ja-JP')}円`;
@@ -1370,7 +1370,7 @@ $('c-clear').addEventListener('click', () => { cstore.set([]); renderCands(); $(
 function age(id) {
   const min = Math.floor((Date.now() - id) / 60000);
   if (min < 1) return '';
-  return `<div class="c-detail"${min >= 60 ? ' style="color:#f5d27a"' : ''}>${min < 60 ? `${min}分前に入力` : `${Math.floor(min / 60)}時間${min % 60}分前に入力（いまの数字に入れ直す）`}</div>`;
+  return `<div class="c-detail"${min >= 60 ? ' style="color:var(--warn)"' : ''}>${min < 60 ? `${min}分前に入力` : `${Math.floor(min / 60)}時間${min % 60}分前に入力（いまの数字に入れ直す）`}</div>`;
 }
 function renderCands() {
   if (tab !== 'pick') return; // 開いているときだけ並べ直す（重い計算をほかのタブの入力で走らせない）
@@ -1785,7 +1785,7 @@ renderAll();
 </script>
 
 <script>
-// オフラインで動くように、開いたときに中身を端末に保存する（版 b5e3fc59ca）
+// オフラインで動くように、開いたときに中身を端末に保存する（版 91d645595f）
 if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 </script>
 </body>
