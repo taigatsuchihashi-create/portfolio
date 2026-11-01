@@ -1436,7 +1436,7 @@ const store = { get() { try { return JSON.parse(localStorage.getItem('ps-presets
 function refreshList() {
   const all = store.get()[tab] || {};
   const names = Object.keys(all);
-  $('plist').innerHTML = names.length ? names.map((n) => `<option>${n.replace(/</g, '&lt;')}</option>`).join('') : '<option value="">（まだ保存なし）</option>';
+  $('plist').innerHTML = names.length ? names.map((n) => `<option>${n.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</option>`).join('') : '<option value="">（まだ保存なし）</option>';
 }
 $('psave').addEventListener('click', () => {
   const name = $('pname').value.trim();
@@ -1785,7 +1785,7 @@ renderAll();
 </script>
 
 <script>
-// オフラインで動くように、開いたときに中身を端末に保存する（版 91d645595f）
+// オフラインで動くように、開いたときに中身を端末に保存する（版 859e615b02）
 if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 </script>
 </body>

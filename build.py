@@ -14,7 +14,7 @@ HTML = r"""<!doctype html>
 <title>槌橋泰雅 ポートフォリオ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap">
 <style>
 /* 白い方眼紙（企画を書くノート）を下敷きに。ヒーローだけ方眼を見せ、ほかは白と罫線で静かに。
    差し色は青緑の1色。ラベルは英字の大文字や等幅の書体を使わず、日本語で必要なものだけ。 */
@@ -26,12 +26,10 @@ HTML = r"""<!doctype html>
   --rule:#D5DDE7;
   --accent:#0B6E8C;
   --accent-soft:#E2F0F5;
-  --mark:#0B6E8C;
   --grid:rgba(11,110,140,.085);
 
   --f-display:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
   --f-body:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
-  --f-mono:"JetBrains Mono","SFMono-Regular",Consolas,monospace;
 
   --head-h:62px;
 }
@@ -120,6 +118,19 @@ h1{font-family:var(--f-display); font-weight:900; font-size:clamp(34px,6.6vw,70p
 .media figure:hover img{transform:translateY(-4px); box-shadow:0 14px 34px rgba(16,24,38,.16)}
 .media figcaption{font-size:12px; color:var(--ink-soft); margin-top:7px}
 
+/* 誰の何を解くか（全ツールで同じ位置に置く） */
+.fit{margin:0 0 22px; border-top:1px solid var(--rule)}
+.fit div{display:grid; grid-template-columns:7.5em 1fr; gap:14px; padding:10px 0; border-bottom:1px solid var(--rule)}
+.fit dt{font-size:12.5px; font-weight:700; color:var(--accent); padding-top:3px}
+.fit dd{margin:0; font-size:15px; line-height:1.75}
+
+/* 作り直す前と後 */
+.ba{grid-column:1/-1; order:3; border-top:1px dashed var(--rule); padding-top:clamp(26px,3.5vw,36px)}
+.ba h4{font-family:var(--f-display); font-weight:700; font-size:18px; margin:0 0 8px}
+.ba > p{margin:0 0 20px; max-width:46em; color:var(--ink-soft); font-size:15px}
+.ba .media{grid-template-columns:1fr 1fr; gap:clamp(16px,2.4vw,28px); align-items:start}
+.ba figcaption b{color:var(--ink); font-weight:700; margin-right:.5em}
+
 .quote{border-left:3px solid var(--accent); background:var(--accent-soft);
   padding:16px 20px; margin:20px 0; font-weight:500; border-radius:0 3px 3px 0}
 .metrics{display:flex; flex-wrap:wrap; gap:0; margin:22px 0 0; border:1px solid var(--rule)}
@@ -156,6 +167,18 @@ h1{font-family:var(--f-display); font-weight:900; font-size:clamp(34px,6.6vw,70p
 @media (max-width:980px){ .grid4{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:560px){ .grid4{grid-template-columns:1fr} }
 
+/* ===== about ===== */
+.about{display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(30px,5vw,72px); align-items:start}
+.about .txt p{margin:0 0 18px; max-width:34em}
+.about .txt p:last-child{margin-bottom:0}
+.about .txt .lead{font-family:var(--f-display); font-weight:700; font-size:clamp(19px,2.2vw,23px); line-height:1.75}
+.tl{list-style:none; margin:0; padding:0; border-top:1px solid var(--rule)}
+.tl li{display:grid; grid-template-columns:7.5em 1fr; gap:16px; padding:14px 0; border-bottom:1px solid var(--rule);
+  font-size:14.5px; line-height:1.8}
+.tl time{font-size:13px; font-weight:700; color:var(--accent); font-variant-numeric:tabular-nums; padding-top:2px}
+@media (max-width:860px){ .about{grid-template-columns:1fr} .ba .media{grid-template-columns:1fr} }
+@media (max-width:440px){ .tl li,.fit div{grid-template-columns:1fr; gap:2px} }
+
 /* ===== contact ===== */
 .contact{display:grid; grid-template-columns:1fr auto; gap:28px; align-items:center}
 .contact h2{font-family:var(--f-display); font-weight:900; font-size:clamp(22px,3vw,32px); margin:0 0 12px}
@@ -190,7 +213,7 @@ footer .rights a{color:inherit; text-decoration:underline}
 .js-anim .media figure:hover img{ transform:translateY(-4px) }
 
 @media (prefers-reduced-motion:reduce){
-  .js-anim .rev,.js-anim .sh h2 > span,.js-anim .media figure img{
+  .js-anim .rev,.js-anim .media figure img{
     opacity:1!important; transform:none!important; transition:none!important }
 }
 
@@ -206,7 +229,6 @@ footer .rights a{color:inherit; text-decoration:underline}
 .hero h1.split{ animation:none }
 .hero h1 .ch{ display:inline-block; animation:chIn .72s var(--ease-rev) var(--d,0s) backwards }
 
-/* 背景のグローはピントが合うように現れる（バンダイナムコのブラー解除） */
 
 @keyframes gridIn{ from{ opacity:0 } to{ opacity:1 } }
 .hero::before{ animation:gridIn 1.6s ease-out .25s backwards }
@@ -235,6 +257,7 @@ footer .rights a{color:inherit; text-decoration:underline}
   <div class="hd-in">
     <a class="brand" href="#top">槌橋 泰雅</a>
     <nav class="nav">
+      <a href="#about">自己紹介</a>
       <a href="#works">企画書</a>
       <a href="#tools">開発</a>
       <a href="#analysis">分析</a>
@@ -254,6 +277,30 @@ footer .rights a{color:inherit; text-decoration:underline}
       <div><b data-count="162000">162,000</b><span>算出した相性の組み合わせ</span></div>
       <div><b data-count="60" data-suffix="+">60+</b><span>自動算出する財務指標</span></div>
       <div><b data-count="5">5</b><span>個人開発したツール</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band tint" id="about">
+  <div class="in">
+    <div class="sh">
+      <div class="rule"></div>
+      <h2>自己紹介</h2>
+    </div>
+    <div class="about">
+      <div class="txt">
+        <p class="lead">「なぜ面白いのか」を、感覚で終わらせずに数字と構造で説明することを大事にしています。</p>
+        <p>対戦データを集めるツールを作ったのも、企画書の市場分析を公表された実測値だけで書いたのも、そのためです。</p>
+        <p>リトアニアに留学していたとき、現地の友人と日本語版の『桃太郎電鉄』を20年モードで遊びました。私が通訳しながら進めて、気づけば朝になっていました。言葉も文化も違う相手と、同じ画面で笑い合える。ゲームはそれを届けられるものだと、そのとき実感しました。</p>
+        <p>遊ぶ人の行動をデータで確かめながら、国や言葉を越えて遊ばれるゲームを企画できる人になりたいと考えています。</p>
+      </div>
+      <ol class="tl">
+        <li><time>2024年4月</time><span>関西学院大学 国際学部に入学。Unity と C# でゲームを作り始める</span></li>
+        <li><time>2025年7〜9月</time><span>フィリピンで語学留学</span></li>
+        <li><time>2026年1〜6月</time><span>カウナス工科大学（リトアニア）情報学部に交換留学。C#・Python・システムシミュレーションを英語で履修</span></li>
+        <li><time>2026年6月</time><span>社外の企画書ワークショップで、現場の制作者の方に企画書を見ていただく</span></li>
+        <li><time>2026年10月</time><span>指摘をもとに、企画書を全面的に作り直す</span></li>
+      </ol>
     </div>
   </div>
 </section>
@@ -294,6 +341,14 @@ footer .rights a{color:inherit; text-decoration:underline}
         <p>市場の主張は、公表されている実測値だけで裏を取っています。推測で埋めず、顧客数そのものではない数字は代理指標だと明記しました。この企画書は、社外のワークショップで現場の制作者の方に直接見ていただいたものを、いただいた指摘をもとに全面的に作り直した版です。「文字で詰めすぎると敬遠される」「なぜ面白いのかを自分で主張できていない」「両極端にいるお客さんを連れてこられるか」。指摘を受けて、文章を削り、図を増やし、何を捨てて何を残すのかまで書き切りました。</p>
         <div class="links"><a class="lnk solid" href="docs/real-or-ultra.pdf">企画書を読む（PDF・15ページ）</a></div>
       </div>
+      <div class="ba">
+        <h4>作り直す前と後</h4>
+        <p>市場の真ん中を「誰もいない空白」と書いていたのを、「両方を求める同じ人がいる重なり」に書き直しました。どちらも市場分析のページです。</p>
+        <div class="media">
+          <figure><img src="__real_before__" alt="作り直す前の市場分析。リアル路線と超次元路線の間を「融合領域（空白）」と書いている"><figcaption><b>前</b>ワークショップに出した版（2026年6月・5ページ）</figcaption></figure>
+          <figure><img src="__real_after__" alt="作り直した後の市場分析。真ん中を「重なる領域」とし、両方を求める同じ人を狙うと書いている"><figcaption><b>後</b>作り直した版（2026年10月・15ページ）</figcaption></figure>
+        </div>
+      </div>
     </article>
   </div>
 </section>
@@ -310,7 +365,12 @@ footer .rights a{color:inherit; text-decoration:underline}
       <div class="body">
         <h3>ブロスタ ピック提案ツール</h3>
         <p class="role">個人開発 / 対戦データ分析</p>
-        <p>対戦ゲーム『ブロスタ』のガチバトルで、初心者が序盤に脱落する原因はピックの段階にあると考えました。感覚で語っても誰も納得しないので、まず数字を集めることから始めました。</p>
+        <dl class="fit">
+          <div><dt>使う人</dt><dd>『ブロスタ』のガチバトルを始めたばかりの人</dd></div>
+          <div><dt>困っていたこと</dt><dd>序盤で脱落する原因はピックにあるのに、何を選ぶべきかは感覚で語られている</dd></div>
+          <div><dt>作ったもの</dt><dd>マップごとの勝率から、BANの候補と次に選ぶブロウラーを提案するツール</dd></div>
+        </dl>
+        <p>感覚で語っても誰も納得しないので、まず数字を集めることから始めました。</p>
         <p>公式APIには「マップ別の全試合」を取る方法がなく、取得できるのは1プレイヤーの直近25戦だけです。そこで、ランキングから種タグを集め、対戦ログを辿って巡回するクローラ型の設計にしました。1試合から両チーム6体と勝敗が取れるので、重複を除きながら雪だるま式にデータを増やしています。毎日自動で巡回を続けており、現在は約217万人のプレイヤー記録から70万試合分を蓄積しています。</p>
         <div class="metrics">
           <div><b>700,286</b><span>試合</span></div>
@@ -333,6 +393,11 @@ footer .rights a{color:inherit; text-decoration:underline}
       <div class="body">
         <h3>ポケモンチャンピオンズ ダメージ計算ツール</h3>
         <p class="role">個人開発 / 対戦支援</p>
+        <dl class="fit">
+          <div><dt>使う人</dt><dd>『ポケモンチャンピオンズ』で対戦する人</dd></div>
+          <div><dt>困っていたこと</dt><dd>対戦中は数秒で判断したいのに、相手の持ち物や技がわからないまま計算することになる</dd></div>
+          <div><dt>作ったもの</dt><dd>ダメージと確定数をすぐ出す計算ツール。図鑑から、実際の対戦での技・持ち物の採用率も引ける</dd></div>
+        </dl>
         <p>全1,025匹の種族値・技・特性・持ち物・タイプ相性を踏まえてダメージを計算し、確定数まで出します。対戦中に開いて数秒で答えが欲しいツールなので、立ち絵つきで目的のポケモンに迷わず辿り着けることを優先しました。</p>
         <div class="metrics">
           <div><b>1,025</b><span>収録ポケモン</span></div>
@@ -346,6 +411,11 @@ footer .rights a{color:inherit; text-decoration:underline}
       <div class="body">
         <h3>Pokémon GO 個体値チェッカー / チームビルダー</h3>
         <p class="role">個人開発 / 対戦支援</p>
+        <dl class="fit">
+          <div><dt>使う人</dt><dd>Pokémon GO のリーグ対戦をする人</dd></div>
+          <div><dt>困っていたこと</dt><dd>どの個体を強化すべきか、ゲーム内のCPとHPだけでは判断できない</dd></div>
+          <div><dt>作ったもの</dt><dd>個体値を逆算してリーグごとの順位を出し、編成の候補まで組めるツール</dd></div>
+        </dl>
         <p>同じポケモンでも、Pokémon GO は数値体系がまったく別のゲームです。強さの指標はCPと強化レベル、個体値は0〜15の3値、タイプ相性は2倍ではなく約1.6倍刻み。だから既存のツールを流用せず、別プロジェクトとして設計し直しました。</p>
         <ul class="pts">
           <li>CP・HP・強化状況から個体値の候補を逆算し、リーグごとの最適度を出す</li>
@@ -365,6 +435,11 @@ footer .rights a{color:inherit; text-decoration:underline}
       <div class="body">
         <h3>Prism — 決算分析ツール</h3>
         <p class="role">個人開発 / 財務データ可視化</p>
+        <dl class="fit">
+          <div><dt>使う人</dt><dd>企業研究をする就活生（まず自分）</dd></div>
+          <div><dt>困っていたこと</dt><dd>決算書は会社や会計基準ごとに書き方が違い、横に並べて比べにくい</dd></div>
+          <div><dt>作ったもの</dt><dd>財務三表を図にし、60以上の指標と分析レポートを自動で出すツール</dd></div>
+        </dl>
         <p>企業研究のために作りました。決算PDFのほか、EDINET・SEC EDGARから直接データを取り込めます（スキャンされた画像PDFは文字認識で読み取り）。貸借対照表・損益計算書・キャッシュフロー計算書の三表を図にして、ROEやPBRなど60以上の指標を自動計算し、「なぜその数字になったのか」まで踏み込んだ分析レポートを書き出します。取り込んだ数字は貸借一致などの会計ルールで自動検算し、実在企業を使った回帰テストで誤りを機械的に検出する仕組みにしました。ゲーム以外の領域でも、数字から構造を読む手順は同じだと考えています。</p>
         <div class="metrics">
           <div><b>60+</b><span>算出指標</span></div>
@@ -378,7 +453,12 @@ footer .rights a{color:inherit; text-decoration:underline}
       <div class="body">
         <h3>演習ドリル — Webテストの模試</h3>
         <p class="role">個人開発 / 学習支援</p>
-        <p>就職活動のWebテスト対策で、本番と同じ難度の問題をいくらでも解きたいと考えて作りました。問題は毎回その場で生成するので、何度受けても同じ問題には当たりません。SPI・玉手箱・TG-WEB・CUBICなど6種類の試験を、本番と同じ画面構成と制限時間で受けられます。</p>
+        <dl class="fit">
+          <div><dt>使う人</dt><dd>Webテストを受ける就活生（まず自分）</dd></div>
+          <div><dt>困っていたこと</dt><dd>問題集は数が限られていて、繰り返すうちに答えを覚えてしまう</dd></div>
+          <div><dt>作ったもの</dt><dd>問題を毎回その場で作るので、何度受けても同じ問題に当たらない模試</dd></div>
+        </dl>
+        <p>SPI・玉手箱・TG-WEB・CUBICなど6種類の試験を、本番と同じ画面構成と制限時間で受けられます。</p>
         <p>最初の版は、推測で決めた難度が本番よりずっと易しいものでした。そこで、試験ごとに公開されている実例や解説から形式と難度の基準を文書にまとめ、届かない問題はすべて作り直すか削除しました。答えは総当たりで決め、生成とは別の解き方で自動的に解き直して照合しています。同じ仕組みで、日商簿記2級やビジネス会計検定2級などの資格試験の模試も作りました。</p>
         <p>あわせて、マーケティングと事業企画の判断を数字で練習するケース問題を35本作りました。1本は4つの判断の連続で、選ぶとその結果の数字と現場での考え方が出ます。答えを伏せて解き直す点検を重ね、正解が1つに決まることを確かめています。</p>
         <div class="metrics">
@@ -472,7 +552,7 @@ footer .rights a{color:inherit; text-decoration:underline}
   // ---- スクロール演出 ----
   if(!reduce && hasIO){
     document.documentElement.classList.add('js-anim');
-    var revT = [].slice.call(document.querySelectorAll('.sh, .work .body, .card, .contact, .pts, #analysis .in > p, #analysis .in > .links, footer .in'));
+    var revT = [].slice.call(document.querySelectorAll('.sh, .work .body, .card, .about .txt, .tl, .ba > h4, .ba > p, .contact, .pts, #analysis .in > p, #analysis .in > .links, footer .in'));
     var figT = [].slice.call(document.querySelectorAll('.media figure'));
     revT.forEach(function(el){ el.classList.add('rev'); });
     var targets = revT.concat(figT);
