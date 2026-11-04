@@ -249,6 +249,35 @@ footer .rights a{color:inherit; text-decoration:underline}
   .hero h1,.hero .lede,.hero .who,.hero .stats{animation:none}
   .media img,.lnk,.nav a::after,.metrics div{transition:none}
 }
+/* ===== カーソル：グラフの打点（マウスのときだけ） =====
+   点と輪が追う。押せるものの上では輪が菱形の打点マーカーになる。
+   ヒーローの方眼では、カーソルのいるマスと縦横の罫が光る。 */
+.pt-dot,.pt-ring{position:fixed; left:0; top:0; z-index:80; pointer-events:none; opacity:0; transition:opacity .2s}
+.pt-dot{width:6px; height:6px; margin:-3px 0 0 -3px; border-radius:50%; background:var(--accent)}
+.pt-ring{width:30px; height:30px; margin:-15px 0 0 -15px}
+.pt-ring::before{content:""; position:absolute; inset:0; border:1.5px solid color-mix(in srgb,var(--accent) 55%,transparent);
+  border-radius:50%; transition:border-radius .22s ease, transform .22s cubic-bezier(.22,.8,.3,1), background .22s, border-color .22s}
+.pt-ring.hot::before{border-radius:3px; transform:rotate(45deg) scale(.82); border-color:var(--accent);
+  background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.pt-on .pt-dot,.pt-on .pt-ring{opacity:1}
+.hero .cell,.hero .xh,.hero .yh{position:absolute; pointer-events:none; opacity:0; transition:opacity .35s ease}
+.hero .cell{left:0; top:0; width:28px; height:28px; background:color-mix(in srgb,var(--accent) 16%,transparent);
+  transition:opacity .35s ease, transform .12s ease-out}
+.hero .xh{left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--accent) 40%,transparent) 30%,color-mix(in srgb,var(--accent) 40%,transparent) 70%,transparent)}
+.hero .yh{top:0; bottom:0; width:1px; background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--accent) 40%,transparent) 30%,color-mix(in srgb,var(--accent) 40%,transparent) 70%,transparent)}
+.hero.aim .cell,.hero.aim .xh,.hero.aim .yh{opacity:1}
+
+/* カードはマウスを乗せると少し浮き、上辺に色の線が伸びる */
+.card{position:relative; transition:transform .3s cubic-bezier(.22,.8,.3,1), box-shadow .3s ease, border-color .3s}
+.card::before{content:""; position:absolute; left:-1px; right:-1px; top:-1px; height:3px; background:var(--accent);
+  transform:scaleX(0); transform-origin:left; transition:transform .35s cubic-bezier(.22,.8,.3,1)}
+.card:hover{transform:translateY(-4px); box-shadow:0 14px 30px rgba(16,24,38,.10)}
+.card:hover::before{transform:scaleX(1)}
+@media (hover:none),(pointer:coarse){ .pt-dot,.pt-ring,.hero .cell,.hero .xh,.hero .yh{display:none} }
+@media (prefers-reduced-motion:reduce){
+  .pt-dot,.pt-ring,.hero .cell,.hero .xh,.hero .yh{display:none}
+  .card,.card::before{transition:none} .card:hover{transform:none}
+}
 </style>
 </head>
 <body>
@@ -626,6 +655,40 @@ footer .rights a{color:inherit; text-decoration:underline}
     es.forEach(function(e){ if(e.isIntersecting){ io.unobserve(e.target); run(e.target); } });
   },{threshold:.5});
   els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+<script>
+/* カーソル：グラフの打点（マウスで、動きを減らす設定でないときだけ） */
+(function(){
+  if(!matchMedia('(hover:hover) and (pointer:fine)').matches || matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  var root=document.documentElement, dot=document.createElement('div'), ring=document.createElement('div');
+  dot.className='pt-dot'; ring.className='pt-ring'; dot.setAttribute('aria-hidden','true'); ring.setAttribute('aria-hidden','true');
+  document.body.appendChild(dot); document.body.appendChild(ring);
+  var hero=document.querySelector('.hero'), cell, xh, yh, G=28;
+  if(hero){
+    cell=document.createElement('div'); cell.className='cell';
+    xh=document.createElement('div'); xh.className='xh';
+    yh=document.createElement('div'); yh.className='yh';
+    [cell,xh,yh].forEach(function(e){ e.setAttribute('aria-hidden','true'); hero.insertBefore(e,hero.firstChild); });
+  }
+  var x=-100,y=-100,rx=x,ry=y,raf=0;
+  function loop(){ rx+=(x-rx)*.2; ry+=(y-ry)*.2; ring.style.transform='translate('+rx+'px,'+ry+'px)';
+    raf=Math.abs(x-rx)+Math.abs(y-ry)>.3?requestAnimationFrame(loop):0; }
+  addEventListener('pointermove',function(e){
+    if(e.pointerType!=='mouse') return;
+    x=e.clientX; y=e.clientY; dot.style.transform='translate('+x+'px,'+y+'px)';
+    root.classList.add('pt-on');
+    var t=e.target&&e.target.closest?e.target:null;
+    ring.classList.toggle('hot',!!(t&&t.closest('a,button,summary,label')));
+    if(hero){
+      var r=hero.getBoundingClientRect(), hx=x-r.left, hy=y-r.top, inside=hy>=0&&hy<r.height*.62&&hx>=0&&hx<r.width;
+      hero.classList.toggle('aim',inside);
+      if(inside){ var cx=Math.floor(hx/G)*G, cy=Math.floor(hy/G)*G;
+        cell.style.transform='translate('+cx+'px,'+cy+'px)'; xh.style.top=cy+'px'; yh.style.left=cx+'px'; }
+    }
+    if(!raf) raf=requestAnimationFrame(loop);
+  },{passive:true});
+  document.addEventListener('pointerleave',function(){ root.classList.remove('pt-on'); if(hero) hero.classList.remove('aim'); });
 })();
 </script>
 </body>

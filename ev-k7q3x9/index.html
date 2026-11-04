@@ -212,6 +212,20 @@ svg text { fill: var(--muted); font-size: 11px; }
 .seg button[aria-checked="true"] small { color: #fff; }
 @media (prefers-reduced-motion: no-preference) { .bar i, .gauge .fill { transition: width .25s; } }
 @media (max-width: 360px) { .grid { grid-template-columns: 1fr; } .big { font-size: 2.6rem; } }
+/* 動き（2026-11-04）：データカウンター。結果の数字が変わると、下から繰り上がって入れかわる。
+   判定の丸はランプのように一度だけ灯る。タブを切り替えた中身はすっと出る。押したボタンは少し沈む。 */
+@media (prefers-reduced-motion: no-preference) {
+  .big.tick { animation: ctrRoll .26s cubic-bezier(.22,.8,.3,1); }
+  @keyframes ctrRoll { from { opacity: .2; transform: translateY(.35em); clip-path: inset(0 0 35% 0); } to { opacity: 1; transform: none; clip-path: inset(0); } }
+  .verdict.tick::before { animation: lamp .7s ease-out; }
+  @keyframes lamp { 0% { box-shadow: 0 0 0 0 currentColor; } 100% { box-shadow: 0 0 0 9px transparent; } }
+  .tabpage:not([hidden]) { animation: pageIn .28s cubic-bezier(.22,.8,.3,1); }
+  @keyframes pageIn { from { opacity: 0; transform: translateY(8px); } }
+  .btn, .steps button, .acts button, .tabs button, .chk { transition: transform .12s ease-out, background .15s, color .15s; }
+  .btn:active, .steps button:active, .acts button:active, .tabs button:active { transform: scale(.97); }
+  .tabs button[aria-selected="true"] b { animation: tabPop .25s cubic-bezier(.3,1.6,.5,1); }
+  @keyframes tabPop { from { transform: scale(.85); } }
+}
 </style>
 
 <div class="wrap">
@@ -1782,10 +1796,26 @@ try { startTab = localStorage.getItem('ps-tab') || 'pick'; } catch (e) {}
 fillEns(); renderEns(); cForm();
 showTab(['pick', 'pachi', 'slot', 'set', 'ens', 'log'].includes(startTab) ? startTab : 'pick');
 renderAll();
+/* 動き：結果の数字・判定が変わったら .tick を付けなおして、繰り上がり・ランプの動きを1回だけ出す */
+(function () {
+  if (!window.MutationObserver || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const last = new WeakMap();
+  const kick = (el) => { el.classList.remove('tick'); void el.offsetWidth; el.classList.add('tick'); };
+  document.querySelectorAll('.big, .verdict').forEach((el) => {
+    last.set(el, el.textContent);
+    new MutationObserver(() => {
+      const t = el.textContent;
+      if (t === last.get(el)) return;
+      last.set(el, t);
+      if (t.trim()) kick(el);
+    }).observe(el, { childList: true, characterData: true, subtree: true });
+    el.addEventListener('animationend', () => el.classList.remove('tick'));
+  });
+})();
 </script>
 
 <script>
-// オフラインで動くように、開いたときに中身を端末に保存する（版 859e615b02）
+// オフラインで動くように、開いたときに中身を端末に保存する（版 1dfbda22e9）
 if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 </script>
 </body>
