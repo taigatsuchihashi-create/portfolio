@@ -14,7 +14,7 @@ HTML = r"""<!doctype html>
 <title>槌橋泰雅 ポートフォリオ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Zen+Old+Mincho:wght@700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap">
 <style>
 /* 白い方眼紙（企画を書くノート）を下敷きに。ヒーローだけ方眼を見せ、ほかは白と罫線で静かに。
    差し色は青緑の1色。ラベルは英字の大文字や等幅の書体を使わず、日本語で必要なものだけ。 */
@@ -278,13 +278,33 @@ footer .rights a{color:inherit; text-decoration:underline}
   .pt-dot,.pt-ring,.hero .cell,.hero .xh,.hero .yh{display:none}
   .card,.card::before{transition:none} .card:hover{transform:none}
 }
+/* ===== 和の設え（2026-11-04、本人「墨とか畳とか the 和が好き」） =====
+   白い和紙に墨。差し色は青緑から藍へ、印だけ朱。大見出しは明朝。
+   方眼（データの紙）はそのまま残し、線の色を藍にする。 */
+:root{
+  --accent:#2B4C7E;       /* 藍 */
+  --accent-soft:#E6ECF4;
+  --grid:rgba(43,76,126,.085);
+  --band:#F6F6F3;         /* 和紙 */
+  --shu:#B8322A;          /* 朱 */
+  --f-mincho:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+}
+body{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.011 .1' numOctaves='3' seed='2'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .47  0 0 0 .9 0'/><feComponentTransfer><feFuncA type='table' tableValues='0 0 .045 .09'/></feComponentTransfer></filter><rect width='100%25' height='100%25' filter='url(%23f)'/></svg>")}
+.band.tint{background-color:var(--band)}
+h1,.sh h2,.contact h2{font-family:var(--f-mincho); font-weight:900; letter-spacing:.04em}
+/* 名前の前の落款（朱肉の角印、白抜き） */
+.brand{display:inline-flex; align-items:center; gap:10px}
+.brand .seal{display:inline-grid; place-items:center; width:24px; height:24px; background:var(--shu); color:#fff;
+  font-family:var(--f-mincho); font-size:13px; letter-spacing:0; border-radius:2px; transform:rotate(-4deg)}
+/* 節の頭の短い線は、筆で引いた朱 */
+.rule{background:var(--shu); height:3px; border-radius:2px; transform:rotate(-1.5deg)}
 </style>
 </head>
 <body>
 
 <header class="hd">
   <div class="hd-in">
-    <a class="brand" href="#top">槌橋 泰雅</a>
+    <a class="brand" href="#top"><span class="seal" aria-hidden="true">槌</span>槌橋 泰雅</a>
     <nav class="nav">
       <a href="#about">自己紹介</a>
       <a href="#works">企画書</a>

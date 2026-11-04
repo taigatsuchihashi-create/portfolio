@@ -17,7 +17,7 @@
 <title>パチ・スロ期待値</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Barlow+Condensed:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Shippori+Mincho+B1:wght@800&family=Barlow+Condensed:wght@500;600;700&display=swap">
 <style>
 /* ホールの台の上のデータカウンターのように：結果はLEDの数字のように大きく、入力は「1 機種 → 2 測る → 3 店の条件」の順。
    タブは親指で押せる下の帯。文字は読みやすさ優先のUDゴシック、数字は細身で桁がそろう書体 */
@@ -212,6 +212,12 @@ svg text { fill: var(--muted); font-size: 11px; }
 .seg button[aria-checked="true"] small { color: #fff; }
 @media (prefers-reduced-motion: no-preference) { .bar i, .gauge .fill { transition: width .25s; } }
 @media (max-width: 360px) { .grid { grid-template-columns: 1fr; } .big { font-size: 2.6rem; } }
+/* 和の設え（2026-11-04、本人「墨とか畳とか the 和が好き」）：和紙の地に墨の数字。題字の下に朱の二本線、結果の札は上に朱の帯。 */
+body { background-color: #fff;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.012 .1' numOctaves='3' seed='5'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .46  0 0 0 .9 0'/><feComponentTransfer><feFuncA type='table' tableValues='0 0 .05 .1'/></feComponentTransfer></filter><rect width='100%25' height='100%25' filter='url(%23f)'/></svg>"); }
+.appbar { border-bottom: 3px double #b8322a; padding-bottom: 6px; }
+.appbar h1 { font-family: "Shippori Mincho B1", "Yu Mincho", "Hiragino Mincho ProN", serif; font-weight: 800; letter-spacing: .12em; }
+.result { border-top: 4px solid #b8322a; }
 /* 動き（2026-11-04）：データカウンター。結果の数字が変わると、下から繰り上がって入れかわる。
    判定の丸はランプのように一度だけ灯る。タブを切り替えた中身はすっと出る。押したボタンは少し沈む。 */
 @media (prefers-reduced-motion: no-preference) {
@@ -1815,7 +1821,7 @@ renderAll();
 </script>
 
 <script>
-// オフラインで動くように、開いたときに中身を端末に保存する（版 1dfbda22e9）
+// オフラインで動くように、開いたときに中身を端末に保存する（版 31ced814a2）
 if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 </script>
 </body>
