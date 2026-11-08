@@ -44,6 +44,9 @@ img{max-width:100%}
 a{color:var(--ai)}
 ::selection{background:var(--ink); color:var(--paper)}
 :focus-visible{outline:2px solid var(--shu); outline-offset:3px}
+/* 日本語の改行を文節で（対応していないブラウザでは今までどおり） */
+h1,h2,h3,h4,.lede,.lead,.quote,.role,.fit dd,.sh p,.c-links .nm,.vt-close{word-break:auto-phrase}
+p,dd,li{text-wrap:pretty}
 
 /* ===== header ===== */
 .hd{position:fixed; inset:0 0 auto 0; z-index:50; height:calc(var(--head-h) + env(safe-area-inset-top,0px));
