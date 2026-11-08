@@ -45,7 +45,6 @@ __STYLE__
       <canvas aria-hidden="true"></canvas>
       <svg aria-hidden="true" focusable="false"></svg>
       <span class="hanko" aria-hidden="true">泰雅</span>
-      <span class="shaku" aria-hidden="true"><b>遊</b>あそぶ</span>
       <span class="hint" aria-hidden="true">押すと、もう一度書く</span>
     </button>
     <h1 class="vt">面白さを分析して、<br>自分の手で形にする。</h1>
