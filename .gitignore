@@ -18,3 +18,9 @@ node_modules/
 *.log
 /tmp/
 build.py.bak
+# 作業用（字の形を作る元のフォント・確認用の絵）
+assets/src/fonts/
+assets/src/*.png
+assets/src/*.html
+assets/src/*.path
+assets/src/build_before_redesign.py
