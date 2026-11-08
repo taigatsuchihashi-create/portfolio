@@ -50,7 +50,7 @@ __STYLE__
     <h1 class="vt">面白さを分析して、<br>自分の手で形にする。</h1>
     <div class="hero-foot">
       <div>
-        <p class="lede">遊んで終わりにせず、なぜ面白いのかを構造で捉える。その分析を、企画書と、自分で書いたツールの両方で形にしてきました。ゲームプランナーを志望しています。</p>
+        <p class="lede">遊んで終わりにせず、なぜ面白いのかを構造で捉える。その分析を、企画書と、自分で書いたツールの両方で形にしてきました。</p>
         <p class="who"><b>槌橋 泰雅</b>2028年卒　関西学院大学 国際学部 国際学科 3年　／　カウナス工科大学（リトアニア）交換留学　／　TOEIC L&amp;R 785・IELTS 5.5</p>
       </div>
       <a class="cue" href="#about" aria-label="自己紹介へ進む"><span class="cue-t">下へ</span><span class="cue-l" aria-hidden="true"><i></i></span></a>
