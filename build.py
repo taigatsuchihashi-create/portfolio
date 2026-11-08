@@ -255,7 +255,7 @@ __STYLE__
 </section>
 
 <section class="band ink" id="analysis">
-  <div class="in an-grid">
+  <div class="in narrow">
   <div class="an-txt">
     <div class="sh">
       <div class="rule"></div>
@@ -265,15 +265,6 @@ __STYLE__
     <p>そのうえで、報酬の希少性をどう取り戻すかという視点から改善案を2つ提案しています。</p>
     <div class="links"><a class="lnk solid" href="docs/inazuma-report.pdf">レポートを読む（PDF・3ページ）</a></div>
   </div>
-  <figure class="an-fig" aria-labelledby="an-cap">
-    <svg viewBox="0 0 520 330" role="img" aria-label="概念図：必殺技を撃つほど1回の価値が下がる今の作りと、ここぞに集めて価値を取り戻す提案">
-      <g class="ax"><path d="M40 286 H500"/><path d="M40 286 V24"/></g>
-      <text class="lab" x="44" y="18">1回の必殺技の価値</text><text class="lab" x="500" y="310" text-anchor="end">試合の流れ</text>
-      <g class="now"><path class="ln" d="M60 286 V70 M108 286 V110 M150 286 V146 M188 286 V176 M222 286 V200 M252 286 V218 M280 286 V232 M306 286 V242 M330 286 V250 M352 286 V256 M372 286 V260 M392 286 V263"/><text class="tg" x="168" y="132">今：撃つほど安くなる</text></g>
-      <g class="pro"><path class="ln" d="M150 286 V60 M330 286 V44 M470 286 V30"/><circle cx="150" cy="60" r="5"/><circle cx="330" cy="44" r="5"/><circle cx="470" cy="30" r="5"/><text class="tg" x="168" y="86">提案：ここぞに集める</text></g>
-    </svg>
-    <figcaption id="an-cap">レポートの主張を図にした概念図（実測値ではありません）</figcaption>
-  </figure>
   </div>
 </section>
 

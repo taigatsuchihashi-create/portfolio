@@ -129,7 +129,7 @@ window.HERO_GLYPH={"ch": "遊", "size": 1000, "glyph": "M389.5 900.0Q352.6 896.8
 
   /* ---------- スクロール演出と墨のカーソル（GSAP・WebGL）は、読み込みが落ち着いてから別のファイルで ---------- */
   (function(){
-    var load = function(){ var sc = document.createElement('script'); sc.src = 'assets/motion.js?v=0e58327c'; sc.async = true; document.body.appendChild(sc); };
+    var load = function(){ var sc = document.createElement('script'); sc.src = 'assets/motion.js?v=985590e1'; sc.async = true; document.body.appendChild(sc); };
     var idle = function(){ ('requestIdleCallback' in window) ? requestIdleCallback(load, { timeout: 3000 }) : setTimeout(load, 800); };
     if(document.readyState === 'complete') idle(); else addEventListener('load', idle);
   })();

@@ -85,7 +85,7 @@
   document.querySelectorAll('.sh h2').forEach(function(h){
     if(!window.SplitText) return;
     var st = new SplitText(h, { type: 'chars', charsClass: 'sc' });
-    gsap.from(st.chars, { opacity: 0, filter: 'blur(10px)', yPercent: 40, duration: 1.1, ease: 'power3.out', stagger: 0.035,
+    gsap.from(st.chars, { opacity: 0, filter: 'blur(6px)', yPercent: 40, duration: 0.85, ease: 'power3.out', stagger: 0.025, clearProps: 'filter',
       scrollTrigger: { trigger: h, start: 'top 85%', once: true } });
   });
 
@@ -93,20 +93,6 @@
   document.querySelectorAll('.media .fr img').forEach(function(img){
     gsap.fromTo(img, { yPercent: -4 }, { yPercent: 4, ease: 'none', scrollTrigger: { trigger: img.closest('.fr'), start: 'top bottom', end: 'bottom top', scrub: true } });
   });
-
-  // 分析の概念図：スクロールに合わせて「今」の棒が順に縮み、「提案」の朱の棒が立つ
-  var fig = document.querySelector('.an-fig');
-  if(fig){
-    var nowLn = fig.querySelector('.now .ln'), proLn = fig.querySelector('.pro .ln');
-    [nowLn, proLn].forEach(function(p){ var L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
-    var tl = gsap.timeline({ scrollTrigger: { trigger: fig, start: 'top 75%', end: 'bottom 45%', scrub: 0.8 } });
-    tl.to(nowLn, { strokeDashoffset: 0, ease: 'none', duration: 1 })
-      .from(fig.querySelectorAll('.now .tg'), { opacity: 0, duration: .2 }, '-=.2')
-      .to(nowLn, { opacity: .3, duration: .3 })
-      .to(proLn, { strokeDashoffset: 0, ease: 'power2.out', duration: .8 })
-      .from(fig.querySelectorAll('.pro circle'), { scale: 0, transformOrigin: '50% 50%', stagger: .1, duration: .3 }, '-=.3')
-      .from(fig.querySelectorAll('.pro .tg'), { opacity: 0, x: -10, duration: .3 });
-  }
 
   // 進め方の漢数字：筆で引くように左から現れる
   document.querySelectorAll('.card .n').forEach(function(n){
